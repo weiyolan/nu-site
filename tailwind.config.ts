@@ -24,8 +24,6 @@ module.exports = {
 
     extend: {
       colors: {
-        ...colors,
-
         border: "hsl(var(--primary-foreground))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -91,7 +89,7 @@ module.exports = {
         },
         slide: {
           from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-calc(var(--values-amount) * var(--values-width))" },
+          to: { transform: "translateX(calc(var(--values-amount) * var(--values-width) * (-1)))" },
         },
       },
       animation: {

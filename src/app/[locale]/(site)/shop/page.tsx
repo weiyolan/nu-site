@@ -6,7 +6,7 @@ import ShopEco from "@/components/ShopEco";
 import Typography from "@/components/Typography";
 import ValueBar from "@/components/ValueBar";
 import Footer from "@/components/Footer";
-import { client } from "../../../sanity/lib/client";
+import { client } from "../../../../sanity/lib/client";
 import Reviews from "@/components/Reviews";
 
 export async function getEco(): Promise<{

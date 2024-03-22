@@ -1,6 +1,6 @@
+import "../../globals.css";
 import type { Metadata } from "next";
 import { Corben, Mulish } from "next/font/google";
-import "../globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import TrpcProvider from "@/lib/trpc/Provider";
@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 import Navbar from "@/components/Navbar";
 import NuLogoBackground from "@/components/NuLogoBackground";
 
-import { client } from "../../sanity/lib/client";
+import { client } from "../../../sanity/lib/client";
 // const inter = Inter({ subsets: ["latin"] });
 
 const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-corben" });
@@ -47,9 +47,9 @@ export default async function RootLayout({
             <div className={`w-full min-h-screen relative `}>
               <NuLogoBackground />
               <Navbar enabled={enabled} messages={messages} />
-              <div style={{ backgroundColor: "black" }} className="w-1/2 bg-black relative mx-auto mt-60 h-48"></div>
+              {/* <div style={{ backgroundColor: "black" }} className="w-1/2 bg-black relative mx-auto mt-60 h-48"></div> */}
               {/* <h1 className="w-fit relative mx-auto">HELLO THIS IS A TEST</h1> */}
-              {/* {children} */}
+              {children}
             </div>
           </TrpcProvider>
           <Toaster />

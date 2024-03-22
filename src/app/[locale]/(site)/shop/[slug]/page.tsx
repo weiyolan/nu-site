@@ -9,7 +9,7 @@ import ValueBar from "@/components/ValueBar";
 import Reviews from "@/components/Reviews";
 import Products from "@/components/Products";
 import Footer from "@/components/Footer";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "../../../../../sanity/lib/client";
 import slugify from "slugify";
 import { Share } from "lucide-react";
 

@@ -38,7 +38,7 @@ export const myStructure = (S,context) => {
             ])
         ),
       S.listItem()
-        .title("Contact")
+        .title("A Propos")
         .icon(MasterDetailIcon)
         .child(
           S.list()
