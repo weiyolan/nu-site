@@ -9,7 +9,8 @@ import ValueBar from "@/components/ValueBar";
 import Reviews from "@/components/Reviews";
 import Products from "@/components/Products";
 import Footer from "@/components/Footer";
-import { client } from "../../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
+
 import slugify from "slugify";
 import { Share } from "lucide-react";
 
@@ -25,7 +26,7 @@ import { Share } from "lucide-react";
 //   return { product: { title: "Chaos", category: "Shampoing Solide", slug: "shampoing-solide" } };
 // }
 
-export async function getProduct(slug: string) {
+async function getProduct(slug: string) {
   const product = await client.fetch(`*[_type=='product'][slug.current=='${slug}'][0]{...,'images':images[]{alt,'image':image.asset->{...,url}}}`);
   // console.log(product)
   return product;

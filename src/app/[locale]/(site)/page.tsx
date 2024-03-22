@@ -10,7 +10,17 @@ import ProductsPresentation from "@/components/HomeProductsPresentation";
 import Products from "@/components/Products";
 import HomeBlogs from "@/components/HomeBlogs";
 import HomeEssayerNu from "@/components/HomeEssayerNu";
-import { getReviews } from "./shop/page";
+import { client } from "@/sanity/lib/client";
+
+async function getReviews(id: string): Promise<{
+  citationsOn: boolean;
+  title: { en: string; fr: string };
+  description: { en: string; fr: string };
+}> {
+  const reviews = await client.fetch(`*[_type=='reviews'][_id=="${id}"][0]`);
+  // console.log(reviews)
+  return reviews;
+}
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const reviews = await getReviews("homeReviews");

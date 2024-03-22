@@ -6,10 +6,10 @@ import ShopEco from "@/components/ShopEco";
 import Typography from "@/components/Typography";
 import ValueBar from "@/components/ValueBar";
 import Footer from "@/components/Footer";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import Reviews from "@/components/Reviews";
 
-export async function getEco(): Promise<{
+async function getEco(): Promise<{
   description: { en: string; fr: string };
   title: { en: string; fr: string };
   cards: {
@@ -24,7 +24,7 @@ export async function getEco(): Promise<{
   return eco;
 }
 
-export async function getReviews(id: string): Promise<{
+async function getReviews(id: string): Promise<{
   citationsOn: boolean;
   title: { en: string; fr: string };
   description: { en: string; fr: string };

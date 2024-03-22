@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 import Navbar from "@/components/Navbar";
 import NuLogoBackground from "@/components/NuLogoBackground";
 
-import { client } from "../../../sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 // const inter = Inter({ subsets: ["latin"] });
 
 const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-corben" });
