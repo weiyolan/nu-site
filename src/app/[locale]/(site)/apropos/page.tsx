@@ -10,7 +10,7 @@ import Section from "@/components/Section";
 import ValueBar from "@/components/ValueBar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
+// import { client } from "@/sanity/lib/client";
 
 export default function Page({ params: { locale } }: { params: { locale: string } }) {
   return (

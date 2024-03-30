@@ -22,6 +22,21 @@ async function getReviews(id: string): Promise<{
   return reviews;
 }
 
+async function getBlogs(): Promise<
+  {
+    color: string;
+    category: string;
+    integrated: boolean;
+    title: { en: string; fr: string };
+    button: { ext: boolean; text: { en: string; fr: string }; url: string };
+    description: { en: string; fr: string };
+  }[]
+> {
+  // Fetch shopSection with ID homeBlogs or something
+  const blogs = await client.fetch(`*[_type=='shopSection']|order(orderRank)`);
+  // console.log(reviews)
+  return blogs;
+}
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const reviews = await getReviews("homeReviews");
 
@@ -59,9 +74,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       <Section>
         <NuLine big className="flex justify-center " />
       </Section>
-      <Section>
-        <Products />
-      </Section>
+      <Section>{/* <Products locale={locale} products={} /> */}</Section>
       <Section>
         <ImagePop
           imgRight
@@ -80,7 +93,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         <Typography variant={"p"} affects={"subTitle"} className="text-center mb-12 max-w-prose mx-auto">
           Explorez le monde de NU à travers nos articles de haut qualité. Lisez en plus de détails sur vos sujets favoris
         </Typography>
-        <HomeBlogs />
+        {/* <HomeBlogs /> */}
         {/* Products with articles */}
       </Section>
 

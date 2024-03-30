@@ -8,10 +8,10 @@ export default defineType({
   type: "string",
   options: {
     list: [
-      { title: "Shampoing Solide", value: "shampoing" },
-      { title: "Accessoire", value: "accessoire" },
-      { title: "Pack", value: "pack" },
-      { title: "Bon de Cadeau", value: "bon" },
+      { title: "Shampoings Solides", value: "shampoings-solides" },
+      { title: "Accessoires", value: "accessoires" },
+      { title: "Packs", value: "packs" },
+      { title: "Bons Cadeau", value: "bons-cadeau" },
     ],
   },
   validation: (Rule) => Rule.required(),

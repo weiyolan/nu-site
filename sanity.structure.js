@@ -14,16 +14,17 @@ export const myStructure = (S,context) => {
           S.list()
             .title("Sections")
             .items([
-              S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId('homeReviews')),
+              S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId("homeReviews")),
+              S.listItem().title("Produits Favoris").icon(Store).child(S.document().schemaType("shopSection").documentId("homeShopSection")),
               // S.listItem().title("Bermuda Values").icon(BlockElementIcon).child(S.document().schemaType("hpValues").documentId("hpValues")),
               // S.listItem().title("CTA").icon(BlockElementIcon).child(S.document().schemaType("hpCTA").documentId("hpCTA")),
               // S.listItem().title("About").icon(BlockElementIcon).child(S.document().schemaType("hpAbout").documentId("hpAbout")),
               // S.listItem().title("Bermuda Network").icon(BlockElementIcon).child(
-                // S.document().schemaType("hpNetwork").documentId("hpNetwork")
+              // S.document().schemaType("hpNetwork").documentId("hpNetwork")
               // ),
             ])
         ),
-        S.listItem()
+      S.listItem()
         .title("Shop")
         .icon(Store)
         .child(
@@ -31,10 +32,10 @@ export const myStructure = (S,context) => {
             .title("Sections")
             .items([
               // S.listItem().title("Vitrines").icon(BlockElementIcon).child(
-                orderableDocumentListDeskItem({type: 'shopSection', title:'Vitrines', icon:SwatchBook,S:S, context:context}),
-                S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId('shopReviews')),
-                S.listItem().title("Écologie").icon(Leaf).child(S.document().schemaType("ecology")),
-                // documentId("shopReviews")
+              orderableDocumentListDeskItem({ type: "shopSection", title: "Vitrines", icon: SwatchBook, S: S, context: context }),
+              S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId("shopReviews")),
+              S.listItem().title("Écologie").icon(Leaf).child(S.document().schemaType("ecology")),
+              // documentId("shopReviews")
             ])
         ),
       S.listItem()

@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { BreadcrumbPage, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+// import Link from "next/link";
+// import { BreadcrumbPage, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import Section from "@/components/Section";
 import ProductDescription from "@/components/ProductDescription";
 import NuLine from "@/components/NuLine";
@@ -11,8 +11,9 @@ import Products from "@/components/Products";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/lib/client";
 
-import slugify from "slugify";
-import { Share } from "lucide-react";
+// import slugify from "slugify";
+// import { Share } from "lucide-react";
+import BreadcrumbWithCustomSeparator from "@/components/BreadCrumbs";
 
 // async function getData() {
 //   // const res = await fetch('https://api.example.com/...')
@@ -26,6 +27,19 @@ import { Share } from "lucide-react";
 //   return { product: { title: "Chaos", category: "Shampoing Solide", slug: "shampoing-solide" } };
 // }
 
+async function getRecommendedProducts(): Promise<{
+  color: string;
+  category: string;
+  integrated: boolean;
+  title: { en: string; fr: string };
+  button: { ext: boolean; text: { en: string; fr: string }; url: string };
+  description: { en: string; fr: string };
+}> {
+  const recommendedProducts = await client.fetch(`*[_type=='shopSection']|order(orderRank)[0]`);
+  // console.log(reviews)
+  return recommendedProducts;
+}
+
 async function getProduct(slug: string) {
   const product = await client.fetch(`*[_type=='product'][slug.current=='${slug}'][0]{...,'images':images[]{alt,'image':image.asset->{...,url}}}`);
   // console.log(product)
@@ -37,6 +51,9 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
   // const { locale } = useRouter();
   // const reviews = getReviews()
   // console.log(product)
+  const recommendedProducts = await getRecommendedProducts();
+  console.log("recommendedProducts", recommendedProducts);
+
   return (
     <>
       {/* <Section>
@@ -71,37 +88,12 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
       <Section>
         <Reviews reviews={reviews} />
       </Section>
-      <Section>
-        <Products />
-      </Section>
+      <Section>{/* <Products locale={locale} products={recommendedProducts} /> */}</Section>
       <Footer />
     </>
   );
 }
 
-export function BreadcrumbWithCustomSeparator({ category, title }: { category: string; title: string }) {
-  return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/shop">Shop</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href={`/shop#${slugify(category, { lower: true })}`}>{category}</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>{title}</BreadcrumbPage> <Share className="size-4" />
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
-}
 export async function generateStaticParams() {
   const slugs = await client.fetch(`*[_type=='product']{'slug':slug.current}`);
   // console.log(slugs)

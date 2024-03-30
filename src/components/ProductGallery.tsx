@@ -23,6 +23,9 @@ export default function ProductGallery({images}) {
     });
   }, [api]);
 
+  // Pour améliorer:
+  // https://codesandbox.io/p/sandbox/embla-carousel-thumbs-react-9l853v?file=%2Fsrc%2Fjs%2FEmblaCarousel.tsx%3A7%2C19
+
   return (
     <>
       <Carousel setApi={setApi} opts={{ loop: true }} className="sticky top-24 ml-8  ">
@@ -32,7 +35,15 @@ export default function ProductGallery({images}) {
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6 relative h-full w-full">
                   {/* <span className="text-4xl font-semibold">{index + 1}</span> */}
-                    <Image placeholder="blur" blurDataURL={image.image.metadata.lqip} alt={image.alt.fr} src={image.image.url} sizes='50vw' fill className="object-cover"></Image>
+                  <Image
+                    placeholder="blur"
+                    priority={index === 0}
+                    blurDataURL={image.image.metadata.lqip}
+                    alt={image.alt.fr}
+                    src={image.image.url}
+                    sizes="40vw"
+                    fill
+                    className="object-cover"></Image>
                 </CardContent>
               </Card>
             </CarouselItem>

@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import {  Package } from "lucide-react";
+import { uiLanguage } from "../supportedLanguages";
 
 export default defineType({
   name: "product",
@@ -18,40 +19,40 @@ export default defineType({
   ],
   fieldsets: [
     {
-      name: 'specs',
-      title: 'Spécifications',
-      options: { collapsible: true, collapsed: false, columns:2 }
-    }
+      name: "specs",
+      title: "Spécifications",
+      options: { collapsible: true, collapsed: false, columns: 2 },
+    },
   ],
   preview: {
     select: {
       title: "title",
       price: "price",
-      cat: "cat",
-      favo:'favorite',
+      category: "category",
+      favo: "favorite",
       // by: 'by',
       // date: 'date',
       media: "images",
     },
 
     prepare(selection) {
-      const { title, favo, cat, price, media } = selection;
-      return { title: `${title}`, subtitle: `€${price}, ${cat}`, media: media[0].image.asset };
+      const { title, favo, category, price, media } = selection;
+      return { title: `${title[uiLanguage.id]}`, subtitle: `€${price}, ${category}`, media: media[0].image.asset };
     },
   },
   fields: [
     defineField({
-      name:'favorite',
-      title:'Produit Préféré',
-      type:'boolean',
+      name: "favorite",
+      title: "Produit Préféré",
+      type: "boolean",
       group: "details",
-      initialValue:false,
+      initialValue: false,
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "title",
       title: "Titre",
-      type: "string",
+      type: "localeString",
       group: "details",
       validation: (Rule) => Rule.required(),
     }),
@@ -74,7 +75,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
 
-
     // =============DETAILS FIELDSET=======================
 
     // defineField({
@@ -85,7 +85,6 @@ export default defineType({
     //   // options: {dateFormat: 'YYYY',calendarTodayLabel: 'Today'},
     // }),
 
-   
     // defineField({
     //   name: "images",
     //   title: "Main Image",
@@ -93,18 +92,18 @@ export default defineType({
     //   group: ["details", "images"],
     //   validation: (Rule) => Rule.required(),
     // }),
- 
+
     defineField({
-      name: "cat",
+      name: "category",
       // title: "Catégorie",
       type: "optionsCategory",
       group: "details",
-      fieldset:'specs',
+      fieldset: "specs",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "color",
-      title:'Couleur',
+      title: "Couleur",
       // description: "En €",
       // fieldset:'specs',
       type: "optionsColors",
@@ -115,7 +114,7 @@ export default defineType({
       name: "price",
       title: "Prix (€)",
       // description: "En €",
-      fieldset:'specs',
+      fieldset: "specs",
       type: "number",
       group: "details",
       validation: (Rule) => Rule.required().positive().precision(2),
@@ -124,7 +123,7 @@ export default defineType({
       name: "rating",
       title: "Rating (%)",
       // description: "Chiffre entre 0-5",
-      fieldset:'specs',
+      fieldset: "specs",
       type: "number",
       group: "details",
       validation: (Rule) => Rule.required().min(0).max(1),
@@ -133,7 +132,7 @@ export default defineType({
       name: "weight",
       title: "Poid (g)",
       // description: "En gram",
-      fieldset:'specs',
+      fieldset: "specs",
       type: "number",
       group: "details",
       validation: (Rule) => Rule.required().positive(),
@@ -141,7 +140,7 @@ export default defineType({
     defineField({
       name: "description",
       title: "Description",
-      options:{collapsed:false, collapsable:true},
+      options: { collapsed: false, collapsable: true },
       type: "localeText",
       group: "details",
       validation: (Rule) => Rule.required(),
@@ -149,7 +148,7 @@ export default defineType({
     defineField({
       name: "reviews",
       title: "Avis",
-      options:{collapsed:true},
+      options: { collapsed: true },
       type: "reviews",
       group: "details",
       validation: (Rule) => Rule.required(),
