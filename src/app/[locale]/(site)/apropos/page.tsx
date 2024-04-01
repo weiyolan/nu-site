@@ -100,10 +100,25 @@ async function getIngredients(): Promise<{
   const ingredients = await client.fetch(`*[_type=='aboutIngredient']|order(orderRank)`);
   // console.log(reviews)
   return {
-    major: ingredients.filter((ingredient) => ingredient.category === "major"),
-    minor: ingredients.filter((ingredient) => ingredient.category === "minor"),
+    major: ingredients.filter((ingredient: { category: string; title: localeStringType; description: localeStringType }) => ingredient.category === "major"),
+    minor: ingredients.filter((ingredient: { category: string; title: localeStringType; description: localeStringType }) => ingredient.category === "minor"),
   };
 }
+
+async function getBrefInfo(): Promise<{
+  title: localeStringType;
+  description: localeStringType;
+  button: buttonType;
+  altImages: altImageType[];
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const brefInfo = await client.fetch(`*[_type=='aboutBref'][0]{...,altImages[]{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return brefInfo;
+}
+
 export default async function Page({ params: { locale } }: { params: { locale: localeType } }) {
   const imagePop = await getImagePop();
   const squareInfo = await getSquareInfo();
@@ -111,6 +126,7 @@ export default async function Page({ params: { locale } }: { params: { locale: l
   const valueInfo = await getValueInfo();
   const ingredientInfo = await getIngredientInfo();
   const ingredients = await getIngredients();
+  const brefInfo = await getBrefInfo();
   return (
     <>
       <Hero
@@ -145,7 +161,7 @@ export default async function Page({ params: { locale } }: { params: { locale: l
         </Section>
       </div>
       <Section>
-        <AboutBref />
+        <AboutBref locale={locale} brefInfo={brefInfo} />
       </Section>
       <Footer />
     </>

@@ -35,7 +35,7 @@ export default defineType({
     }),
     defineField({
       name: "altImages",
-      description: "Les deux images, le premier devant.",
+      description: "Deux images, le premier devant.",
       title: "Images",
       type: "array",
       of: [{ type: "altImage" }],
