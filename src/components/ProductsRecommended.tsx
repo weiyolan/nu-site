@@ -2,23 +2,22 @@ import { cn } from "@/lib/utils";
 import Product from "./Product";
 import Typography from "./Typography";
 import { client } from "@/sanity/lib/client";
-import slugify from "slugify";
 import { altImageType, buttonType, colorSanityType, getColor, localeStringType, localeType } from "../sanity/lib/interface";
 
-export interface ProductsProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface ProductsRecommendedProps extends React.HTMLAttributes<HTMLInputElement> {
   locale: localeType;
-  type?: "shopTitle";
+  // type?: "shopTitle";
+  currentProduct: { slug: string; category: string };
   shopSection: {
     color: colorSanityType;
-    category: string;
     integrated: boolean;
     title: localeStringType;
-    button: buttonType;
+    // button: buttonType;
     description: localeStringType;
   };
 }
 
-async function getProducts(category: string): Promise<
+async function getRecommendedProducts({ slug, category }: { slug: string; category: string }): Promise<
   {
     slug: { current: string };
     description: localeStringType;
@@ -30,11 +29,12 @@ async function getProducts(category: string): Promise<
   }[]
 > {
   let products = await client.fetch(
-    category === "favorites"
-      ? `*[_type=='product'][favorite==true]{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
-      : category === "recommended"
-        ? `*[_type=='product'][category=='${"shampoings-solides"}']{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
-        : `*[_type=='product'][category=='${category}']{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
+    `*[_type=='product'][slug.current!='${slug}'][0..3]{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
+    // category === "bons-cadeau"
+    // ? `*[_type=='product'][slug.current!='${slug}'][category=='bons-cadeau'||category=='packs'][0..3]{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
+    // : category === "packs"
+    // ? `*[_type=='product'][slug.current!='${slug}'][category=='packs'||category=='bons-cadeau'][0..3]{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
+    // : `*[_type=='product'][slug.current!='${slug}'][category=='${category === "shampoings-solides" ? "shampoings-solides" : "accessoires"}'||category=='category==${category === "shampoings-solides" ? "accessoires" : "shampoings-solides"}][0..3]{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
   );
   // altImage{
   // alt, 'image':image.asset->{url, metadata{lqip}}
@@ -42,8 +42,16 @@ async function getProducts(category: string): Promise<
   return products;
 }
 
-export default async function Products({ locale, type, shopSection: { color, category, integrated, title, button, description }, children, className, ...props }: ProductsProps) {
-  const products = await getProducts(category);
+export default async function ProductsRecommended({
+  currentProduct,
+  locale,
+  shopSection: { color, integrated, title, description },
+  children,
+  className,
+  ...props
+}: ProductsRecommendedProps) {
+  const products = await getRecommendedProducts(currentProduct);
+
   return (
     <>
       {!integrated && (
@@ -56,19 +64,18 @@ export default async function Products({ locale, type, shopSection: { color, cat
           </Typography>
         </>
       )}
-      <div id={slugify(category)} className={cn("grid grid-cols-4 grid-flow-row gap-4 sm:gap-6", className)} {...props}>
+      <div className={cn("grid grid-cols-4 grid-flow-row gap-4 sm:gap-6", className)} {...props}>
         {integrated && (
           <Product
             locale={locale}
             product={{
-              type: type || "title",
+              type: "shopTitle",
               color: getColor(color),
               // slug: "product-slug",
               // rating: 1,
               // price: 15,
               title: title?.[locale],
               description: description?.[locale],
-              button: type === "shopTitle" ? undefined : button,
             }}
           />
         )}

@@ -1,18 +1,20 @@
 import { defineType, defineField } from "sanity";
 import { uiLanguage } from "../supportedLanguages";
-import { SwatchBook } from "lucide-react";
+import { BookOpen, SwatchBook } from "lucide-react";
 // import { ListCollapse , Rows3} from "lucide-react";
-import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
+// import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 
 export default defineType({
-  name: "shopSection",
-  title: "Vitrine",
-  type: "document",
-  icon: SwatchBook,
-  orderings: [orderRankOrdering],
+  name: "homeBlogs",
+  title: "Blogs",
+  type: "object",
+  icon: BookOpen,
+  readOnly: true,
+  deprecated: { reason: "Les blogs ne sont pas activent pour l'instant." },
+  // orderings: [orderRankOrdering],
   fieldsets: [{ title: "Paramètres", name: "settings" }],
   fields: [
-    orderRankField({ type: "shopSection" }),
+    // orderRankField({ type: "shopSection" }),
     defineField({
       title: "Titre Intégré",
       description: "Activer pour afficher un titre coloré intégré dans la liste.",
@@ -22,13 +24,13 @@ export default defineType({
       fieldset: "settings",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "category",
-      type: "optionsCategory",
-      fieldset: "settings",
-      validation: (Rule) => Rule.required(),
-      // initialValue:'',
-    }),
+    // defineField({
+    //   name: "category",
+    //   type: "optionsCategory",
+    //   fieldset: "settings",
+    //   validation: (Rule) => Rule.required(),
+    //   // initialValue:'',
+    // }),
     defineField({
       title: "Titre",
       name: "title",
@@ -43,7 +45,7 @@ export default defineType({
     }),
     defineField({
       title: "Bouton",
-      description: "Ceci est automatiquement désactivé sur la page shop",
+      // description: "Ceci est automatiquement désactivé sur la page shop",
       name: "button",
       type: "link",
       hidden: ({ document }) => !document?.integrated,

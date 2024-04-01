@@ -24,7 +24,7 @@ export default function Reviews({ reviews: { title, description, citationsOn }, 
       <Typography variant="h2" className="text-center">
         {title.fr}
       </Typography>
-      <Typography variant="p" affects="subTitle" className="max-w-prose text-center mx-auto">
+      <Typography variant="p" affects="subTitle" className="text-center max-w-prose mx-auto text-balance">
         {description.fr}
       </Typography>
 

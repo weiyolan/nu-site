@@ -4,8 +4,9 @@ import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import Image from "next/image";
+import { altImageType, localeType } from "@/sanity/lib/interface";
 
-export default function ProductGallery({images}) {
+export default function ProductGallery({ locale, images }: { locale: localeType; images: altImageType[] }) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -28,18 +29,18 @@ export default function ProductGallery({images}) {
 
   return (
     <>
-      <Carousel setApi={setApi} opts={{ loop: true }} className="sticky top-24 ml-8  ">
+      <Carousel setApi={setApi} opts={{ loop: true }} className="sticky top-24 ">
         <CarouselContent>
           {images.map((image, index) => (
             <CarouselItem key={index}>
-              <Card>
+              <Card className="border-none">
                 <CardContent className="flex aspect-square items-center justify-center p-6 relative h-full w-full">
                   {/* <span className="text-4xl font-semibold">{index + 1}</span> */}
                   <Image
                     placeholder="blur"
                     priority={index === 0}
                     blurDataURL={image.image.metadata.lqip}
-                    alt={image.alt.fr}
+                    alt={image.alt?.[locale]}
                     src={image.image.url}
                     sizes="40vw"
                     fill

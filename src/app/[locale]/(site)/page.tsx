@@ -11,35 +11,176 @@ import Products from "@/components/Products";
 import HomeBlogs from "@/components/HomeBlogs";
 import HomeEssayerNu from "@/components/HomeEssayerNu";
 import { client } from "@/sanity/lib/client";
+import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
 
 async function getReviews(id: string): Promise<{
   citationsOn: boolean;
-  title: { en: string; fr: string };
-  description: { en: string; fr: string };
+  title: localeStringType;
+  description: localeStringType;
 }> {
   const reviews = await client.fetch(`*[_type=='reviews'][_id=="${id}"][0]`);
   // console.log(reviews)
   return reviews;
 }
 
-async function getBlogs(): Promise<
-  {
-    color: string;
-    category: string;
-    integrated: boolean;
-    title: { en: string; fr: string };
-    button: { ext: boolean; text: { en: string; fr: string }; url: string };
-    description: { en: string; fr: string };
-  }[]
-> {
-  // Fetch shopSection with ID homeBlogs or something
-  const blogs = await client.fetch(`*[_type=='shopSection']|order(orderRank)`);
-  // console.log(reviews)
-  return blogs;
-}
-export default async function Page({ params: { locale } }: { params: { locale: string } }) {
-  const reviews = await getReviews("homeReviews");
+// async function getBlogs(): Promise<
+//   {
+//     color: string;
+//     category: string;
+//     integrated: boolean;
+//     title: localeStringType;
+//     button: buttonType;
+//     description: localeStringType;
+//   }[]
+// > {
+//   // Fetch shopSection with ID homeBlogs or something
+//   const blogs = await client.fetch(`*[_type=='shopSection']|order(orderRank)`);
+//   // console.log(reviews)
+//   return blogs;
+// }
 
+async function getFavorites(): Promise<{
+  color: colorSanityType;
+  integrated: boolean;
+  enabled: boolean;
+  title: localeStringType;
+  button: buttonType;
+  description: localeStringType;
+  category: string;
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const favos = await client.fetch(`*[_type=='homeFavorites'][0]`);
+  // console.log(reviews)
+  return { ...favos, category: "favorites" };
+}
+
+async function getProductPresentation(): Promise<{
+  title: localeStringType;
+  description: localeStringType;
+  topLeft: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+  topRight: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+  bottomLeft: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+  bottomRight: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+}> {
+  const productPresentation = await client.fetch(
+    `*[_type=='homeProductPresentation'][0]{
+      description,
+      title,
+      topLeft{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }
+      },
+      topRight{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt,'image':image.asset->{url, metadata{lqip}}
+        }
+      },
+      bottomLeft{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt,'image':image.asset->{url, metadata{lqip}}
+        }
+      },
+      bottomRight{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt,'image':image.asset->{url, metadata{lqip}}
+        }
+      }
+    }
+    `
+  );
+  return productPresentation;
+}
+
+async function getCTA(): Promise<{
+  title: localeStringType;
+  promotion: localeStringType;
+  button: buttonType;
+  description: localeStringType;
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const cta = await client.fetch(`*[_type=='cta'][0]`);
+  // console.log(reviews)
+  return cta;
+}
+
+async function getImagePop1(): Promise<{
+  color: colorSanityType;
+  title: localeStringType;
+  button: buttonType;
+  description: localeStringType;
+  altImage: altImageType;
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const imagePop = await client.fetch(`*[_type=='imagePop'][_id=='article'][0]{...,altImage{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return imagePop;
+}
+
+async function getImagePop2(): Promise<{
+  color: colorSanityType;
+  title: localeStringType;
+  button: buttonType;
+  description: localeStringType;
+  altImage: altImageType;
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const imagePop = await client.fetch(`*[_type=='imagePop'][_id=='article2'][0]{...,altImage{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return imagePop;
+}
+
+export default async function Page({ params: { locale } }: { params: { locale: "en" | "fr" } }) {
+  const reviews = await getReviews("homeReviews");
+  const productPresentation = await getProductPresentation();
+  const cta = await getCTA();
+  const imagePop1 = await getImagePop1();
+  const imagePop2 = await getImagePop2();
+  const { enabled: favoEnabled, ...favos } = await getFavorites();
   return (
     <>
       <Hero
@@ -50,8 +191,11 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         button="Voir les produits"
         increasedContrast
       />
+      {/* <Section>
+        <pre>{JSON.stringify(productPresentation, null, 2)}</pre>
+      </Section> */}
       <Section className="mt-16 md:px-24 2xl:px-24">
-        <ProductsPresentation />
+        <ProductsPresentation locale={locale} sanityData={productPresentation} />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
         <ValueBar />
@@ -60,42 +204,26 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         <Reviews reviews={reviews} />
       </Section>
       <Section className="max-w-screen bg-nu-blue px-0 w-full">
-        <HomeEssayerNu />
+        <HomeEssayerNu locale={locale} cta={cta} />
       </Section>
       <Section>
-        <ImagePop
-          img={{ src: "/main_beer.jpg", alt: "beer" }}
-          text={`Alors, prêts à rejoindre l'aventure NU, où l'art, la science et la nature se rencontrent pour créer quelque chose de vraiment spécial ? Essayez mon shampoing solide, et comme  moi, vous allez l'adorer. Vos cheveux vous remercieront, et la planète aussi !`}
-          title={`Un shampoing solide à\nbase de levure de bière`}
-          button={"Découvrez les bienfaits"}
-          color="bg-nu-yellow"
-        />
+        <ImagePop locale={locale} imagePop={imagePop1} />
       </Section>
       <Section>
         <NuLine big className="flex justify-center " />
       </Section>
-      <Section>{/* <Products locale={locale} products={} /> */}</Section>
+      {favoEnabled && (
+        <Section>
+          <Products locale={locale} shopSection={favos} />
+        </Section>
+      )}
       <Section>
-        <ImagePop
-          imgRight
-          img={{ src: "/main_dog.jpg", alt: "dog" }}
-          text={`Mais mon engagement ne s'arrête pas là. Les emballages que j'utilise sont faits à partir de matériaux recyclés, car la préservation de notre planète est au cœur de ma démarche. Mon shampoing NU n'est pas simplement un produit, c'est une invitation à rejoindre une communauté engagée. C'est une histoire d'amour pour la nature et d'engagement envers notre belle planète. Chaque fois que vous utilisez mon shampoing solide, vous `}
-          title={`Nu est un shampoing pour le corps et la nature`}
-          color="bg-nu-green"
-          button={"Essayer Maintenant"}
-        />
+        <ImagePop locale={locale} imgRight imagePop={imagePop2} />
       </Section>
 
-      <Section>
-        <Typography variant="h2" className="text-center">
-          En savoir plus?
-        </Typography>
-        <Typography variant={"p"} affects={"subTitle"} className="text-center mb-12 max-w-prose mx-auto">
-          Explorez le monde de NU à travers nos articles de haut qualité. Lisez en plus de détails sur vos sujets favoris
-        </Typography>
-        {/* <HomeBlogs /> */}
-        {/* Products with articles */}
-      </Section>
+      {/* <Section> */}
+      {/* <HomeBlogs locale={locale} /> */}
+      {/* </Section> */}
 
       <Footer className="-mt-8" />
     </>

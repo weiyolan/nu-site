@@ -1,24 +1,33 @@
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import Typography from "./Typography";
+import Link from "next/link";
 
-export interface HomeEssayerNuProps extends React.HTMLAttributes<HTMLInputElement> {}
+export interface HomeEssayerNuProps extends React.HTMLAttributes<HTMLDivElement> {
+  cta: {
+    title: { en: string; fr: string };
+    promotion: { en: string; fr: string };
+    button: { ext: boolean; text: { en: string; fr: string }; url: string };
+    description: { en: string; fr: string };
+  };
+  locale: "en" | "fr";
+}
 
-export default function HomeEssayerNu({ children, className, ...props }: HomeEssayerNuProps) {
+export default function HomeEssayerNu({ locale, cta: { title, description, button, promotion }, children, className, ...props }: HomeEssayerNuProps) {
   return (
     <div className={cn("max-w-7xl mx-auto justify-center flex gap-16 py-16 h-full", className)} {...props}>
       <div className="w-1/2 max-w-prose flex flex-col justify-start items-start">
-        <Typography variant={"h2"}>Prêt à essayer NU?</Typography>
-        <Typography
-          variant={"p"}
-          affects={"subTitle"}
-          className="text-nu-black">{`Essayez mon shampoing solide, et comme  moi, vous allez l'adorer. Vos cheveux vous remercieront, et la planète aussi !`}</Typography>
+        <Typography variant={"h2"}>{title?.[locale]}</Typography>
+        <Typography variant={"p"} affects={"subTitle"} className="text-nu-black">
+          {description?.[locale]}
+        </Typography>
       </div>
       <div className="flex-col flex justify-center items-center">
-        <Button>Essayer NU Maintenant</Button>
+        <Button asChild>
+          <Link href={button.url}>{button.text?.[locale]}</Link>
+        </Button>
         <Typography variant={"p"} className="text-sm font-bold w-fit">
-          {" "}
-          Et profitez de -10%!{" "}
+          {promotion?.[locale]}
         </Typography>
       </div>
     </div>

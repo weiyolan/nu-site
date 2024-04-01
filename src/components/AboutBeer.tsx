@@ -4,24 +4,35 @@ import Typography from "./Typography";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { AspectRatio } from "./ui/aspect-ratio";
+import { altImageType, buttonType, colorSanityType, localeStringType, localeType } from "@/sanity/lib/interface";
 
-export interface AboutBeerProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AboutBeerProps extends React.HTMLAttributes<HTMLDivElement> {
+  locale: localeType;
+  beerInfo: {
+    title: localeStringType;
+    description: localeStringType;
+    color: colorSanityType;
+    altImage: altImageType;
+    button: buttonType;
+  };
+}
 
-export default function AboutBeer({ children, className, ...props }: AboutBeerProps) {
+export default function AboutBeer({ locale, beerInfo: { title, description, color, altImage, button }, children, className, ...props }: AboutBeerProps) {
   return (
     <div className={cn("w-[120%] -left-[10%] relative mt-48", className)} {...props}>
       <AspectRatio ratio={19 / 9}>
-        <Image src="/about_yiest.png" className="object-cover" fill alt="levure de bière" />
+        <Image placeholder="blur" blurDataURL={altImage.image.metadata.lqip} src={altImage.image.url} className="object-cover" fill alt={altImage.alt?.[locale]} />
       </AspectRatio>
-
       <div className="bg-nu-yellow shadow-lg min-w-[500px] max-w-prose absolute p-8 left-1/2 top-0 -translate-x-1/2 -translate-y-24 flex flex-col items-center">
-        <Typography variant="h2" className="text-center whitespace-pre-wrap">{`Un shampoing solide a\nbase de levure de bière`}</Typography>
+        <Typography variant="h2" className="text-center whitespace-pre-wrap">
+          {title?.[locale]}
+        </Typography>
         <Typography variant="p" affects={"withPMargin"} className=" font-semibold text-center whitespace-wrap">
-          {`Ah, et avez-vous déjà pensé à la levure de bière comme ingrédient magique pour vos cheveux ? En collaboration avec une brasserie locale, j'ai décidé de donner une seconde vie à ces trésors souvent négligés. Les levures de bière récupérées apportent souplesse, vitalité et brillance à vos cheveux tout en réduisant notre impact sur l'environnement.`}
+          {description?.[locale]}
         </Typography>
         <Button asChild className="w-fit mx-auto relative mt-6">
-          <Link className="w-fit mx-auto relative mt-6" href="/">
-            En lire plus
+          <Link className="w-fit mx-auto relative mt-6" href={button.url}>
+            {button.text?.[locale]}
           </Link>
         </Button>
       </div>

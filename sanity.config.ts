@@ -4,6 +4,9 @@
 
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
+// import { defineConfig } from "@sanity-typed/types";
+// import type { InferSchemaValues } from "@sanity-typed/types";
+
 import { structureTool } from "sanity/structure";
 import { myStructure } from "sanity.structure";
 import { frFRLocale } from "@sanity/locale-fr-fr";
@@ -12,19 +15,20 @@ import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import { schema } from "./src/sanity/schema";
 import { iconify } from "sanity-plugin-iconify";
 import myLogo from "@/sanity/lib/logo";
-export default defineConfig({
+
+const config = defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   // studio: {
-    // components: {
-      // layout: MyLayout,
-      icon: myLogo,
-      // navbar: MyNavbar,
-      // toolMenu: MyToolMenu,
-    // }
+  // components: {
+  // layout: MyLayout,
+  icon: myLogo,
+  // navbar: MyNavbar,
+  // toolMenu: MyToolMenu,
+  // }
   // },
   plugins: [
     frFRLocale(),
@@ -42,8 +46,7 @@ export default defineConfig({
       showName: false,
     }),
   ],
-  // parts:[{
-  //   implements: "part:@sanity/base/brand-logo",
-  //   path: "./src/components/NuLogo.tsx"
-  // }]
 });
+
+export default config;
+// export type SanityValues = InferSchemaValues<typeof config>;

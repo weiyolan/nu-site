@@ -2,9 +2,13 @@ import { cn } from "@/lib/utils";
 import Product from "./Product";
 import Typography from "./Typography";
 
-export interface HomeBlogsProps extends React.HTMLAttributes<HTMLDivElement> {title:string,description:string}
+export interface HomeBlogsProps extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
+  description: string;
+  locale: string;
+}
 
-export default async function HomeBlogs({title, description,  children, className, ...props }: HomeBlogsProps) {
+export default async function HomeBlogs({ title, description, locale, children, className, ...props }: HomeBlogsProps) {
   return (
     <>
       {" "}
@@ -18,6 +22,7 @@ export default async function HomeBlogs({title, description,  children, classNam
         {Array.from({ length: 4 }).map((_, index) => (
           <Product
             key={index}
+            locale={locale}
             product={{
               price: 0,
               rating: 0,

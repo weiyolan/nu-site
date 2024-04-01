@@ -1,34 +1,43 @@
 import { defineType, defineField } from "sanity";
 import { uiLanguage } from "../supportedLanguages";
-import { SwatchBook } from "lucide-react";
+import { Star, SwatchBook } from "lucide-react";
 // import { ListCollapse , Rows3} from "lucide-react";
-import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
+// import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 
 export default defineType({
-  name: "shopSection",
-  title: "Vitrine",
-  type: "document",
-  icon: SwatchBook,
-  orderings: [orderRankOrdering],
+  name: "homeFavorites",
+  title: "Produits Favoris",
+  type: "object",
+  icon: Star,
+  // orderings: [orderRankOrdering],
   fieldsets: [{ title: "Paramètres", name: "settings" }],
   fields: [
-    orderRankField({ type: "shopSection" }),
+    // orderRankField({ type: "shopSection" }),
+    defineField({
+      title: "Activé",
+      description: "Activer pour afficher la section.",
+      name: "enabled",
+      type: "boolean",
+      initialValue: true,
+      // fieldset: "settings",
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({
       title: "Titre Intégré",
       description: "Activer pour afficher un titre coloré intégré dans la liste.",
       name: "integrated",
       type: "boolean",
       initialValue: true,
-      fieldset: "settings",
+      // fieldset: "settings",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "category",
-      type: "optionsCategory",
-      fieldset: "settings",
-      validation: (Rule) => Rule.required(),
-      // initialValue:'',
-    }),
+    // defineField({
+    //   name: "category",
+    //   type: "optionsCategory",
+    //   fieldset: "settings",
+    //   validation: (Rule) => Rule.required(),
+    //   // initialValue:'',
+    // }),
     defineField({
       title: "Titre",
       name: "title",
@@ -43,7 +52,7 @@ export default defineType({
     }),
     defineField({
       title: "Bouton",
-      description: "Ceci est automatiquement désactivé sur la page shop",
+      // description: "Ceci est automatiquement désactivé sur la page shop",
       name: "button",
       type: "link",
       hidden: ({ document }) => !document?.integrated,
@@ -51,7 +60,7 @@ export default defineType({
       // initialValue:'',
     }),
     defineField({
-      name: "colors",
+      name: "color",
       type: "optionsColors",
       hidden: ({ document }) => !document?.integrated,
       // validation: (Rule) => Rule.required(),

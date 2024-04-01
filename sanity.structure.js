@@ -1,9 +1,29 @@
 import { BlockElementIcon, UlistIcon, EarthGlobeIcon, MenuIcon, HomeIcon, CommentIcon, EnvelopeIcon, TriangleOutlineIcon, MasterDetailIcon } from "@sanity/icons";
-import { Leaf, Milestone, PanelBottom, Quote, Star, Stars, Store, SwatchBook } from "lucide-react";
+import {
+  Blend,
+  Book,
+  BookOpen,
+  Carrot,
+  CookingPot,
+  Flame,
+  GalleryVertical,
+  Handshake,
+  Images,
+  LayoutGrid,
+  Leaf,
+  Milestone,
+  PanelBottom,
+  Quote,
+  Star,
+  Stars,
+  Store,
+  SwatchBook,
+  ThumbsUp,
+} from "lucide-react";
 // import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
-import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 
-export const myStructure = (S,context) => {
+export const myStructure = (S, context) => {
   return S.list()
     .title("Contenu ~ Profitez Lou!")
     .items([
@@ -14,8 +34,13 @@ export const myStructure = (S,context) => {
           S.list()
             .title("Sections")
             .items([
+              S.listItem().title("Présentation Produit").icon(Stars).child(S.document().schemaType("homeProductPresentation")),
               S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId("homeReviews")),
-              S.listItem().title("Produits Favoris").icon(Store).child(S.document().schemaType("shopSection").documentId("homeShopSection")),
+              S.listItem().title("Appel d'Action (CTA)").icon(Flame).child(S.document().schemaType("cta")),
+              S.listItem().title("Text & Image").icon(Images).id("imagePop1").child(S.document().schemaType("imagePop").documentId("article")),
+              S.listItem().title("Produits Favoris").icon(Star).child(S.document().schemaType("homeFavorites")),
+              S.listItem().title("Text & Image").icon(Images).id("imagePop2").child(S.document().schemaType("imagePop").documentId("article2")),
+              S.listItem().title("Blogs").icon(BookOpen).child(S.document().schemaType("homeBlogs")),
               // S.listItem().title("Bermuda Values").icon(BlockElementIcon).child(S.document().schemaType("hpValues").documentId("hpValues")),
               // S.listItem().title("CTA").icon(BlockElementIcon).child(S.document().schemaType("hpCTA").documentId("hpCTA")),
               // S.listItem().title("About").icon(BlockElementIcon).child(S.document().schemaType("hpAbout").documentId("hpAbout")),
@@ -35,6 +60,8 @@ export const myStructure = (S,context) => {
               orderableDocumentListDeskItem({ type: "shopSection", title: "Vitrines", icon: SwatchBook, S: S, context: context }),
               S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId("shopReviews")),
               S.listItem().title("Écologie").icon(Leaf).child(S.document().schemaType("ecology")),
+              S.divider(),
+              S.listItem().title("Produits Recommandés").icon(ThumbsUp).child(S.document().schemaType("productRecommended")),
               // documentId("shopReviews")
             ])
         ),
@@ -45,10 +72,18 @@ export const myStructure = (S,context) => {
           S.list()
             .title("Sections")
             .items([
-              S.listItem().title("Contact Details").icon(BlockElementIcon).child(S.document().schemaType("cpDetails").documentId("cpDetails")),
-              S.listItem().title("Trusted By").icon(BlockElementIcon).child(S.document().schemaType("cpTrustedBy").documentId("cpTrustedBy")),
-              S.listItem().title("Form").icon(BlockElementIcon).child(S.document().schemaType("cpForm").documentId("cpForm")),
-              S.listItem().title("Fun Facts").icon(BlockElementIcon).child(S.document().schemaType("cpNumbers").documentId("cpNumbers")),
+              S.listItem().title("Intro").icon(LayoutGrid).child(S.document().schemaType("aboutSquares")),
+              S.listItem().title("Text & Image Horizontal").icon(GalleryVertical).id("aboutHorizontal").child(S.document().schemaType("imagePop").documentId("aboutHorizontal")),
+              S.listItem().title("Text & Image").icon(Images).id("about").child(S.document().schemaType("imagePop").documentId("about")),
+              S.listItem().title("Valeurs").icon(Blend).child(S.document().schemaType("aboutValuesSection").documentId("valeurs")),
+              S.listItem().title("Infos Ingrédients").icon(Carrot).child(S.document().schemaType("aboutIngredientSection").documentId("ingredients")),
+              S.listItem().title("Bref").icon(Handshake).child(S.document().schemaType("aboutBref").documentId("aboutBref")),
+              S.divider(),
+              orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
+
+              // S.listItem().title("Trusted By").icon(BlockElementIcon).child(S.document().schemaType("cpTrustedBy").documentId("cpTrustedBy")),
+              // S.listItem().title("Form").icon(BlockElementIcon).child(S.document().schemaType("cpForm").documentId("cpForm")),
+              // S.listItem().title("Fun Facts").icon(BlockElementIcon).child(S.document().schemaType("cpNumbers").documentId("cpNumbers")),
             ])
         ),
       S.divider(),
@@ -77,6 +112,7 @@ export const myStructure = (S,context) => {
         ),
       S.divider(),
 
+      orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
       // Legal documents probably not as list but as documetn
       // S.listItem()
       //   .title("Legal Documents")
@@ -89,20 +125,21 @@ export const myStructure = (S,context) => {
         (listItem) =>
           ![
             // "contactPageGIS",
-            "cpDetails",
-            "cpTrustedBy",
+            // "cpDetails",
+            // "cpTrustedBy",
             // "contactPageAOS",
-            "cpNumbers",
+            // "cpNumbers",
             "footerLists",
-            "cpForm",
+            // "cpForm",
             "nav",
             "footer",
-            "hpAbout",
-            "hpCTA",
-            "hpHero",
-            "hpValues",
-            "hpNetwork",
+            // "hpAbout",
+            // "hpCTA",
+            // "hpHero",
+            // "hpValues",
+            // "hpNetwork",
             "shopSection",
+            "aboutIngredient",
             // "legalDoc",
             // "contactPagePFS",
             // "mainPageXXX",

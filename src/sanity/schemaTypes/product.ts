@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import {  Package } from "lucide-react";
+import { Package, StarIcon } from "lucide-react";
 import { uiLanguage } from "../supportedLanguages";
 
 export default defineType({
@@ -29,15 +29,15 @@ export default defineType({
       title: "title",
       price: "price",
       category: "category",
-      favo: "favorite",
+      favorite: "favorite",
       // by: 'by',
       // date: 'date',
       media: "images",
     },
 
     prepare(selection) {
-      const { title, favo, category, price, media } = selection;
-      return { title: `${title[uiLanguage.id]}`, subtitle: `€${price}, ${category}`, media: media[0].image.asset };
+      const { title, favorite, category, price, media } = selection;
+      return { title: `${title[uiLanguage.id]}${favorite ? " ★" : ""}`, subtitle: `€${price}, ${category}`, media: media[0].image.asset };
     },
   },
   fields: [

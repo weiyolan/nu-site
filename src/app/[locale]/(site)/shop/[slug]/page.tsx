@@ -14,6 +14,8 @@ import { client } from "@/sanity/lib/client";
 // import slugify from "slugify";
 // import { Share } from "lucide-react";
 import BreadcrumbWithCustomSeparator from "@/components/BreadCrumbs";
+import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
+import ProductsRecommended from "@/components/ProductsRecommended";
 
 // async function getData() {
 //   // const res = await fetch('https://api.example.com/...')
@@ -28,31 +30,41 @@ import BreadcrumbWithCustomSeparator from "@/components/BreadCrumbs";
 // }
 
 async function getRecommendedProducts(): Promise<{
-  color: string;
-  category: string;
+  color: colorSanityType;
   integrated: boolean;
-  title: { en: string; fr: string };
-  button: { ext: boolean; text: { en: string; fr: string }; url: string };
-  description: { en: string; fr: string };
+  title: localeStringType;
+  description: localeStringType;
+  // button: buttonType;
 }> {
-  const recommendedProducts = await client.fetch(`*[_type=='shopSection']|order(orderRank)[0]`);
+  const recommendedProducts = await client.fetch(`*[_type=='productRecommended'][0]`);
   // console.log(reviews)
-  return recommendedProducts;
+  return { ...recommendedProducts, category: "recommended" };
 }
 
-async function getProduct(slug: string) {
-  const product = await client.fetch(`*[_type=='product'][slug.current=='${slug}'][0]{...,'images':images[]{alt,'image':image.asset->{...,url}}}`);
+async function getProduct(slug: string): Promise<{
+  rating: number;
+  weight: number;
+  slug: { current: string };
+  price: number;
+  reviews: { description: localeStringType; title: localeStringType; citationsOn: boolean };
+  title: localeStringType;
+  description: localeStringType;
+  color: colorSanityType;
+  images: altImageType[];
+  subTitle: localeStringType;
+  category: string;
+  details: { title: localeStringType; details: { fr: []; en: [] } }[];
+}> {
+  const product = await client.fetch(`*[_type=='product'][slug.current=='${slug}'][0]{...,'images':images[]{alt,'image':image.asset->{metadata{lqip},url}}}`);
   // console.log(product)
   return product;
 }
 
-export default async function Page({ params: { slug, locale } }: { params: { slug: string; locale: string } }) {
-  const { price, cat, images, details, rating, weight, reviews, description, title, subTitle } = await getProduct(slug);
-  // const { locale } = useRouter();
-  // const reviews = getReviews()
-  // console.log(product)
+export default async function Page({ params: { slug, locale } }: { params: { slug: string; locale: "en" | "fr" } }) {
+  const { price, category, images, details, rating, weight, reviews, description, title, subTitle } = await getProduct(slug);
+
   const recommendedProducts = await getRecommendedProducts();
-  console.log("recommendedProducts", recommendedProducts);
+  // console.log("recommendedProducts", recommendedProducts);
 
   return (
     <>
@@ -60,15 +72,16 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
         <pre className="bg-secondary/50 p-4 rounded-lg my-2 ">{JSON.stringify(details, null, 2)}</pre>
       </Section> */}
       <Section className="">
-        <BreadcrumbWithCustomSeparator category={cat} title={title} />
+        <BreadcrumbWithCustomSeparator category={category} title={title?.[locale]} />
       </Section>
       <Section>
         <ProductDescription
-          image={{ src: images[0].image.url, alt: images[0].alt?.[locale] }}
+          locale={locale}
+          altImage={images[0]}
           product={{
             price: price,
             weight: weight,
-            title: title,
+            title: title?.[locale],
             subTitle: subTitle?.[locale],
             rating: rating,
             description: description?.[locale],
@@ -80,7 +93,7 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
         <NuLine big />
       </Section>
       <Section>
-        <ProductDetails images={images.slice(1, images.length)} details={details} />
+        <ProductDetails locale={locale} images={images.slice(1, images.length)} details={details} />
       </Section>
       <Section className="max-w-none px-0 md:px-0 2xl:px-0 overflow-hidden">
         <ValueBar />
@@ -88,7 +101,9 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
       <Section>
         <Reviews reviews={reviews} />
       </Section>
-      <Section>{/* <Products locale={locale} products={recommendedProducts} /> */}</Section>
+      <Section>
+        <ProductsRecommended currentProduct={{slug:slug,category:category}} className="text-left mr-auto ml-0" locale={locale} shopSection={recommendedProducts} />
+      </Section>
       <Footer />
     </>
   );
