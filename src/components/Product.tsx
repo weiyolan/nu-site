@@ -102,7 +102,7 @@ export default function Product({ product: { slug, title, type, description, pri
       </Typography>
 
       {type === "product" && (
-        <div className="flex gap-16 items-center w-full p-1 relative">
+        <div className="flex gap-16 items-center w-full p-1 relative mt-auto">
           <Typography variant={"h4"} className="font-corben font-normal w-[4ch]">
             €{price.toFixed(2)}
           </Typography>
@@ -115,14 +115,14 @@ export default function Product({ product: { slug, title, type, description, pri
         </div>
       )}
       {type === "title" && (
-        <Button asChild className="mx-auto mt-4 relative">
+        <Button asChild className="mx-auto mt-4 relative mt-auto">
           <Link className="" href={`/shop#${button.url}`}>
             {button.text?.[locale]}
           </Link>
         </Button>
       )}
       {type === "article" && (
-        <Button variant="link" asChild size="sm" className=" relative items-center -mt-2 -ml-2 group/button text-base">
+        <Button variant="link" asChild size="sm" className=" relative items-center -mt-2 -ml-2 group/button text-base mt-auto">
           <Link className="" href={`/shop#${slug}`}>
             {locale === "fr" ? "Lire article" : "Read article"}
             <ChevronRight className="size-4 group-hover/button:translate-x-1 transition-transform   mt-1" />

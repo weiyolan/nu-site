@@ -40,7 +40,7 @@ async function getSquareInfo(): Promise<{
   };
 }> {
   // Fetch shopSection with ID homeBlogs or something
-  const squareInfo = await client.fetch(`*[_type=='aboutSquares'][0]{...,altImages[]{
+  const squareInfo = await client.fetch(`*[_type=='aboutSquares'][_id=='intro'][0]{...,altImages[]{
           alt, 'image':image.asset->{url, metadata{lqip}}
         }}`);
   // console.log(reviews)
@@ -119,6 +119,18 @@ async function getBrefInfo(): Promise<{
   return brefInfo;
 }
 
+async function getHero(): Promise<{
+  title: localeStringType;
+  button: buttonType;
+  altImage: altImageType;
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const hero = await client.fetch(`*[_type=='hero'][_id=='aboutHero'][0]{...,altImage{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return hero;
+}
 export default async function Page({ params: { locale } }: { params: { locale: localeType } }) {
   const imagePop = await getImagePop();
   const squareInfo = await getSquareInfo();
@@ -127,15 +139,10 @@ export default async function Page({ params: { locale } }: { params: { locale: l
   const ingredientInfo = await getIngredientInfo();
   const ingredients = await getIngredients();
   const brefInfo = await getBrefInfo();
+  const hero = await getHero();
   return (
     <>
-      <Hero
-        src="/about_heroDesert.jpg"
-        alt="femme dans le bain avec shampoing"
-        text={`Nu, le shampoing solide\nqui rend les cheveux pas sec`}
-        link={"/shop"}
-        button="Essayer maintenant"
-      />
+      <Hero locale={locale} hero={hero} />
       <Section className="mt-16">
         <AboutTiles locale={locale} squareInfo={squareInfo} />
       </Section>

@@ -48,6 +48,7 @@ import aboutIngredientSection from "./aboutIngredientSection";
 import aboutIngredient from "./aboutIngredient";
 import optionsIngredient from "./optionsIngredient";
 import aboutBref from "./aboutBref";
+import hero from "./hero";
 
 export const schemaTypes = [
   blockContent,
@@ -103,4 +104,5 @@ export const schemaTypes = [
   aboutIngredientSection,
   aboutIngredient,
   aboutBref,
+  hero,
 ];

@@ -174,6 +174,19 @@ async function getImagePop2(): Promise<{
   return imagePop;
 }
 
+async function getHero(): Promise<{
+  title: localeStringType;
+  button: buttonType;
+  altImage: altImageType;
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const hero = await client.fetch(`*[_type=='hero'][_id=='homeHero'][0]{...,altImage{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return hero;
+}
+
 export default async function Page({ params: { locale } }: { params: { locale: "en" | "fr" } }) {
   const reviews = await getReviews("homeReviews");
   const productPresentation = await getProductPresentation();
@@ -181,16 +194,10 @@ export default async function Page({ params: { locale } }: { params: { locale: "
   const imagePop1 = await getImagePop1();
   const imagePop2 = await getImagePop2();
   const { enabled: favoEnabled, ...favos } = await getFavorites();
+  const hero = await getHero();
   return (
     <>
-      <Hero
-        src="/main_heroHair.jpg"
-        alt="femme dans le bain avec shampoing"
-        text={`Le shampoing solide\naux levures de bières`}
-        link={"/"}
-        button="Voir les produits"
-        increasedContrast
-      />
+      <Hero locale={locale} hero={hero} increasedContrast />
       {/* <Section>
         <pre>{JSON.stringify(productPresentation, null, 2)}</pre>
       </Section> */}

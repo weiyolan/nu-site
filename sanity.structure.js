@@ -6,6 +6,7 @@ import {
   Carrot,
   CookingPot,
   Flame,
+  GalleryThumbnails,
   GalleryVertical,
   Handshake,
   Images,
@@ -34,6 +35,7 @@ export const myStructure = (S, context) => {
           S.list()
             .title("Sections")
             .items([
+              S.listItem().title("Héro").icon(GalleryThumbnails).child(S.document().schemaType("hero").documentId("homeHero")),
               S.listItem().title("Présentation Produit").icon(Stars).child(S.document().schemaType("homeProductPresentation")),
               S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId("homeReviews")),
               S.listItem().title("Appel d'Action (CTA)").icon(Flame).child(S.document().schemaType("cta")),
@@ -57,6 +59,7 @@ export const myStructure = (S, context) => {
             .title("Sections")
             .items([
               // S.listItem().title("Vitrines").icon(BlockElementIcon).child(
+              S.listItem().title("Héro").icon(GalleryThumbnails).child(S.document().schemaType("hero").documentId("shopHero")),
               orderableDocumentListDeskItem({ type: "shopSection", title: "Vitrines", icon: SwatchBook, S: S, context: context }),
               S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId("shopReviews")),
               S.listItem().title("Écologie").icon(Leaf).child(S.document().schemaType("ecology")),
@@ -72,7 +75,8 @@ export const myStructure = (S, context) => {
           S.list()
             .title("Sections")
             .items([
-              S.listItem().title("Intro").icon(LayoutGrid).child(S.document().schemaType("aboutSquares")),
+              S.listItem().title("Héro").icon(GalleryThumbnails).child(S.document().schemaType("hero").documentId("aboutHero")),
+              S.listItem().title("Carrés").icon(LayoutGrid).child(S.document().schemaType("aboutSquares").documentId("intro")),
               S.listItem().title("Text & Image Horizontal").icon(GalleryVertical).id("aboutHorizontal").child(S.document().schemaType("imagePop").documentId("aboutHorizontal")),
               S.listItem().title("Text & Image").icon(Images).id("about").child(S.document().schemaType("imagePop").documentId("about")),
               S.listItem().title("Valeurs").icon(Blend).child(S.document().schemaType("aboutValuesSection").documentId("valeurs")),

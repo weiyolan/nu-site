@@ -8,7 +8,7 @@ import ValueBar from "@/components/ValueBar";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/lib/client";
 import Reviews from "@/components/Reviews";
-import { buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
 
 async function getEco(): Promise<{
   description: localeStringType;
@@ -49,14 +49,26 @@ async function getShopSections(): Promise<
   // console.log(reviews)
   return shopSections;
 }
-
+async function getHero(): Promise<{
+  title: localeStringType;
+  button: buttonType;
+  altImage: altImageType;
+}> {
+  // Fetch shopSection with ID homeBlogs or something
+  const hero = await client.fetch(`*[_type=='hero'][_id=='shopHero'][0]{...,altImage{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return hero;
+}
 export default async function Page({ params: { locale } }: { params: { locale: "en" | "fr" } }) {
   const eco = await getEco();
   const reviews = await getReviews("shopReviews");
   const shopSections = await getShopSections();
+  const hero = await getHero();
   return (
     <>
-      <Hero src="/shop_hero.jpg" alt="women with beautiful curly hair" link="/shop" button="Essayer maintenant" text={"Nu, le shampoing solide\nà base de levure de bière"} />
+      <Hero locale={locale} hero={hero} />
       <Section className="text-center">
         <Products locale={locale} shopSection={shopSections[0]} type="shopTitle" />
       </Section>
