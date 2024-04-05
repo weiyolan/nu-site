@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 // import Image from "next/image";
 import Section from "./Section";
 import LucideIcon from "./LucideIcon";
+import { localeStringType } from "@/sanity/lib/interface";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -48,7 +49,7 @@ const components2: { title: string; href: string; description: string }[] = [
   { title: "Les Packs", href: "/docs/primitives/typography", description: "Styles for headings, paragraphs, lists...etc" },
 ];
 
-export default function Navbar({ enabled, messages }: { enabled:'boolean', messages: [] }) {
+export default function Navbar({ enabled, messages }: { enabled: boolean; messages: { icon: { name: string }; text: localeStringType }[] }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -67,14 +68,20 @@ export default function Navbar({ enabled, messages }: { enabled:'boolean', messa
   return (
     <div className={`w-full fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
       {/* <TransitionBackground className="absolute top-0 left-0 bottom-0 right-0" /> */}
-      {enabled && <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 mx-a`, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
-        <Section className={cn(`flex justify-between items-center space-x-8 mt-0 h-full`, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
-          {messages.map((message, i) => {
-            return (<p key={i} className="align-middle"><LucideIcon name={message.icon.name} className="size-4 inline-block mb-0.5"/> {message.text.fr}</p>);
-          })}
-          {/* <Icon name={message.icon.name.split(':')[1]}/> */}
-        </Section>
-      </div>}
+      {enabled && (
+        <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 mx-a`, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
+          <Section className={cn(`flex justify-between items-center space-x-8 mt-0 h-full`, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
+            {messages.map((message, i) => {
+              return (
+                <p key={i} className="align-middle">
+                  <LucideIcon name={message.icon.name} className="size-4 inline-block mb-0.5" /> {message.text.fr}
+                </p>
+              );
+            })}
+            {/* <Icon name={message.icon.name.split(':')[1]}/> */}
+          </Section>
+        </div>
+      )}
       <NavigationMenu className="mx-auto  ">
         <NavigationMenuList className="">
           <NavigationMenuItem>
