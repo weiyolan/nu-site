@@ -1,8 +1,9 @@
+import "react";
 import { cn } from "@/lib/utils";
 import Typography from "./Typography";
-import "react";
 import { client } from "@/sanity/lib/client";
-import LucideIcon from "./LucideIcon";
+import Icon from "./LucideIcon";
+// import { Icon } from "@iconify/react";
 
 declare module "react" {
   interface CSSProperties {
@@ -43,7 +44,9 @@ function Value({ name, title }: ValueProps) {
   return (
     <div className="shrink-0 w-32 group cursor-pointer space-y-2">
       {/* <BabyIcon className="mx-auto" /> */}
-      <LucideIcon className="mx-auto group-hover:scale-110  transition-transform " name={name} />
+      <Icon className="mx-auto group-hover:scale-110 transition-transform " name={name} />
+      {/* <Icon icon={name}></Icon> */}
+      {/* {console.log(name)} */}
       <Typography variant={"p"} className="text-center font-semibold text-sm group-hover:underline underline-offset-4   ">
         {title}
       </Typography>
