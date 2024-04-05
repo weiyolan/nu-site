@@ -27,17 +27,6 @@
     "target": "ES2017",
     "baseUrl": "./"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "postcss.config.ts",
-    "sanity.cli.js",
-    "sanity.config.ts",
-    "sanity.structure.js",
-    "tailwind.config.ts",
-    "i18nConfig.ts"
-  ],
-  "exclude": ["node_modules", "sanity.structure.js", "sanity.cli.js"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "postcss.config.ts", "sanity.config.ts", "tailwind.config.ts", "i18nConfig.ts"],
+  "exclude": ["sanity.structure.js", "sanity.cli.js", "node_modules"]
 }
