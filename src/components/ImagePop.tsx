@@ -6,7 +6,7 @@ import { AspectRatio } from "./ui/aspect-ratio";
 import { colorSanityType, getColor } from "@/sanity/lib/interface";
 import Link from "next/link";
 
-export interface ImagePopProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface ImagePopProps extends React.HTMLAttributes<HTMLDivElement> {
   imgRight?: boolean;
   locale: "en" | "fr";
   imagePop: {

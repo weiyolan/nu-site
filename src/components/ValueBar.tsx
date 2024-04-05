@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import Typography from "./Typography";
 import { client } from "@/sanity/lib/client";
 import Icon from "./LucideIcon";
-// import { Icon } from "@iconify/react";
 
 declare module "react" {
   interface CSSProperties {

@@ -1,24 +1,34 @@
-import { LucideProps, icons } from "lucide-react";
-// import dynamicIconImports from "lucide-react/dynamicIconImports";
+"use client";
+// import { LucideProps, icons } from "lucide-react";
+import { Icon, IconProps } from "@iconify/react";
 
-// interface IconProps extends LucideProps {
-//   name: keyof typeof index;
+// const Icon = ({ name, color, size, ...props }: LucideProps) => {
+//   // starting from "lucide:package-green"
+//   // going to "PackageGreen"
+//   let iconName = name?.split(":")[1].split("-");
+//   let IconName: keyof typeof icons = iconName?.map((subName) => subName[0].toUpperCase() + subName.slice(1)).reduce((acc, i) => acc + i, "");
+//   const LucideIcon = icons[IconName || "Ban"];
+
+//   return <LucideIcon color={color} size={size} {...props} />;
+
+// };
+
+// function getName(name: `lucide:${keyof typeof icons}`): keyof typeof icons {
+//   if (name === undefined) return "Ban";
+
+//   const iconName = name?.split(":")[1].split("-");
+//   const newName = iconName.map((subName) => subName[0].toUpperCase() + subName.slice(1)).reduce((acc, i) => acc + i, "");
+
+//   return newName;
 // }
 
-const Icon = ({ name, color, size, ...props }: LucideProps) => {
-  // starting from "lucide:package-green"
-  // going to "PackageGreen"
-  // if (name !== undefined) {
-  let iconName = name?.split(":")[1].split("-");
-  let IconName: keyof typeof icons = iconName?.map((subName) => subName[0].toUpperCase() + subName.slice(1)).reduce((acc, i) => acc + i, "");
-  const LucideIcon = icons[IconName || "Ban"];
+// export default Icon;
 
-  return <LucideIcon color={color} size={size} {...props} />;
-  // } else {
-  // console.log("Undefined Name");
-  // let LucideIcon = icons["Ban"];
-  // return <LucideIcon color={color} size={size} {...props} />;
-  // }
+export interface myProps extends React.HTMLAttributes<HTMLDivElement> {
+  name: string;
+}
+
+const LucideIcon = ({ name, className, ...props }: myProps) => {
+  return <Icon icon={name} className={className}></Icon>;
 };
-
-export default Icon;
+export default LucideIcon;
