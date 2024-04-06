@@ -90,7 +90,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
       <Section className="">
         <ShopEco eco={eco} />
       </Section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

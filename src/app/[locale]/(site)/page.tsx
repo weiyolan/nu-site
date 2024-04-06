@@ -224,15 +224,13 @@ export default async function Page({ params: { locale } }: { params: { locale: "
           <Products locale={locale} shopSection={favos} />
         </Section>
       )}
-      <Section>
+      <Section className="-mb-8">
         <ImagePop locale={locale} imgRight imagePop={imagePop2} />
       </Section>
 
       {/* <Section> */}
       {/* <HomeBlogs locale={locale} /> */}
       {/* </Section> */}
-
-      <Footer className="-mt-8" />
     </>
   );
 }

@@ -170,7 +170,7 @@ export default async function Page({ params: { locale } }: { params: { locale: l
       <Section>
         <AboutBref locale={locale} brefInfo={brefInfo} />
       </Section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

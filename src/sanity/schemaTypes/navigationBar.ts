@@ -2,28 +2,30 @@ import { defineType, defineField } from "sanity";
 // import { supportedLanguages } from "./supportedLanguages";
 
 export default defineType({
-  name: "nav",
+  name: "navigationBar",
   title: "Navigation Menu",
-  type: "document",
+  type: "object",
   fields: [
     defineField({
-      name: "cta",
-      title: "Big Button Text",
-      type: "localeString",
+      name: "logoToggle",
+      title: "Afficher Logo",
+      description: "Activez pour afficher le logo",
+      type: "boolean",
+      initialValue: true,
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "links",
-      title: "Buttons",
+      title: "Liens",
       type: "array",
-      of: [{ type: "link" }],
+      of: [{ type: "navigationButtonTrigger" }, { type: "navigationButtonComplex" }],
       validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     prepare() {
       // const {date, completion} = selection
-      return { title: "Navigation Bar Section" };
+      return { title: "Bar Navigation" };
     },
   },
 });

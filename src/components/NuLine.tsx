@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export interface NuLineProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface NuLineProps extends React.HTMLAttributes<HTMLDivElement> {
   big?: boolean;
 }
 

@@ -15,6 +15,7 @@ import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import { schema } from "./src/sanity/schema";
 import { iconify } from "sanity-plugin-iconify";
 import myLogo from "@/sanity/lib/logo";
+import { table } from "@sanity/table";
 
 const config = defineConfig({
   basePath: "/studio",
@@ -32,6 +33,7 @@ const config = defineConfig({
   // },
   plugins: [
     frFRLocale(),
+    table(), // https://www.sanity.io/plugins/sanity-table
     structureTool({ structure: myStructure }),
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin

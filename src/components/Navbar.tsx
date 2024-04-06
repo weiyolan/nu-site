@@ -18,7 +18,8 @@ import { useEffect, useState } from "react";
 // import Image from "next/image";
 import Section from "./Section";
 import LucideIcon from "./LucideIcon";
-import { localeStringType } from "@/sanity/lib/interface";
+import { altImageType, colorSanityType, getColor, localeStringType, localeType } from "@/sanity/lib/interface";
+import Image from "next/image";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -48,8 +49,25 @@ const components2: { title: string; href: string; description: string }[] = [
   { title: "Accessoires", href: "/docs/installation", description: "How to install dependencies and structure your app." },
   { title: "Les Packs", href: "/docs/primitives/typography", description: "Styles for headings, paragraphs, lists...etc" },
 ];
-
-export default function Navbar({ enabled, messages }: { enabled: boolean; messages: { icon: { name: string }; text: localeStringType }[] }) {
+export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
+  locale: localeType;
+  navbarInfo: {
+    logoToggle: boolean;
+    links: (
+      | { _type: "navigationButtonTrigger"; title: localeStringType; url: string }
+      | {
+          _type: "navigationButtonComplex";
+          title: localeStringType;
+          color: colorSanityType;
+          altImage: altImageType;
+          links: { title: localeStringType; description: localeStringType; url: string }[];
+        }
+    )[];
+  };
+  enabled: boolean;
+  messages: { icon: { name: string }; text: localeStringType }[];
+}
+export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enabled, messages }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -74,7 +92,7 @@ export default function Navbar({ enabled, messages }: { enabled: boolean; messag
             {messages.map((message, i) => {
               return (
                 <p key={i} className="align-middle">
-                  <LucideIcon name={message.icon.name} className="size-4 inline-block mb-0.5" /> {message.text.fr}
+                  <LucideIcon name={message.icon.name} className="size-4 inline-block mb-0.5" /> {message.text?.[locale]}
                 </p>
               );
             })}
@@ -84,8 +102,62 @@ export default function Navbar({ enabled, messages }: { enabled: boolean; messag
       )}
       <NavigationMenu className="mx-auto  ">
         <NavigationMenuList className="">
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+          {links.slice(0, 2).map((link, i) => {
+            return link._type === "navigationButtonTrigger" ? (
+              <NavigationMenuItem key={`item-${i}`}>
+                <Link href={link.url} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
+                    )}>
+                    {link.title?.[locale]}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ) : (
+              <NavigationMenuItem key={`item-${i}`}>
+                <NavigationMenuTrigger
+                  className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+                  {link.title?.[locale]}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <Link
+                          className={cn(
+                            "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
+                            getColor(link.color)
+                          )}
+                          href={link.links[0].url}>
+                          {/* <Image src="/about_transparent.jpg" className="object-cover relative " fill alt="" /> */}
+                          <Image
+                            alt={link.altImage.alt?.[locale]}
+                            fill
+                            blurDataURL={link.altImage.image.metadata.lqip}
+                            placeholder="blur"
+                            className="object-cover "
+                            src={link.altImage.image.url}
+                          />
+                          <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-nu-white/60 "></div>
+                          <NuLogo className="h-6 w-6 relative" />
+                          <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
+                          <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    {link.links.slice(1).map((linkSimple, i) => (
+                      <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                        {linkSimple.description?.[locale]}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            );
+          })}
+          {/* <NavigationMenuTrigger className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
               Accueil
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -96,32 +168,7 @@ export default function Navbar({ enabled, messages }: { enabled: boolean; messag
                   </ListItem>
                 ))}
               </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-              Shop
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <Link className="flex relative h-full w-full select-none flex-col justify-end rounded-md  bg-nu-yellow p-6 no-underline outline-none focus:shadow-md" href="/">
-                      {/* <Image src="/about_transparent.jpg" className="object-cover relative " fill alt="" /> */}
-                      <NuLogo className="h-6 w-6 relative" />
-                      <div className="mb-2 mt-4 text-lg font-corben relative">Best Sellers</div>
-                      <p className="text-sm leading-tight text-muted-foreground font-mulish relative">Beautifully designed components built with Radix UI and Tailwind CSS.</p>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                {components2.map((component) => (
-                  <ListItem key={component.title} title={component.title} href={component.href}>
-                    {component.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+            </NavigationMenuContent> */}
           <NavigationMenuItem className={``}>
             <Link href="/aide" legacyBehavior passHref>
               <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent h-fit p-1 px-4")}>
@@ -129,28 +176,61 @@ export default function Navbar({ enabled, messages }: { enabled: boolean; messag
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/apropos" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
-                )}>
-                À Propos
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/aide" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
-                )}>
-                Aide
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+          {links.slice(2).map((link, i) => {
+            return link._type === "navigationButtonTrigger" ? (
+              <NavigationMenuItem key={`item-${i + 2}`}>
+                <Link href={link.url} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
+                    )}>
+                    {link.title?.[locale]}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ) : (
+              <NavigationMenuItem key={`item-${i + 2}`}>
+                <NavigationMenuTrigger
+                  className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+                  {link.title?.[locale]}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <Link
+                          className={cn(
+                            "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
+                            getColor(link.color)
+                          )}
+                          href={link.links[0].url}>
+                          {/* <Image src="/about_transparent.jpg" className="object-cover relative " fill alt="" /> */}
+                          <Image
+                            alt={link.altImage.alt?.[locale]}
+                            fill
+                            blurDataURL={link.altImage.image.metadata.lqip}
+                            placeholder="blur"
+                            className="object-cover"
+                            src={link.altImage.image.url}
+                          />
+                          <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-white/50 "></div>
+                          <NuLogo className="h-6 w-6 relative" />
+                          <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
+                          <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    {link.links.slice(1).map((linkSimple, i) => (
+                      <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                        {linkSimple.description?.[locale]}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            );
+          })}
         </NavigationMenuList>
       </NavigationMenu>
     </div>

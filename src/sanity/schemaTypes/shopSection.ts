@@ -63,7 +63,7 @@ export default defineType({
     select: { title: "title", integrated: "integrated" },
     prepare(selection) {
       const { title, integrated } = selection;
-      return { title: `${title[uiLanguage.id]}`, subtitle: `${integrated ? "Titre coloré et parmis les produits" : "Titre séparé au-dessus la liste"}` };
+      return { title: `${title[uiLanguage.id]}`, subtitle: `${integrated ? "Titre inclu" : "Titre séparé"}` };
     },
   },
 });

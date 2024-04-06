@@ -94,7 +94,7 @@ export default function Product({ product: { slug, title, type, description, pri
       )}
       {(type === "title" || type === "shopTitle") && <div className={`absolute z-0 top-0 left-0 right-0 bottom-0 ${color}`} />}
       {type === "product" && <Stars className="mr-auto" rating={rating} dark />}
-      <Typography variant={type === ("title" || "shopTitle") ? "h2" : "h3"} className={`relative ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
+      <Typography variant={type === "title" || type === "shopTitle" ? "h2" : "h3"} className={`relative ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
         {title}
       </Typography>
       <Typography variant={"p"} className={`relative  ${type === "title" || type === "shopTitle" ? "text-center " : "text-justify text-sm"}`}>

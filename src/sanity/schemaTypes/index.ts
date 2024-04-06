@@ -49,6 +49,11 @@ import aboutIngredient from "./aboutIngredient";
 import optionsIngredient from "./optionsIngredient";
 import aboutBref from "./aboutBref";
 import hero from "./hero";
+import navigationButtonSimple from "./navigationButtonSimple";
+import navigationButtonComplex from "./navigationButtonComplex";
+import navigationButtonTrigger from "./navigationButtonTrigger";
+import footerMessage from "./footerMessage";
+import footerMessages from "./footerMessages";
 
 export const schemaTypes = [
   blockContent,
@@ -64,13 +69,7 @@ export const schemaTypes = [
   // member,
   link,
   linkDoc,
-  footerList,
-  footerLists,
-  footerQuote,
-  footerNewsletter,
-  navigationBar,
-  navigationBanner,
-  navigationBannerMessage,
+
   legalDoc,
   localeFile,
   // hpValues,
@@ -105,4 +104,16 @@ export const schemaTypes = [
   aboutIngredient,
   aboutBref,
   hero,
+  footerList,
+  footerLists,
+  footerQuote,
+  footerNewsletter,
+  footerMessage,
+  footerMessages,
+  navigationBanner,
+  navigationBannerMessage,
+  navigationBar,
+  navigationButtonTrigger,
+  navigationButtonSimple,
+  navigationButtonComplex,
 ];

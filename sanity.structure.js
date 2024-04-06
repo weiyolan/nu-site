@@ -60,7 +60,7 @@ export const myStructure = (S, context) => {
             .items([
               // S.listItem().title("Vitrines").icon(BlockElementIcon).child(
               S.listItem().title("Héro").icon(GalleryThumbnails).child(S.document().schemaType("hero").documentId("shopHero")),
-              orderableDocumentListDeskItem({ type: "shopSection", title: "Vitrines", icon: SwatchBook, S: S, context: context }),
+              orderableDocumentListDeskItem({ type: "shopSection", title: "Showcase Produits", icon: SwatchBook, S: S, context: context }),
               S.listItem().title("Avis").icon(Quote).child(S.document().schemaType("reviews").documentId("shopReviews")),
               S.listItem().title("Écologie").icon(Leaf).child(S.document().schemaType("ecology")),
               S.divider(),
@@ -98,8 +98,8 @@ export const myStructure = (S, context) => {
           S.list()
             .title("Sections")
             .items([
-              S.listItem().title("Navigation").icon(UlistIcon).child(S.document().schemaType("nav").title("Navigation").documentId("nav")),
               S.listItem().title("Bannier").icon(CommentIcon).child(S.document().schemaType("navigationBanner").title("Bannier").documentId("navigationBanner")),
+              S.listItem().title("Navigation").icon(UlistIcon).child(S.document().schemaType("navigationBar").title("Navigation").documentId("nav")),
             ])
         ),
       S.listItem()
@@ -109,6 +109,7 @@ export const myStructure = (S, context) => {
           S.list()
             .title("Sections")
             .items([
+              S.listItem().title("Messages").icon(Quote).child(S.document().schemaType("footerMessages").documentId("footerMessages")),
               S.listItem().title("Newsletter").icon(EnvelopeIcon).child(S.document().schemaType("footerNewsletter").documentId("footerNewsletter")),
               S.listItem().title("Quote").icon(CommentIcon).child(S.document().schemaType("footerQuote").title("Quote").documentId("footerQuote")),
               S.listItem().title("Listes de Navigation").icon(UlistIcon).child(S.document().schemaType("footerLists").title("Listes").documentId("footerLists")),
@@ -135,7 +136,6 @@ export const myStructure = (S, context) => {
             // "cpNumbers",
             "footerLists",
             // "cpForm",
-            "nav",
             "footer",
             // "hpAbout",
             // "hpCTA",

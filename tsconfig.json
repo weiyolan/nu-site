@@ -2,12 +2,13 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    // "checkJs": false,
     "skipLibCheck": true,
     "strict": true,
-    // "noEmit": true,
+    "noEmit": true,
     // To allow compiling even though there's typescript errors
-    "noEmit": false,
-    "noEmitOnError": false,
+    // "noEmit": false,
+    // "noEmitOnError": false,
     //
     "esModuleInterop": true,
     "module": "esnext",
@@ -27,6 +28,6 @@
     "target": "ES2017",
     "baseUrl": "./"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "postcss.config.ts", "sanity.config.ts", "tailwind.config.ts", "i18nConfig.ts"],
-  "exclude": ["sanity.structure.js", "sanity.cli.js", "node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "postcss.config.js", "i18nConfig.js", "sanity.cli.js", "sanity.structure.js"],
+  "exclude": ["node_modules"]
 }
