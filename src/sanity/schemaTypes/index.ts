@@ -23,8 +23,8 @@ import localeFile from "./localeFile";
 import linkDoc from "./linkDoc";
 import navigationBanner from "./navigationBanner";
 import navigationBannerMessage from "./navigationBannerMessage";
-import product from "./product";
-import productDetail from "./productDetail";
+import product from "./pageProduct";
+import productDetail from "./pageProductDetail";
 import accordion from "./accordion";
 import accordionItem from "./accordionItem";
 import optionsCategory from "./optionsCategory";
@@ -34,26 +34,27 @@ import optionsColors from "./optionsColors";
 import ecology from "./ecology";
 import ecologyCard from "./ecologyCard";
 import values from "./values";
-import homeFavorites from "./homeFavorites";
-import homeBlogs from "./homeBlogs";
-import homeProductPresentation from "./homeProductPresentation";
-import homeProductPresentationItem from "./homeProductPresentationItem";
+import homeFavorites from "./pageHomeFavorites";
+import homeBlogs from "./pageHomeBlogs";
+import homeProductPresentation from "./pageHomeProductPresentation";
+import homeProductPresentationItem from "./pageHomeProductPresentationItem";
 import imagePop from "./imagePop";
-import cta from "./homeCTA";
-import productRecommended from "./productRecommended";
-import aboutSquares from "./aboutSquares";
-import aboutValue from "./aboutValue";
-import aboutValueSection from "./aboutValueSection";
-import aboutIngredientSection from "./aboutIngredientSection";
-import aboutIngredient from "./aboutIngredient";
+import cta from "./pageHomeCTA";
+import productRecommended from "./pageProductRecommended";
+import aboutSquares from "./pageAboutSquares";
+import aboutValue from "./pageAboutValue";
+import aboutValueSection from "./pageAboutValueSection";
+import aboutIngredientSection from "./pageAboutIngredientSection";
+import aboutIngredient from "./pageAboutIngredient";
 import optionsIngredient from "./optionsIngredient";
-import aboutBref from "./aboutBref";
+import aboutBref from "./pageAboutBref";
 import hero from "./hero";
 import navigationButtonSimple from "./navigationButtonSimple";
 import navigationButtonComplex from "./navigationButtonComplex";
 import navigationButtonTrigger from "./navigationButtonTrigger";
 import footerMessage from "./footerMessage";
 import footerMessages from "./footerMessages";
+import helpTitle from "./pageHelpTitle";
 
 export const schemaTypes = [
   blockContent,
@@ -116,4 +117,5 @@ export const schemaTypes = [
   navigationButtonTrigger,
   navigationButtonSimple,
   navigationButtonComplex,
+  helpTitle,
 ];

@@ -73,7 +73,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
         <Products locale={locale} shopSection={shopSections[0]} type="shopTitle" />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
-        <ValueBar />
+        <ValueBar locale={locale} />
       </Section>
       <Section className="text-center">
         <Products locale={locale} shopSection={shopSections[1]} type="shopTitle" />

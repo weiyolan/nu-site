@@ -8,8 +8,7 @@ import { cookies } from "next/headers";
 import Navbar from "@/components/Navbar";
 import NuLogoBackground from "@/components/NuLogoBackground";
 
-import { client } from "@/sanity/lib/client";
-import { altImageType, colorSanityType, localeStringType, localeType } from "@/sanity/lib/interface";
+import { getBannerInfo, getFooterInfo, getFooterLists, getNavbarInfo, localeType } from "@/sanity/lib/interface";
 import Footer from "@/components/Footer";
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -25,47 +24,6 @@ export async function generateStaticParams() {
   return [{ locale: "fr" }, { locale: "en" }];
 }
 
-export async function getInfo() {
-  const banner = await client.fetch(`*[_type=='navigationBanner'][0]`);
-  // console.log(banner);
-  return banner;
-}
-
-async function getNavbarInfo(): Promise<{
-  logoToggle: boolean;
-  links: (
-    | { _type: "navigationButtonTrigger"; title: localeStringType; url: string }
-    | {
-        _type: "navigationButtonComplex";
-        title: localeStringType;
-        color: colorSanityType;
-        altImage: altImageType;
-        links: { title: localeStringType; description: localeStringType; url: string }[];
-      }
-  )[];
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const navbarInfo = await client.fetch(`*[_type=='navigationBar'][0]{...,links[]{...,altImage{
-          alt, 'image':image.asset->{url,metadata{lqip}}
-        }}}`);
-  // console.log(reviews)
-  return navbarInfo;
-}
-
-async function getFooterInfo(): Promise<{
-  messages: { text: localeStringType; icon: { name: string } }[];
-  lists: { title: localeStringType; links: { ext: boolean; url: string; text: localeStringType }[] }[];
-  quote: { by: localeStringType; quote: localeStringType };
-  newsletter: { text: localeStringType; title: localeStringType };
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const footerQuote = await client.fetch(`*[_type=='footerQuote'][0]`);
-  const footerNewsletter = await client.fetch(`*[_type=='footerNewsletter'][0]`);
-  const footerMessages = await client.fetch(`*[_type=='footerMessages'][0]{messages}`);
-  const footerLists = await client.fetch(`*[_type=='footerLists'][0]`);
-  // console.log(reviews)
-  return { quote: footerQuote, ...footerMessages, newsletter: footerNewsletter, lists: footerLists.footerLists };
-}
 export default async function RootLayout({
   children,
   params: { locale },
@@ -73,9 +31,10 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: localeType };
 }>) {
-  const { enabled, messages } = await getInfo();
+  const { enabled, messages } = await getBannerInfo();
   const navbarInfo = await getNavbarInfo();
   const footerInfo = await getFooterInfo();
+  const footerLists = await getFooterLists();
   return (
     <html lang={locale}>
       <body className={`${corben.variable} ${mulish.variable} font-mulish`}>
@@ -85,11 +44,12 @@ export default async function RootLayout({
             <div className={`w-full min-h-screen relative `}>
               <NuLogoBackground />
               <Navbar locale={locale} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
-              {/* <pre>{JSON.stringify(navbarInfo, null, 2)}</pre> */}
+              {/* <pre>{JSON.stringify(footerLists, null, 2)}</pre> */}
+
               {/* <div style={{ backgroundColor: "black" }} className="w-1/2 bg-black relative mx-auto mt-60 h-48"></div> */}
               {/* <h1 className="w-fit relative mx-auto">HELLO THIS IS A TEST</h1> */}
               {children}
-              <Footer footerInfo={footerInfo} locale={locale} className="" />
+              <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" />
             </div>
           </TrpcProvider>
           <Toaster />

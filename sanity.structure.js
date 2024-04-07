@@ -9,12 +9,15 @@ import {
   GalleryThumbnails,
   GalleryVertical,
   Handshake,
+  Heading1Icon,
+  Image,
   Images,
   LayoutGrid,
   Leaf,
   Milestone,
   PanelBottom,
   Quote,
+  Rows3,
   Star,
   Stars,
   Store,
@@ -90,6 +93,20 @@ export const myStructure = (S, context) => {
               // S.listItem().title("Fun Facts").icon(BlockElementIcon).child(S.document().schemaType("cpNumbers").documentId("cpNumbers")),
             ])
         ),
+      S.listItem()
+        .title("Aide")
+        .icon(MasterDetailIcon)
+        .child(
+          S.list()
+            .title("Sections")
+            .items([
+              S.listItem().title("Intro").icon(Image).child(S.document().schemaType("helpTitle").documentId("helpTitle")),
+              S.listItem().icon(Rows3).title("FAQ").child(S.document().title("FAQ").schemaType("accordion").documentId("faqQuestions")),
+
+              // S.divider(),
+              // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
+            ])
+        ),
       S.divider(),
       S.listItem()
         .title("Bar de Navigation")
@@ -109,9 +126,9 @@ export const myStructure = (S, context) => {
           S.list()
             .title("Sections")
             .items([
-              S.listItem().title("Messages").icon(Quote).child(S.document().schemaType("footerMessages").documentId("footerMessages")),
+              S.listItem().title("Messages").icon(CommentIcon).child(S.document().schemaType("footerMessages").documentId("footerMessages")),
               S.listItem().title("Newsletter").icon(EnvelopeIcon).child(S.document().schemaType("footerNewsletter").documentId("footerNewsletter")),
-              S.listItem().title("Quote").icon(CommentIcon).child(S.document().schemaType("footerQuote").title("Quote").documentId("footerQuote")),
+              S.listItem().title("Quote").icon(Quote).child(S.document().schemaType("footerQuote").title("Quote").documentId("footerQuote")),
               S.listItem().title("Listes de Navigation").icon(UlistIcon).child(S.document().schemaType("footerLists").title("Listes").documentId("footerLists")),
             ])
         ),

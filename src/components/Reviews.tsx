@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils";
 import Typography from "./Typography";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from "./ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+// import { Button } from "./ui/button";
 import Stars from "./Stars";
 import Quote from "./Quote";
 
@@ -54,8 +54,8 @@ export default function Reviews({ reviews: { title, description, citationsOn }, 
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious  className="hidden md:inline-flex"/>
+          <CarouselNext className="hidden md:inline-flex" />
         </Carousel>
       ) : (
         <>

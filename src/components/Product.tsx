@@ -63,7 +63,7 @@ export default function Product({ product: { slug, title, type, description, pri
   return (
     <div
       className={cn(
-        `flex relative flex-col group w-full gap-2 sm:gap-3 lg:gap-4  ${type === "title" || type === "shopTitle" ? " justify-center text-center py-4 px-2 sm:px-3 lg:px-4" : " items-start"}`,
+        `flex relative flex-col group w-full gap-2 sm:gap-3 lg:gap-4  ${type === "title" || type === "shopTitle" ? " col-span-2 md:col-span-1 justify-center text-center py-4 px-2 sm:px-3 lg:px-4" : " items-start"}`,
         className
       )}
       {...props}>
@@ -94,7 +94,7 @@ export default function Product({ product: { slug, title, type, description, pri
       )}
       {(type === "title" || type === "shopTitle") && <div className={`absolute z-0 top-0 left-0 right-0 bottom-0 ${color}`} />}
       {type === "product" && <Stars className="mr-auto" rating={rating} dark />}
-      <Typography variant={type === "title" || type === "shopTitle" ? "h2" : "h3"} className={`relative ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
+      <Typography variant={type === "title" || type === "shopTitle" ? "h2" : "h3"} className={`relative text-balance ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
         {title}
       </Typography>
       <Typography variant={"p"} className={`relative  ${type === "title" || type === "shopTitle" ? "text-center " : "text-justify text-sm"}`}>
@@ -102,11 +102,12 @@ export default function Product({ product: { slug, title, type, description, pri
       </Typography>
 
       {type === "product" && (
-        <div className="flex gap-16 items-center w-full p-1 relative mt-auto">
-          <Typography variant={"h4"} className="font-corben font-normal w-[4ch]">
+        <div className="flex flex-col justify-end md:justify-between md:flex-row gap-4  items-center w-full p-1 relative mt-auto">
+          {/* gap-16 */}
+          <Typography variant={"h4"} className="font-corben font-normal w-4/5 md:w-[4ch] text-left ">
             €{price.toFixed(2)}
           </Typography>
-          <Button asChild className="flex-1 ">
+          <Button asChild className="flex-1 w-full md:w-fit">
             {/* group-hover:opacity-100  transition-all duration-300 opacity-20 */}
             <Link className="" href={`/shop/${slug.current}`}>
               {locale === "fr" ? "Voir Produit" : "See Product"}

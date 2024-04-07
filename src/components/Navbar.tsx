@@ -84,23 +84,28 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
   }, [scrolled]);
 
   return (
-    <div className={`w-full fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
+    <div className={`w-full overflow-hidden fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
       {/* <TransitionBackground className="absolute top-0 left-0 bottom-0 right-0" /> */}
       {enabled && (
-        <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 mx-a`, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
-          <Section className={cn(`flex justify-between items-center space-x-8 mt-0 h-full`, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
-            {messages.map((message, i) => {
-              return (
-                <p key={i} className="align-middle">
-                  <LucideIcon name={message.icon.name} className="size-4 inline-block mb-0.5" /> {message.text?.[locale]}
-                </p>
-              );
-            })}
+        <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
+          <Section className={cn(`mt-0 md:mt-0 h-full`, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
+            <ul
+              style={{ "--values-amount": messages.length, "--values-width": `${200 + 32}px` }} //width of space-x css
+              className="animate-slide flex justify-between items-center space-x-8">
+              {[...messages, ...messages].map((message, i) => {
+                return (
+                  <li key={`${i}-${message.text?.[locale]}`} className="align-middle flex-none w-[200px]">
+                    <LucideIcon name={message.icon.name} className="size-4 inline-block mb-0.5" /> {message.text?.[locale]}
+                  </li>
+                );
+              })}
+            </ul>
             {/* <Icon name={message.icon.name.split(':')[1]}/> */}
           </Section>
         </div>
       )}
-      <NavigationMenu className="mx-auto  ">
+
+      <NavigationMenu className="mx-auto hidden md:flex">
         <NavigationMenuList className="">
           {links.slice(0, 2).map((link, i) => {
             return link._type === "navigationButtonTrigger" ? (

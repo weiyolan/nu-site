@@ -205,7 +205,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
         <ProductsPresentation locale={locale} sanityData={productPresentation} />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
-        <ValueBar />
+        <ValueBar locale={locale} />
       </Section>
       <Section>
         <Reviews reviews={reviews} />
@@ -217,7 +217,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
         <ImagePop locale={locale} imagePop={imagePop1} />
       </Section>
       <Section>
-        <NuLine big className="flex justify-center " />
+        <NuLine className="flex justify-center " />
       </Section>
       {favoEnabled && (
         <Section>

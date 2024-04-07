@@ -1,6 +1,6 @@
 "use client";
-// import { LucideProps, icons } from "lucide-react";
-import { Icon, IconProps } from "@iconify/react";
+
+import { Icon } from "@iconify/react";
 
 // const Icon = ({ name, color, size, ...props }: LucideProps) => {
 //   // starting from "lucide:package-green"

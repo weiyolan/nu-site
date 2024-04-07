@@ -16,8 +16,8 @@ export default function Credits({ className, ...props }: CreditsProps) {
         <Image className="w-6 h-auto rounded-[2px]" alt="Google Pay logo" src="/payment_googlepay.png" width={50 / 2} height={31.45 / 2} />
         <Image className="w-6 h-auto rounded-[2px]" alt="Apple Pay logo" src="/payment_applepay.png" width={50 / 2} height={31.45 / 2} />
       </div>
-      <Typography variant={"p"} className="text-sm text-center">
-        ©2024 NU. Tous droits réservés. Powered by{" "}
+      <Typography variant={"p"} className="text-xs text-center whitespace-pre-wrap md:whitespace-nowrap">
+        {"©2024 NU. Tous droits réservés.\nPowered by "}
         <span className="underline-offset-4 hover:underline">
           <Link href="https://ywdesign.co">ywdesign.co</Link>
         </span>

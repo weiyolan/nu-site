@@ -8,129 +8,10 @@ import ImagePop from "@/components/ImagePop";
 import NuLine from "@/components/NuLine";
 import Section from "@/components/Section";
 import ValueBar from "@/components/ValueBar";
-import Footer from "@/components/Footer";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
-import { altImageType, buttonType, colorSanityType, localeStringType, localeType } from "@/sanity/lib/interface";
+import { getBeerInfo, getBrefInfo, getHero, getImagePop, getIngredientInfo, getIngredients, getSquareInfo, getValueInfo, localeType } from "@/sanity/lib/interface";
 // import { client } from "@/sanity/lib/client";
 
-async function getImagePop(): Promise<{
-  color: colorSanityType;
-  title: localeStringType;
-  button: buttonType;
-  description: localeStringType;
-  altImage: altImageType;
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const imagePop = await client.fetch(`*[_type=='imagePop'][_id=='about'][0]{...,altImage{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }}`);
-  // console.log(reviews)
-  return imagePop;
-}
-
-async function getSquareInfo(): Promise<{
-  title: localeStringType;
-  description: localeStringType;
-  colors: colorSanityType[];
-  altImages: altImageType[];
-  square: {
-    title: localeStringType;
-    description: localeStringType;
-  };
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const squareInfo = await client.fetch(`*[_type=='aboutSquares'][_id=='intro'][0]{...,altImages[]{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }}`);
-  // console.log(reviews)
-  return squareInfo;
-}
-
-async function getBeerInfo(): Promise<{
-  title: localeStringType;
-  description: localeStringType;
-  color: colorSanityType;
-  altImage: altImageType;
-  button: buttonType;
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const beerInfo = await client.fetch(`*[_type=='imagePop'][_id=='aboutHorizontal'][0]{...,altImage{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }}`);
-  // console.log(reviews)
-  return beerInfo;
-}
-
-async function getValueInfo(): Promise<{
-  title: localeStringType;
-  description: localeStringType;
-  prefix: localeStringType;
-  values: {
-    description: localeStringType;
-    title: localeStringType;
-    altImage: altImageType;
-  }[];
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const valueInfo = await client.fetch(`*[_type=='aboutValuesSection'][0]{...,values[]{...,altImage{
-          alt, 'image':image.asset->{url, metadata{lqip}}}
-        }}`);
-  // console.log(reviews)
-  return valueInfo;
-}
-async function getIngredientInfo(): Promise<{
-  title: localeStringType;
-  description: localeStringType;
-  majorTitle: localeStringType;
-  minorTitle: localeStringType;
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  // const ingredientInfo = await client.fetch(`*[_type=='aboutIngredientSection'][_id=='ingredients'][0]`);
-  const ingredientInfo = await client.fetch(`*[_type=='aboutIngredientSection'][_id=='ingredients'][0]`);
-  // console.log(reviews)
-  return ingredientInfo;
-}
-async function getIngredients(): Promise<{
-  major: { title: localeStringType; description: localeStringType }[];
-  minor: { title: localeStringType; description: localeStringType }[];
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  // const ingredientInfo = await client.fetch(`*[_type=='aboutIngredientSection'][_id=='ingredients'][0]`);
-  const ingredients = await client.fetch(`*[_type=='aboutIngredient']|order(orderRank)`);
-  // console.log(reviews)
-  return {
-    major: ingredients.filter((ingredient: { category: string; title: localeStringType; description: localeStringType }) => ingredient.category === "major"),
-    minor: ingredients.filter((ingredient: { category: string; title: localeStringType; description: localeStringType }) => ingredient.category === "minor"),
-  };
-}
-
-async function getBrefInfo(): Promise<{
-  title: localeStringType;
-  description: localeStringType;
-  button: buttonType;
-  altImages: altImageType[];
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const brefInfo = await client.fetch(`*[_type=='aboutBref'][0]{...,altImages[]{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }}`);
-  // console.log(reviews)
-  return brefInfo;
-}
-
-async function getHero(): Promise<{
-  title: localeStringType;
-  button: buttonType;
-  altImage: altImageType;
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const hero = await client.fetch(`*[_type=='hero'][_id=='aboutHero'][0]{...,altImage{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }}`);
-  // console.log(reviews)
-  return hero;
-}
 export default async function Page({ params: { locale } }: { params: { locale: localeType } }) {
   const imagePop = await getImagePop();
   const squareInfo = await getSquareInfo();
@@ -147,7 +28,7 @@ export default async function Page({ params: { locale } }: { params: { locale: l
         <AboutTiles locale={locale} squareInfo={squareInfo} />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
-        <ValueBar />
+        <ValueBar locale={locale} />
       </Section>
       <Section>
         <AboutBeer locale={locale} beerInfo={beerInfo} />
