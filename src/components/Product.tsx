@@ -107,7 +107,7 @@ export default function Product({ product: { slug, title, type, description, pri
           <Typography variant={"h4"} className="font-corben font-normal w-4/5 md:w-[4ch] text-left ">
             €{price.toFixed(2)}
           </Typography>
-          <Button asChild className="flex-1 w-full md:w-fit">
+          <Button asChild className=" w-full md:w-fit">
             {/* group-hover:opacity-100  transition-all duration-300 opacity-20 */}
             <Link className="" href={`/shop/${slug.current}`}>
               {locale === "fr" ? "Voir Produit" : "See Product"}

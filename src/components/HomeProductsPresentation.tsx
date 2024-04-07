@@ -35,25 +35,25 @@ export interface PresentationDetailsProps extends React.HTMLAttributes<HTMLDivEl
 
 export default function ProductsPresentation({ sanityData: { title, description, topLeft, topRight, bottomLeft, bottomRight }, locale, className }: ProductsPresentationProps) {
   return (
-    <>
+    <div className="">
       <Typography variant="h2" className="text-center max-w-3xl mx-auto text-balance">
         {title?.[locale]}
       </Typography>
       <Typography variant="p" affects={"subTitle"} className=" font-semibold text-center max-w-prose mx-auto text-balance ">
         {description?.[locale]}
       </Typography>
-      <div className="relative w-full max-w-xl mx-auto mt-12  drop-shadow-xl">
-        <AspectRatio ratio={1} className="relative mx-auto">
-          <Presentation className="group/topLeft w-[50%] md:w-fit left-0 xl:-translate-x-1/2">
+      <div className="relative overflow-x-hidden w-full max-w-xl mx-auto mt-12  drop-shadow-xl">
+        <AspectRatio ratio={1} className="relative mx-auto ">
+          <Presentation className="group/topLeft w-[50%] xl:w-full left-0 xl:-translate-x-1/2 xl:flex">
             <PresentationDetails
-              className="text-nowrap z-10 absolute md:block invisible group-focus/topLeft:visible"
+              className="text-nowrap z-10 absolute xl:block invisible xl:visible xl:relative xl:w-1/2 group-focus/topLeft:visible"
               title={topLeft.title?.[locale]}
               slug={topLeft.slug}
               button={topLeft.button?.[locale]}
               description={topLeft.description?.[locale]}
             />
             <Image
-              className="cursor-pointer w-full md:w-[270px] h-auto group-hover/topLeft:-translate-x-2 group-hover/topLeft:-translate-y-2 hover:-translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
+              className="cursor-pointer w-full xl:w-[270px] h-auto group-hover/topLeft:-translate-x-2 group-hover/topLeft:-translate-y-2 hover:-translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
               alt={topLeft.altImage.alt?.[locale]}
               src={topLeft.altImage.image.url}
               placeholder="empty"
@@ -63,9 +63,9 @@ export default function ProductsPresentation({ sanityData: { title, description,
             />
           </Presentation>
 
-          <Presentation className="group/topRight w-[50%] md:w-fit right-0 xl:translate-x-1/2 ">
+          <Presentation className="group/topRight w-[50%] xl:w-full right-0 xl:translate-x-1/2 ">
             <Image
-              className="cursor-pointer w-full md:w-[270px] h-auto  group-hover/topRight:translate-x-2 group-hover/topRight:-translate-y-2 hover:translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
+              className="cursor-pointer w-full xl:w-[270px] h-auto  group-hover/topRight:translate-x-2 group-hover/topRight:-translate-y-2 hover:translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
               alt={topRight.altImage.alt?.[locale]}
               src={topRight.altImage.image.url}
               placeholder="empty"
@@ -74,7 +74,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
               height={750}
             />
             <PresentationDetails
-              className=" absolute invisible group-focus/topRight:visible md:block "
+              className=" absolute invisible xl:visible xl:relative xl:w-1/2 group-focus/topRight:visible xl:block "
               title={topRight.title?.[locale]}
               slug={topRight.slug}
               button={topRight.button?.[locale]}
@@ -82,16 +82,16 @@ export default function ProductsPresentation({ sanityData: { title, description,
             />
           </Presentation>
 
-          <Presentation className="w-[65%] md:w-fit group/bottomLeft bottom-0 left-0 xl:-translate-x-1/2 items-end">
+          <Presentation className="w-[65%] xl:w-full group/bottomLeft bottom-0 left-0 xl:-translate-x-1/2 items-end">
             <PresentationDetails
-              className=" absolute invisible group-focus/bottomLeft:visible md:block  "
+              className=" absolute invisible xl:visible xl:relative xl:w-1/2 group-focus/bottomLeft:visible xl:block  "
               title={bottomLeft.title?.[locale]}
               slug={bottomLeft.slug}
               button={bottomLeft.button?.[locale]}
               description={bottomLeft.description?.[locale]}
             />
             <Image
-              className="cursor-pointer w-full md:w-[350px] h-auto group-hover/bottomLeft:-translate-x-2 group-hover/bottomLeft:translate-y-2 hover:-translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500"
+              className="cursor-pointer w-full xl:w-[350px] h-auto group-hover/bottomLeft:-translate-x-2 group-hover/bottomLeft:translate-y-2 hover:-translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500"
               alt={bottomLeft.altImage.alt?.[locale]}
               src={bottomLeft.altImage.image.url}
               placeholder="blur"
@@ -100,9 +100,9 @@ export default function ProductsPresentation({ sanityData: { title, description,
               height={600}
             />
           </Presentation>
-          <Presentation className="w-[45%] md:w-fit group/bottomRight bottom-4 right-0 xl:translate-x-[55%] items-end">
+          <Presentation className="w-[45%] xl:w-full group/bottomRight bottom-4 right-0 xl:translate-x-[55%] items-end">
             <Image
-              className="cursor-pointer w-full h-auto group-hover/bottomRight:translate-x-2 group-hover/bottomRight:translate-y-2 hover:translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500 "
+              className="cursor-pointer w-full xl:w-1/2 h-auto group-hover/bottomRight:translate-x-2 group-hover/bottomRight:translate-y-2 hover:translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500 "
               alt={bottomRight.altImage.alt?.[locale]}
               src={bottomRight.altImage.image.url}
               placeholder="blur"
@@ -111,7 +111,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
               height={750}
             />
             <PresentationDetails
-              className=" absolute  invisible  group-focus/bottomRight:visible md:block  "
+              className=" absolute  invisible xl:visible xl:relative xl:w-1/2  group-focus/bottomRight:visible xl:block  "
               title={bottomRight.title?.[locale]}
               slug={bottomRight.slug}
               button={bottomRight.button?.[locale]}
@@ -120,7 +120,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
           </Presentation>
         </AspectRatio>
       </div>
-    </>
+    </div>
   );
 }
 

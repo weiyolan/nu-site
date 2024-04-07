@@ -87,7 +87,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
       <Section className="text-center self-center">
         <Products className="" locale={locale} shopSection={shopSections[3]} type="shopTitle" />
       </Section>
-      <Section className="">
+      <Section className="bg-nu-blue md:bg-none">
         <ShopEco eco={eco} />
       </Section>
       {/* <Footer /> */}

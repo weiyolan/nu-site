@@ -45,9 +45,6 @@ export default async function RootLayout({
               <NuLogoBackground />
               <Navbar locale={locale} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
               {/* <pre>{JSON.stringify(footerLists, null, 2)}</pre> */}
-
-              {/* <div style={{ backgroundColor: "black" }} className="w-1/2 bg-black relative mx-auto mt-60 h-48"></div> */}
-              {/* <h1 className="w-fit relative mx-auto">HELLO THIS IS A TEST</h1> */}
               {children}
               <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" />
             </div>

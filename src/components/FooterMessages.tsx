@@ -14,20 +14,20 @@ export interface FooterMessagesProps extends React.HTMLAttributes<HTMLDivElement
 }
 
 export default function FooterMessages({ locale, messages, className, ...props }: FooterMessagesProps) {
-  const mdScreen = useMediaQuery("(min-width: 768px)");
+  const mdScreen = useMediaQuery("(min-width: 1024px)");
 
   return (
-    <Section className="w-full gap-2 md:gap-4 p-6  flex flex-wrap items-center justify-center relative mb-0 ">
+    <Section className="w-full gap-2 lg:gap-4 p-6 lg:px-24 flex flex-wrap items-center justify-center relative mb-0 ">
       {messages.slice(0, 2).map((message, i) => (
         <React.Fragment key={`item-${i}`}>
-          {i !== 0 && <Separator orientation={"vertical"} className="bg-nu-black my-2 h-28 md:h-16 w-0.5" />}
+          {i !== 0 && <Separator orientation={"vertical"} className="bg-nu-black my-2 h-32 lg:h-16 w-0.5" />}
           <Message name={message.icon.name} text={message.text?.[locale]} />
         </React.Fragment>
       ))}
-      {<Separator key={"middle seperator"} orientation={mdScreen ? "vertical" : "horizontal"} className="bg-nu-black h-0.5 md:h-16 md:w-0.5 " />}
+      {<Separator key={"middle seperator"} orientation={mdScreen ? "vertical" : "horizontal"} className="bg-nu-black h-0.5 lg:h-16 lg:w-0.5 " />}
       {messages.slice(2).map((message, i) => (
         <React.Fragment key={`item-${i}b`}>
-          {i !== 0 && <Separator orientation={"vertical"} className="bg-nu-black my-2 h-28 md:h-16 w-0.5" />}
+          {i !== 0 && <Separator orientation={"vertical"} className="bg-nu-black my-2 h-32 lg:h-16 w-0.5" />}
           <Message name={message.icon.name} text={message.text?.[locale]} />
         </React.Fragment>
       ))}
@@ -44,10 +44,10 @@ function Message({ text, name, ...props }: MessageProps) {
   // const Comp = icon || "BaggageClaim";
   return (
     <div
-      className=" flex flex-col md:flex-row items-center md:items-start justify-center gap-3 text-center mx-auto md:text-left text-balance w-[44%] md:w-[20%] h-28 md:h-auto"
+      className=" flex flex-col lg:flex-row items-center lg:items-start justify-start lg:justify-center gap-3 text-center mx-auto lg:text-left text-balance w-[44%] lg:w-[20%] h-32 lg:h-auto"
       {...props}>
-      <LucideIcon name={name} className="w-8 h-8 flex-0" />
-      <Typography variant={"p"} className="inline-flex whitespace-pre-wrap  flex-0">
+      <LucideIcon name={name} className="w-8 h-8 shrink-0" />
+      <Typography variant={"p"} className="inline-flex text-balance ">
         {text}
       </Typography>
     </div>

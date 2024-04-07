@@ -32,13 +32,13 @@ export default function ShopEco({ eco, children, className, ...props }: ShopEcoP
   const locale = 'fr'
 
   return (
-    <div className={cn("text-center p-16 w-[120%] -ml-[10%] bg-nu-blue", className)} {...props}>
+    <div className={cn("text-center py-16 px-0 lg:p-16 lg:w-[120%] lg:-ml-[10%] bg-nu-blue", className)} {...props}>
       <Typography variant={"h2"}>{eco.title?.[locale || "fr"]}</Typography>
       <Typography variant={"p"} affects={"subTitle"} className="text-nu-black max-w-prose mx-auto">
         {eco.description?.[locale || "fr"]}
       </Typography>
       <NuLine className="mt-8 w-full px-8 mx-auto" big />
-      <div className="grid grid-cols-4 grid-flow-row mt-8 gap-2 sm:gap-3 md:gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 grid-flow-row mt-8 gap-2 sm:gap-3 md:gap-4">
         {eco.cards.map((card, i) => (
           <EcoCard title={card.title?.[locale || "fr"]} text={card.text?.[locale || "fr"]} description={card.description?.[locale || "fr"]} name={card.icon.name} key={i} />
         ))}

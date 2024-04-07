@@ -96,15 +96,14 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
         <ProductDetails locale={locale} images={images.slice(1, images.length)} details={details} />
       </Section>
       <Section className="max-w-none px-0 md:px-0 2xl:px-0 overflow-hidden">
-        <ValueBar />
+        <ValueBar locale={locale} />
       </Section>
       <Section>
         <Reviews reviews={reviews} />
       </Section>
       <Section>
-        <ProductsRecommended currentProduct={{slug:slug,category:category}} className="text-left mr-auto ml-0" locale={locale} shopSection={recommendedProducts} />
+        <ProductsRecommended currentProduct={{ slug: slug, category: category }} className="text-left mr-auto ml-0" locale={locale} shopSection={recommendedProducts} />
       </Section>
-      <Footer />
     </>
   );
 }

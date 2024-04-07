@@ -12,43 +12,31 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "./ui/navigation-menu";
 import NuLogo from "./NuLogo";
 import { useEffect, useState } from "react";
-// import Image from "next/image";
 import Section from "./Section";
 import LucideIcon from "./LucideIcon";
 import { altImageType, colorSanityType, getColor, localeStringType, localeType } from "@/sanity/lib/interface";
 import Image from "next/image";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Button } from "./ui/button";
+import Typography from "./Typography";
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Best Sellers",
-    href: "/docs/primitives/alert-dialog",
-    description: "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Shampoings Solides",
-    href: "/docs/primitives/hover-card",
-    description: "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Accessoires",
-    href: "/docs/primitives/progress",
-    description: "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Packs",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-];
+// import { Button } from "@/registry/new-york/ui/button"
+// import { Input } from "@/registry/new-york/ui/input"
+// import { Label } from "@/registry/new-york/ui/label"
+// import {
+//   Sheet,
+//   SheetClose,
+//   SheetContent,
+//   SheetDescription,
+//   SheetFooter,
+//   SheetHeader,
+//   SheetTitle,
+//   SheetTrigger,
+// } from "@/registry/new-york/ui/sheet"
 
-const components2: { title: string; href: string; description: string }[] = [
-  { title: "Shampoings Solides", href: "/docs", description: "Re-usable components built using Radix UI and Tailwind CSS." },
-  { title: "Accessoires", href: "/docs/installation", description: "How to install dependencies and structure your app." },
-  { title: "Les Packs", href: "/docs/primitives/typography", description: "Styles for headings, paragraphs, lists...etc" },
-];
 export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
   navbarInfo: {
@@ -84,14 +72,14 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
   }, [scrolled]);
 
   return (
-    <div className={`w-full overflow-hidden fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
+    <div className={`w-full  fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
       {/* <TransitionBackground className="absolute top-0 left-0 bottom-0 right-0" /> */}
       {enabled && (
         <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
           <Section className={cn(`mt-0 md:mt-0 h-full`, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
             <ul
-              style={{ "--values-amount": messages.length, "--values-width": `${200 + 32}px` }} //width of space-x css
-              className="animate-slide flex justify-between items-center space-x-8">
+              style={{ "--values-amount": messages.length, "--values-width": `${200 + 256}px` }} //width of space-x css
+              className="animate-slide md:animate-slideSlow flex justify-between items-center space-x-8 md:space-x-64">
               {[...messages, ...messages].map((message, i) => {
                 return (
                   <li key={`${i}-${message.text?.[locale]}`} className="align-middle flex-none w-[200px]">
@@ -121,13 +109,13 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                 </Link>
               </NavigationMenuItem>
             ) : (
-              <NavigationMenuItem key={`item-${i}`}>
+              <NavigationMenuItem key={`item-${i}`} className="">
                 <NavigationMenuTrigger
                   className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
                   {link.title?.[locale]}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <NavigationMenuContent className="">
+                  <ul className="grid  gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <Link
@@ -175,12 +163,13 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
               </ul>
             </NavigationMenuContent> */}
           <NavigationMenuItem className={``}>
-            <Link href="/aide" legacyBehavior passHref>
+            <Link href="/" legacyBehavior passHref>
               <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent h-fit p-1 px-4")}>
                 <NuLogo className={`transition-all duration-300 ${scrolled ? "size-6" : "size-8"} `}></NuLogo>
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
+
           {links.slice(2).map((link, i) => {
             return link._type === "navigationButtonTrigger" ? (
               <NavigationMenuItem key={`item-${i + 2}`}>
@@ -238,6 +227,103 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
           })}
         </NavigationMenuList>
       </NavigationMenu>
+
+      <Sheet key={"left"}>
+        <SheetTrigger className="ml-auto" asChild>
+          <Button className="ml-auto md:hidden bg-transparent border-transparent" variant="outline">
+            <LucideIcon className=" w-6 h-6" name="lucide:menu" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side={"left"}>
+          <SheetHeader>
+            <SheetTitle>
+              <SheetClose asChild>
+                <Link href="/" title="">
+                  <NuLogo className="mx-auto " />
+                </Link>
+              </SheetClose>
+            </SheetTitle>
+            <SheetDescription>{locale === "fr" ? "Bienvenue chez Nu." : "Welcome at Nu."}</SheetDescription>
+          </SheetHeader>
+          <ol className="space-y-2 mt-12 text-left">
+            {links.map((link, i) => {
+              return link._type === "navigationButtonTrigger" ? (
+                <li key={`item-${i}`}>
+                  <Link href={link.url}>
+                    <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                      {link.title?.[locale]}
+                    </Typography>
+                  </Link>
+                </li>
+              ) : (
+                <div key={`item-${i}`}>
+                  <Link href={"/"}>
+                    <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                      {link.title?.[locale]}
+                    </Typography>
+                  </Link>
+
+                  {/* <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]"> */}
+                  {/* <li className="row-span-3"> */}
+                  {/* <NavigationMenuLink asChild>
+                          <Link
+                            className={cn(
+                              "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
+                              getColor(link.color)
+                            )}
+                            href={link.links[0].url}>
+                            <Image
+                              alt={link.altImage.alt?.[locale]}
+                              fill
+                              blurDataURL={link.altImage.image.metadata.lqip}
+                              placeholder="blur"
+                              className="object-cover"
+                              src={link.altImage.image.url}
+                            />
+                            <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-white/50 "></div>
+                            <NuLogo className="h-6 w-6 relative" />
+                            <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
+                            <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
+                          </Link>
+                        </NavigationMenuLink> */}
+                  {/* </li> */}
+                  {link.links.map((linkSimple, i) => (
+                    <li key={`subItem-${i}`}>
+                      {" "}
+                      <Button variant={"outline"} asChild>
+                        <Link title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                          {linkSimple.title?.[locale]}
+                        </Link>
+                      </Button>
+                    </li>
+                  ))}
+                  {/* </ul> */}
+                </div>
+              );
+            })}
+          </ol>
+          {/* <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Name
+              </Label>
+              <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="username" className="text-right">
+                Username
+              </Label>
+              <Input id="username" value="@peduarte" className="col-span-3" />
+            </div>
+          </div> */}
+          {/* FOOTER */}
+          {/* <SheetFooter>
+            <SheetClose asChild>
+              <Button type="submit">Save changes</Button>
+            </SheetClose>
+          </SheetFooter> */}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

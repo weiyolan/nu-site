@@ -198,9 +198,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
   return (
     <>
       <Hero locale={locale} hero={hero} increasedContrast />
-      {/* <Section>
-        <pre>{JSON.stringify(productPresentation, null, 2)}</pre>
-      </Section> */}
+
       <Section className="mt-16 md:px-24 2xl:px-24">
         <ProductsPresentation locale={locale} sanityData={productPresentation} />
       </Section>

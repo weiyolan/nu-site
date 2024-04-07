@@ -48,7 +48,7 @@ export default function Footer({ footerLists, footerInfo: { messages, quote, new
   //       </div>
 
   return (
-    <footer className={cn("relative", className)}>
+    <footer className={cn("relative overflow-hidden ", className)}>
       <FooterMessages locale={locale} messages={messages} />
 
       <div className="w-full bg-nu-peach relative">
@@ -67,7 +67,7 @@ export default function Footer({ footerLists, footerInfo: { messages, quote, new
           </div>
         </Section>
 
-        <Section className="flex-col md:flex-row flex gap-8 md:gap-16 mt-0 md:mt-0 pb-12">
+        <Section className="flex-col md:flex-row flex gap-8 lg:gap-16 mt-0 md:mt-0 pb-12">
           <Newsletter newsletter={newsletter} locale={locale} />
           {/* Correct for documents */}
           {/* <pre>{console.log(footerLists)}</pre> */}
