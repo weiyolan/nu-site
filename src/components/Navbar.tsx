@@ -249,19 +249,23 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
             {links.map((link, i) => {
               return link._type === "navigationButtonTrigger" ? (
                 <li key={`item-${i}`}>
-                  <Link href={link.url}>
-                    <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
-                      {link.title?.[locale]}
-                    </Typography>
-                  </Link>
+                  <SheetClose asChild>
+                    <Link href={link.url}>
+                      <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                        {link.title?.[locale]}
+                      </Typography>
+                    </Link>
+                  </SheetClose>
                 </li>
               ) : (
                 <div key={`item-${i}`}>
-                  <Link href={"/"}>
-                    <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
-                      {link.title?.[locale]}
-                    </Typography>
-                  </Link>
+                  <SheetClose asChild>
+                    <Link href={"/shop"}>
+                      <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                        {link.title?.[locale]}
+                      </Typography>
+                    </Link>
+                  </SheetClose>
 
                   {/* <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]"> */}
                   {/* <li className="row-span-3"> */}
@@ -290,11 +294,13 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                   {link.links.map((linkSimple, i) => (
                     <li key={`subItem-${i}`}>
                       {" "}
-                      <Button variant={"outline"} asChild>
-                        <Link title={linkSimple.title?.[locale]} href={linkSimple.url}>
-                          {linkSimple.title?.[locale]}
-                        </Link>
-                      </Button>
+                      <SheetClose asChild>
+                        <Button variant={"outline"} asChild>
+                          <Link title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                            {linkSimple.title?.[locale]}
+                          </Link>
+                        </Button>
+                      </SheetClose>
                     </li>
                   ))}
                   {/* </ul> */}
