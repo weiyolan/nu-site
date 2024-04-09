@@ -46,10 +46,10 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             {square.description?.[locale]}
           </Typography>
         </div>
-        <div className={`relative ${getColor(colors[1])} col-span-1 col-start-3 aspect-square flex items-center justify-center `}>
+        <div className={`relative ${getColor(colors[1])} col-span-1 col-start-3 flex items-center justify-center `}>
           <NuLogo />
         </div>
-        <div className="relative bg-nu-peach row-start-2 col-span-1 col-start-3 aspect-square  ">
+        <div className="relative bg-nu-peach row-start-2 col-span-1 col-start-3  ">
           <Image
             placeholder="blur"
             blurDataURL={altImages[1].image.metadata.lqip}

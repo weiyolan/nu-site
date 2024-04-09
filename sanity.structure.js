@@ -6,10 +6,12 @@ import {
   Carrot,
   CookingPot,
   Flame,
+  Footprints,
   GalleryThumbnails,
   GalleryVertical,
   Handshake,
   Heading1Icon,
+  HelpCircle,
   Image,
   Images,
   LayoutGrid,
@@ -95,7 +97,7 @@ export const myStructure = (S, context) => {
         ),
       S.listItem()
         .title("Aide")
-        .icon(MasterDetailIcon)
+        .icon(HelpCircle)
         .child(
           S.list()
             .title("Sections")
@@ -107,6 +109,7 @@ export const myStructure = (S, context) => {
               // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
             ])
         ),
+      S.documentTypeListItem("product").id("productPages"),
       S.divider(),
       S.listItem()
         .title("Bar de Navigation")
@@ -121,7 +124,7 @@ export const myStructure = (S, context) => {
         ),
       S.listItem()
         .title("Pied de page")
-        .icon(PanelBottom)
+        .icon(Footprints)
         .child(
           S.list()
             .title("Sections")
@@ -134,15 +137,8 @@ export const myStructure = (S, context) => {
         ),
       S.divider(),
 
-      orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
-      // Legal documents probably not as list but as documetn
-      // S.listItem()
-      //   .title("Legal Documents")
-      //   .icon(MasterDetailIcon)
-      //   .child(
-      //     S.document().schemaType("legalDoc").documentId("legalDoc"),
-      //   ),
-      // S.divider(),
+      // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
+
       ...S.documentTypeListItems().filter(
         (listItem) =>
           ![
@@ -160,6 +156,7 @@ export const myStructure = (S, context) => {
             // "hpValues",
             // "hpNetwork",
             "shopSection",
+            "product",
             "aboutIngredient",
             // "legalDoc",
             // "contactPagePFS",

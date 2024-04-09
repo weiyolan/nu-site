@@ -16,7 +16,7 @@ const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "-
 const mulish = Mulish({ subsets: ["latin"], variable: "--font-mulish" });
 
 export const metadata: Metadata = {
-  title: "Nu Cosmétiques",
+  title: "Nu Soins | Pour le corps et la nature",
   description: "Shampoings solides à base de levure de bière",
 };
 
@@ -35,6 +35,7 @@ export default async function RootLayout({
   const navbarInfo = await getNavbarInfo();
   const footerInfo = await getFooterInfo();
   const footerLists = await getFooterLists();
+
   return (
     <html lang={locale}>
       <body className={`${corben.variable} ${mulish.variable} font-mulish`}>

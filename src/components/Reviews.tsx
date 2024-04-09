@@ -34,13 +34,13 @@ export default function Reviews({ reviews: { title, description, citationsOn }, 
             loop: true,
           }}
           className="w-[90%] mx-auto mt-8">
-          <CarouselContent className="-ml-4">
+          <CarouselContent className="-ml-4 ">
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index} className="pl-2 md:basis-1/2 lg:basis-1/3">
                 <div className="px-4">
-                  <Card className="text-center bg-card/0 border-transparent shadow-none">
+                  <Card className="text-center bg-card/0 border-transparent shadow-none group">
                     <CardContent className=" space-y-4 relative p-0 px-2">
-                      <Quote className="opacity-10 left-8" />
+                      <Quote className="opacity-10 left-8 group-hover:opacity-30 transition-opacity duration-150" />
                       <Typography className="mt-0 text-balance" variant={"p"} affects={"large"}>
                         The React Framework - created and maintained by @vercelThe React Framework - created and maint ain ed by @vercel
                       </Typography>
@@ -54,7 +54,7 @@ export default function Reviews({ reviews: { title, description, citationsOn }, 
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious  className="hidden md:inline-flex"/>
+          <CarouselPrevious className="hidden md:inline-flex" />
           <CarouselNext className="hidden md:inline-flex" />
         </Carousel>
       ) : (

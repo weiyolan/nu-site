@@ -45,6 +45,7 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
       | { _type: "navigationButtonTrigger"; title: localeStringType; url: string }
       | {
           _type: "navigationButtonComplex";
+          url: string;
           title: localeStringType;
           color: colorSanityType;
           altImage: altImageType;
@@ -59,10 +60,12 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let scrollLimit = 10;
+    // let scrollLimit = window.innerHeight * 0.3;
     function onScroll() {
-      if (window.scrollY > window.innerHeight * 0.3 && !scrolled) {
+      if (window.scrollY > scrollLimit && !scrolled) {
         setScrolled(true);
-      } else if (window.scrollY < window.innerHeight * 0.3 && scrolled) {
+      } else if (window.scrollY < scrollLimit && scrolled) {
         setScrolled(false);
       }
     }
@@ -78,8 +81,8 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
         <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
           <Section className={cn(`mt-0 md:mt-0 h-full`, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
             <ul
-              style={{ "--values-amount": messages.length, "--values-width": `${200 + 256}px` }} //width of space-x css
-              className="animate-slide md:animate-slideSlow flex justify-between items-center space-x-8 md:space-x-64">
+              style={{ "--values-amount": messages.length, "--values-width": `calc(${200 + 0}px + ${25}vw)` }} //width of space-x css
+              className="animate-slide md:animate-slideSlow flex justify-between items-center space-x-8 md:space-x-[25vw]">
               {[...messages, ...messages].map((message, i) => {
                 return (
                   <li key={`${i}-${message.text?.[locale]}`} className="align-middle flex-none w-[200px]">
@@ -112,7 +115,9 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
               <NavigationMenuItem key={`item-${i}`} className="">
                 <NavigationMenuTrigger
                   className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-                  {link.title?.[locale]}
+                  <Link href={link.url} legacyBehavior passHref>
+                    <NavigationMenuLink>{link.title?.[locale]}</NavigationMenuLink>
+                  </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="">
                   <ul className="grid  gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -162,13 +167,15 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                 ))}
               </ul>
             </NavigationMenuContent> */}
-          <NavigationMenuItem className={``}>
-            <Link href="/" legacyBehavior passHref>
-              <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent h-fit p-1 px-4")}>
-                <NuLogo className={`transition-all duration-300 ${scrolled ? "size-6" : "size-8"} `}></NuLogo>
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+          {logoToggle && (
+            <NavigationMenuItem className={``}>
+              <Link href="/" legacyBehavior passHref>
+                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent h-fit p-1 px-4")}>
+                  <NuLogo className={`transition-all duration-300 ${scrolled ? "size-6" : "size-8"} `}></NuLogo>
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          )}
 
           {links.slice(2).map((link, i) => {
             return link._type === "navigationButtonTrigger" ? (
@@ -187,7 +194,9 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
               <NavigationMenuItem key={`item-${i + 2}`}>
                 <NavigationMenuTrigger
                   className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-                  {link.title?.[locale]}
+                  <Link href={link.url} legacyBehavior passHref>
+                    <NavigationMenuLink>{link.title?.[locale]}</NavigationMenuLink>
+                  </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -260,7 +269,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
               ) : (
                 <div key={`item-${i}`}>
                   <SheetClose asChild>
-                    <Link href={"/shop"}>
+                    <Link href={link.url}>
                       <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
                         {link.title?.[locale]}
                       </Typography>

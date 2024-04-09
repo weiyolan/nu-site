@@ -15,6 +15,16 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "url",
+      title: "Lien",
+      type: "url",
+      validation: (Rule) =>
+        Rule.required().uri({
+          allowRelative: true,
+          relativeOnly: true,
+        }),
+    }),
+    defineField({
       name: "links",
       title: "Boutons",
       type: "array",

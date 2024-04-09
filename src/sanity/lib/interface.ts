@@ -47,6 +47,7 @@ export async function getNavbarInfo(): Promise<{
     | {
         _type: "navigationButtonComplex";
         title: localeStringType;
+        url: string;
         color: colorSanityType;
         altImage: altImageType;
         links: { title: localeStringType; description: localeStringType; url: string }[];

@@ -56,7 +56,7 @@ export default async function Products({ locale, type, shopSection: { color, cat
           </Typography>
         </>
       )}
-      <div id={slugify(category)} className={cn("grid grid-cols-2 md:grid-cols-4 grid-flow-row gap-4 sm:gap-6 scroll-mt-20", className)} {...props}>
+      <div id={slugify(category)} className={cn("grid grid-cols-2 md:grid-cols-4 grid-flow-row gap-4 sm:gap-6 xl:gap-10 scroll-mt-20", className)} {...props}>
         {integrated && (
           <Product
             locale={locale}
