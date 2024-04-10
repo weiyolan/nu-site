@@ -2,11 +2,9 @@
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
 
-export interface NuLineProps extends React.HTMLAttributes<HTMLDivElement> {
-  big?: boolean;
-}
+export interface NuLineProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default function NuLine({ big, className, ...props }: NuLineProps) {
+export default function NuLine({ className, ...props }: NuLineProps) {
   const mdScreen = useMediaQuery("(min-width: 768px)", { defaultValue: true });
   if (mdScreen) {
     return (

@@ -35,9 +35,9 @@ export default function AboutIngredients({
         {description?.[locale]}
       </Typography>
 
-      <div className="text-left mx-auto w-4/5 max-w-4xl 2xl:max-w-5xl mt-12 flex items-center gap-6  lg:gap-10">
+      <div className="text-left mx-auto lg:w-4/5 max-w-4xl 2xl:max-w-5xl mt-12 flex flex-col md:flex-row w-full items-center gap-2 md:gap-6  lg:gap-10">
         <Percentage p={majorTitle?.[locale]} />
-        <Accordion type="single" collapsible className="flex-1 pl-6  lg:pl-10 border-l-nu-black border-l-2 ">
+        <Accordion type="single" collapsible className="flex-1 w-full pl-2 md:pl-6 text-left lg:pl-10 border-l-nu-black border-l-[1px] md:border-l-2 ">
           {ingredients.major.map((ingr, i) => (
             <AccordionItem key={`item-${i}`} value={`item-${i}`} className="border-nu-black/30">
               <AccordionTrigger>{ingr.title?.[locale]}</AccordionTrigger>
@@ -47,9 +47,9 @@ export default function AboutIngredients({
         </Accordion>
       </div>
 
-      <div className="text-left mx-auto w-4/5 max-w-4xl 2xl:max-w-5xl mt-12 flex items-center gap-6 lg:gap-10">
+      <div className="text-left mx-auto lg:w-4/5 max-w-4xl 2xl:max-w-5xl mt-12 flex flex-col md:flex-row w-full items-center gap-2 md:gap-6 lg:gap-10">
         <Percentage p={minorTitle?.[locale]} />
-        <Accordion type="single" collapsible className="flex-1 pl-6 lg:pl-10 border-l-nu-black border-l-2 ">
+        <Accordion type="single" collapsible className="flex-1 w-full pl-2 md:pl-6 lg:pl-10 border-l-nu-black border-l-[1px] md:border-l-2 ">
           {ingredients.minor.map((ingr, i) => (
             <AccordionItem key={`item-${i}`} value={`item-${i}`} className="border-nu-black/30">
               <AccordionTrigger>{ingr.title?.[locale]}</AccordionTrigger>
@@ -64,7 +64,7 @@ export default function AboutIngredients({
 
 export function Percentage({ p, className, ...props }: PercentageProps) {
   return (
-    <Typography variant={"h2"} className="w-[3ch] text-right">
+    <Typography variant={"h2"} className=" w-[3ch] text-right">
       {p}
     </Typography>
   );

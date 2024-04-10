@@ -24,7 +24,7 @@ export default function HomeEssayerNu({ locale, cta: { title, description, butto
         </Typography>
       </div>
       <div className="flex-col flex gap-2 justify-center items-center">
-        <Button asChild>
+        <Button asChild className="hover:scale-105 hover:shadow-lg transition-all duration-150">
           <Link href={button.url}>{button.text?.[locale]}</Link>
         </Button>
         <Typography variant={"p"} className="text-sm font-bold w-fit">

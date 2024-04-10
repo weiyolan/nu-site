@@ -199,30 +199,30 @@ export default async function Page({ params: { locale } }: { params: { locale: "
     <>
       <Hero locale={locale} hero={hero} increasedContrast />
 
-      <Section className="mt-16 md:px-24 2xl:px-24">
+      <Section id="produits" className="mt-16 pb-8 overflow-x-hidden">
         <ProductsPresentation locale={locale} sanityData={productPresentation} />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
         <ValueBar locale={locale} />
       </Section>
-      <Section>
+      <Section id="reviews">
         <Reviews reviews={reviews} />
       </Section>
-      <Section className="max-w-screen bg-nu-blue px-0 w-full">
+      <Section id={"cta"} className="max-w-screen bg-nu-blue px-0 w-full">
         <HomeEssayerNu locale={locale} cta={cta} />
       </Section>
-      <Section>
+      <Section id={imagePop1.title.fr}>
         <ImagePop locale={locale} imagePop={imagePop1} />
       </Section>
       <Section>
         <NuLine className="flex justify-center " />
       </Section>
       {favoEnabled && (
-        <Section>
+        <Section id="vitrine">
           <Products locale={locale} shopSection={favos} />
         </Section>
       )}
-      <Section className="-mb-8">
+      <Section id={imagePop2.title.fr} className="-mb-8">
         <ImagePop locale={locale} imgRight imagePop={imagePop2} />
       </Section>
 

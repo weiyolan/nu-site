@@ -74,7 +74,7 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
       <Section className="">
         <BreadcrumbWithCustomSeparator category={category} title={title?.[locale]} />
       </Section>
-      <Section>
+      <Section id="description">
         <ProductDescription
           locale={locale}
           altImage={images[0]}
@@ -92,16 +92,16 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
       <Section>
         <NuLine big />
       </Section>
-      <Section>
+      <Section id="details">
         <ProductDetails locale={locale} images={images.slice(1, images.length)} details={details} />
       </Section>
       <Section className="max-w-none px-0 md:px-0 2xl:px-0 overflow-hidden">
         <ValueBar locale={locale} />
       </Section>
-      <Section>
+      <Section id="reviews">
         <Reviews reviews={reviews} />
       </Section>
-      <Section>
+      <Section id="recommended">
         <ProductsRecommended currentProduct={{ slug: slug, category: category }} className="text-left mr-auto ml-0" locale={locale} shopSection={recommendedProducts} />
       </Section>
     </>

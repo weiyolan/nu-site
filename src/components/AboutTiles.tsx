@@ -27,8 +27,8 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
       <Typography variant="p" affects={"subTitle"} className=" font-semibold text-center whitespace-pre-wrap">
         {description?.[locale]}
       </Typography>
-      <div className="w-auto grid grid-cols-4 grid-rows-2 gap-4  mt-8 xl:px-24">
-        <div className="relative bg-nu-blue row-start-1 col-span-2 col-start-1 h-200 ">
+      <div className="w-auto grid grid-rows-4 grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 mt-8 xl:px-24">
+        <div className="relative bg-nu-blue  row-start-1 col-span-2 col-start-1 h-200 hover:scale-[1.01] hover:shadow-lg transition-all duration-150">
           <Image
             placeholder="blur"
             blurDataURL={altImages[0].image.metadata.lqip}
@@ -38,7 +38,7 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             className="object-cover object-center"
           />
         </div>
-        <div className={`relative text-center ${getColor(colors[0])} flex flex-col justify-center row-start-2 col-span-2 col-start-1 min-h-200 p-8`}>
+        <div className={`relative text-center ${getColor(colors[0])} flex flex-col justify-center row-start-2 col-span-2 col-start-1 min-h-200 p-8 `}>
           <Typography variant={"h3"} className="mb-4 text-3xl">
             {square.title?.[locale]}
           </Typography>
@@ -46,10 +46,10 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             {square.description?.[locale]}
           </Typography>
         </div>
-        <div className={`relative ${getColor(colors[1])} col-span-1 col-start-3 flex items-center justify-center `}>
+        <div className={`relative ${getColor(colors[1])} col-span-1 row-start-3 col-start-1 lg:col-start-3 flex items-center justify-center `}>
           <NuLogo />
         </div>
-        <div className="relative bg-nu-peach row-start-2 col-span-1 col-start-3  ">
+        <div className="relative bg-nu-peach row-start-4 lg:row-start-2 col-span-1 col-start-1 lg:col-start-3 hover:scale-[1.01] hover:shadow-lg transition-all duration-150 ">
           <Image
             placeholder="blur"
             blurDataURL={altImages[1].image.metadata.lqip}
@@ -59,7 +59,7 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             className="object-cover object-center"
           />
         </div>
-        <div className="relative bg-nu-yellow row-start-1 row-span-2 col-start-4  ">
+        <div className="relative bg-nu-yellow row-start-3 col-start-2 lg:row-start-1 row-span-2 lg:col-start-4  hover:scale-[1.01] hover:shadow-lg transition-all duration-150">
           <Image
             placeholder="blur"
             blurDataURL={altImages[2].image.metadata.lqip}

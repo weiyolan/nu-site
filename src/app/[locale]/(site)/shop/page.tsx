@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { client } from "@/sanity/lib/client";
 import Reviews from "@/components/Reviews";
 import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
+import slugify from "slugify";
 
 async function getEco(): Promise<{
   description: localeStringType;
@@ -69,25 +70,25 @@ export default async function Page({ params: { locale } }: { params: { locale: "
   return (
     <>
       <Hero locale={locale} hero={hero} />
-      <Section className="text-center">
+      <Section id={slugify(shopSections[0].title.fr, { lower: true })} className="text-center">
         <Products locale={locale} shopSection={shopSections[0]} type="shopTitle" />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
         <ValueBar locale={locale} />
       </Section>
-      <Section className="text-center">
+      <Section id={slugify(shopSections[1].title.fr, { lower: true })} className="text-center">
         <Products locale={locale} shopSection={shopSections[1]} type="shopTitle" />
       </Section>
       <Section>
-        <Reviews reviews={reviews} />
+        <Reviews id="reviews" reviews={reviews} />
       </Section>
-      <Section className="text-center">
+      <Section id={slugify(shopSections[2].title.fr, { lower: true })} className="text-center">
         <Products locale={locale} shopSection={shopSections[2]} type="shopTitle" />
       </Section>
-      <Section className="text-center self-center">
+      <Section id={slugify(shopSections[3].title.fr, { lower: true })} className="text-center self-center">
         <Products className="" locale={locale} shopSection={shopSections[3]} type="shopTitle" />
       </Section>
-      <Section className="bg-nu-blue md:bg-none">
+      <Section id="eco" className="bg-nu-blue md:bg-none">
         <ShopEco eco={eco} />
       </Section>
       {/* <Footer /> */}

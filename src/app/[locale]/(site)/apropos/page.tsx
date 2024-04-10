@@ -24,31 +24,37 @@ export default async function Page({ params: { locale } }: { params: { locale: l
   return (
     <>
       <Hero locale={locale} hero={hero} />
-      <Section className="mt-16">
+      <Section id="nu" className="mt-16">
         <AboutTiles locale={locale} squareInfo={squareInfo} />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
         <ValueBar locale={locale} />
       </Section>
-      <Section>
+      <Section id="beer">
         <AboutBeer locale={locale} beerInfo={beerInfo} />
       </Section>
-      <Section>
+      <Section id={imagePop.title.fr}>
         <ImagePop locale={locale} imagePop={imagePop} />
       </Section>
-      <Section>
+      <Section id="valeurs">
         <AboutValues locale={locale} valueInfo={valueInfo} />
       </Section>
       <Section>
-        <NuLine big></NuLine>
+        <NuLine />
       </Section>
       <div className="relative">
-        <Image src="/about_ingredients.png" alt="spoons filled with spices" width={1460 / 3} height={2735 / 3} className="w-1/6 h-auto absolute left-0  top-24 " />
-        <Section>
+        <Image
+          src="/about_ingredients.png"
+          alt="spoons filled with spices"
+          width={1460 / 3}
+          height={2735 / 3}
+          className="w-1/6 h-auto absolute left-0 top-0 -translate-y-1/3 md:top-24 "
+        />
+        <Section id="ingredients">
           <AboutIngredients ingredientInfo={ingredientInfo} ingredients={ingredients} locale={locale} />
         </Section>
       </div>
-      <Section>
+      <Section id="bref">
         <AboutBref locale={locale} brefInfo={brefInfo} />
       </Section>
       {/* <Footer /> */}

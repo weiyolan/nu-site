@@ -19,13 +19,13 @@ export interface AboutBrefProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function AboutBref({ locale, brefInfo: { title, description, altImages, button }, children, className, ...props }: AboutBrefProps) {
   return (
     <div className={cn("w-full ", className)} {...props}>
-      <div className="bg-nu-blue w-[120%] -ml-[10%] overflow-hidden  ">
+      <div className="bg-nu-blue w-[100vw] -ml-[16px] lg:w-[120%] lg:-ml-[10%] overflow-hidden  ">
         <Section className="mt-0">
-          <span className="text-[15rem] leading-[0.88] font-corben text-nu-beige block mt-4 ">Bref.</span>
+          <span className="text-[8rem] lg:text-[15rem] leading-[0.88] font-corben text-nu-beige block mt-4 ">Bref.</span>
         </Section>
       </div>
 
-      <div className={cn("flex w-full gap-32 text-right mt-8 pb-16", className)} {...props}>
+      <div className={cn("flex flex-col lg:flex-row w-full gap-24  lg:gap-32 text-right mt-8 pb-16", className)} {...props}>
         <div className={`flex-1 flex flex-col justify-center gap-6 `}>
           <Typography variant={"h2"} className="">
             {title?.[locale]}
@@ -35,8 +35,8 @@ export default function AboutBref({ locale, brefInfo: { title, description, altI
           </Typography>
           <Button className="w-fit ml-auto">{button.text?.[locale]}</Button>
         </div>
-        <div className={`flex-1 w-1/2 relative h-80`}>
-          <div className="w-80 h-80 absolute bg-nu-green top-0 -translate-y-24 right-0">
+        <div className={`lg:flex-1 w-full lg:w-1/2 relative h-72   lg:h-80`}>
+          <div className="w-60 h-60 lg:w-80 lg:h-80 absolute bg-nu-green top-0 translate-y-24 lg:-translate-y-24 right-0">
             <Image
               alt={altImages[1].alt?.[locale]}
               src={altImages[1].image.url}
@@ -44,10 +44,10 @@ export default function AboutBref({ locale, brefInfo: { title, description, altI
               placeholder="blur"
               blurDataURL={altImages[1].image.metadata.lqip}
               fill
-              sizes="18vw"
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           </div>
-          <div className="w-80 h-80 absolute bg-nu-purple bottom-0 translate-y-24 shadow-lg">
+          <div className="w-60 h-60 lg:w-80 lg:h-80 absolute bg-nu-purple bottom-0 -translate-y-24 lg:translate-y-24 shadow-lg">
             <Image
               alt={altImages[0].alt?.[locale]}
               src={altImages[0].image.url}
@@ -55,7 +55,7 @@ export default function AboutBref({ locale, brefInfo: { title, description, altI
               placeholder="blur"
               blurDataURL={altImages[0].image.metadata.lqip}
               fill
-              sizes="18vw"
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           </div>
           {/* <Image src={img.src} fill sizes="50vw" alt={img.alt} className="object-cover object-center"></Image> */}

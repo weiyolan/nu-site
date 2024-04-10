@@ -54,8 +54,8 @@ export default function Reviews({ reviews: { title, description, citationsOn }, 
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:inline-flex" />
-          <CarouselNext className="hidden md:inline-flex" />
+          <CarouselPrevious className="inline-flex translate-x-4 scale-90" />
+          <CarouselNext className="inline-flex -translate-x-4 scale-90" />
         </Carousel>
       ) : (
         <>

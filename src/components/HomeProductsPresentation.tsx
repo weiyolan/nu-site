@@ -42,11 +42,11 @@ export default function ProductsPresentation({ sanityData: { title, description,
       <Typography variant="p" affects={"subTitle"} className=" font-semibold text-center max-w-prose mx-auto text-balance ">
         {description?.[locale]}
       </Typography>
-      <div className="relative overflow-x-hidden w-full max-w-xl mx-auto mt-12  drop-shadow-xl">
+      <div className="relative  w-full max-w-xl mx-auto mt-12  drop-shadow-xl">
         <AspectRatio ratio={1} className="relative mx-auto ">
           <Presentation className="group/topLeft w-[50%] xl:w-full left-0 xl:-translate-x-1/2 xl:flex">
             <PresentationDetails
-              className="text-nowrap z-10 absolute xl:block invisible xl:visible xl:relative xl:w-1/2 group-focus/topLeft:visible"
+              className="text-nowrap z-10 absolute xl:block invisible lg:visible xl:relative xl:w-1/2 group-focus/topLeft:visible"
               title={topLeft.title?.[locale]}
               slug={topLeft.slug}
               button={topLeft.button?.[locale]}
@@ -74,7 +74,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
               height={750}
             />
             <PresentationDetails
-              className=" absolute invisible xl:visible xl:relative xl:w-1/2 group-focus/topRight:visible xl:block "
+              className=" absolute invisible lg:visible xl:relative xl:w-1/2 group-focus/topRight:visible xl:block "
               title={topRight.title?.[locale]}
               slug={topRight.slug}
               button={topRight.button?.[locale]}
@@ -84,7 +84,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
 
           <Presentation className="w-[65%] xl:w-full group/bottomLeft bottom-0 left-0 xl:-translate-x-1/2 items-end">
             <PresentationDetails
-              className=" absolute invisible xl:visible xl:relative xl:w-1/2 group-focus/bottomLeft:visible xl:block  "
+              className=" absolute invisible lg:visible xl:relative xl:w-1/2 group-focus/bottomLeft:visible xl:block  "
               title={bottomLeft.title?.[locale]}
               slug={bottomLeft.slug}
               button={bottomLeft.button?.[locale]}
@@ -111,7 +111,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
               height={750}
             />
             <PresentationDetails
-              className=" absolute  invisible xl:visible xl:relative xl:w-1/2  group-focus/bottomRight:visible xl:block  "
+              className=" absolute  invisible lg:visible xl:relative xl:w-1/2  group-focus/bottomRight:visible xl:block  "
               title={bottomRight.title?.[locale]}
               slug={bottomRight.slug}
               button={bottomRight.button?.[locale]}
