@@ -11,6 +11,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
 import { localeStringType, localeType } from "@/sanity/lib/interface";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -21,11 +22,16 @@ const formSchema = z.object({
 });
 
 export interface NewsletterProps extends React.HTMLAttributes<HTMLDivElement> {
-  newsletter: { text: localeStringType; title: localeStringType };
+  newsletter: {
+    text: localeStringType;
+    title: localeStringType;
+    confidential: { title: localeStringType; text: localeStringType; url: localeStringType };
+    general: { title: localeStringType; text: localeStringType; url: localeStringType };
+  };
   locale: localeType;
 }
 
-export default function Newsletter({ newsletter: { text, title }, locale, className, ...props }: NewsletterProps) {
+export default function Newsletter({ newsletter: { text, title, confidential, general }, locale, className, ...props }: NewsletterProps) {
   return (
     <div className={cn("mr-auto w-full md:w-96 space-y-2", className)} {...props}>
       <Typography variant={"h3"} className="text-3xl mb-4 ">
@@ -39,9 +45,31 @@ export default function Newsletter({ newsletter: { text, title }, locale, classN
       <NewsletterForm locale={locale} />
 
       <Typography variant={"p"} className="text-sm text-balance text-muted-foreground ">
-        {locale === "fr"
-          ? `En continuant, vous acceptez nos conditions\ngénérales et notre politique de confidentialité.`
-          : `By continuing you accept our general\nconditions and privacy policy.`}
+        {locale === "fr" ? (
+          <>
+            En continuant, vous acceptez nos{" "}
+            <Link target="_blank" rel="noopener noreferrer" className="hover:underline" href={general.url.fr}>
+              {general.text.fr}
+            </Link>{" "}
+            et notre{" "}
+            <Link target="_blank" rel="noopener noreferrer" className="hover:underline" href={confidential.url.fr}>
+              {confidential.text.fr}
+            </Link>
+            .
+          </>
+        ) : (
+          <>
+            By continuing you accept our{" "}
+            <Link target="_blank" rel="noopener noreferrer" className="hover:underline" href={general.url.en}>
+              {general.text.en}
+            </Link>{" "}
+            and{" "}
+            <Link target="_blank" rel="noopener noreferrer" className="hover:underline" href={confidential.url.en}>
+              {confidential.text.en}
+            </Link>
+            .
+          </>
+        )}
       </Typography>
     </div>
   );

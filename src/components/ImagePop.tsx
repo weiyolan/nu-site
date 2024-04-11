@@ -30,7 +30,11 @@ export default function ImagePop({ children, locale, imgRight, imagePop: { altIm
   return (
     // 32 if colored square behind has border of 16
     <div
-      className={cn("flex flex-col md:flex-row w-full gap-12 md:gap-24 lg:gap-32 mt-24 md:mt-0 md:mb-48", imgRight && "mb-24 flex-col-reverse md:flex-row-reverse", className)}
+      className={cn(
+        "flex flex-col md:flex-row w-full gap-12 md:gap-24 lg:gap-32 xl:gap-48 mt-24 md:mt-0 md:mb-48",
+        imgRight && "mb-24 flex-col-reverse md:flex-row-reverse",
+        className
+      )}
       {...props}>
       <div className={`flex-1 relative w-4/5 md:w-1/2 `}>
         <AspectRatio ratio={1} className="after:block after:w-full after:h-full after:shadow-lg after:absolute after:top-0">

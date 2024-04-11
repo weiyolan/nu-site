@@ -65,11 +65,31 @@ export async function getNavbarInfo(): Promise<{
 export async function getFooterInfo(): Promise<{
   messages: { text: localeStringType; icon: { name: string } }[];
   quote: { by: localeStringType; quote: localeStringType };
-  newsletter: { text: localeStringType; title: localeStringType };
+  newsletter: {
+    text: localeStringType;
+    title: localeStringType;
+    confidential: { title: localeStringType; text: localeStringType; url: localeStringType };
+    general: { title: localeStringType; text: localeStringType; url: localeStringType };
+  };
 }> {
+  let langObj = "";
+
+  supportedLanguages.forEach((lang) => {
+    langObj = langObj + `'${lang.id}':document.${lang.id}.asset->url,`;
+  });
   // Fetch shopSection with ID homeBlogs or something
   const footerQuote = await client.fetch(`*[_type=='footerQuote'][0]`);
-  const footerNewsletter = await client.fetch(`*[_type=='footerNewsletter'][0]`);
+  const footerNewsletter = await client.fetch(`*[_type=='footerNewsletter'][0]{...,confidential{...,...ref->
+          {title,
+           'url':{
+              ${langObj}}
+          }},
+          general{...,...ref->
+          {title,
+           'url':{
+              ${langObj}}
+          }}
+  }`);
   const footerMessages = await client.fetch(`*[_type=='footerMessages'][0]{messages}`);
   // console.log(reviews)
   return { quote: footerQuote, ...footerMessages, newsletter: footerNewsletter };
@@ -230,6 +250,7 @@ export async function getHero(): Promise<{
   title: localeStringType;
   button: buttonType;
   altImage: altImageType;
+  color: colorSanityType;
 }> {
   // Fetch shopSection with ID homeBlogs or something
   const hero = await client.fetch(`*[_type=='hero'][_id=='aboutHero'][0]{...,altImage{

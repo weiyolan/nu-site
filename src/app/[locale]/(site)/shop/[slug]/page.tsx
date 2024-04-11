@@ -90,7 +90,7 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
         />
       </Section>
       <Section>
-        <NuLine big />
+        <NuLine />
       </Section>
       <Section id="details">
         <ProductDetails locale={locale} images={images.slice(1, images.length)} details={details} />

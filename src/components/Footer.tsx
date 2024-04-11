@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils";
 import Section from "./Section";
 import Typography from "./Typography";
-import { BaggageClaim, Banana, Banknote, Lock } from "lucide-react";
+// import { BaggageClaim, Banana, Banknote, Lock } from "lucide-react";
 // import { Separator } from "../ui/separator";
 import Nu from "./NuLogo";
 import Quote from "./Quote";
 import FooterList from "./FooterList";
 import Newsletter from "./FooterNewsletter";
 import Credits from "./FooterCredits";
-import LucideIcon from "./LucideIcon";
+// import LucideIcon from "./LucideIcon";
 import { localeStringType, localeType } from "@/sanity/lib/interface";
-import { Separator } from "./ui/separator";
-import { useMediaQuery } from "usehooks-ts";
+// import { Separator } from "./ui/separator";
+// import { useMediaQuery } from "usehooks-ts";
 import FooterMessages from "./FooterMessages";
 
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,7 +19,12 @@ export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   footerInfo: {
     messages: { text: localeStringType; icon: { name: string } }[];
     quote: { by: localeStringType; quote: localeStringType };
-    newsletter: { text: localeStringType; title: localeStringType };
+    newsletter: {
+      text: localeStringType;
+      title: localeStringType;
+      confidential: { title: localeStringType; text: localeStringType; url: localeStringType };
+      general: { title: localeStringType; text: localeStringType; url: localeStringType };
+    };
   };
   footerLists: {
     title: localeStringType;

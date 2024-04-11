@@ -104,15 +104,15 @@ export default function Product({ product: { slug, title, type, description, pri
       {type === "product" && (
         <div className="flex flex-col justify-end md:justify-between md:flex-row gap-4  items-center w-full p-1 relative mt-auto">
           {/* gap-16 */}
-          <Typography variant={"h4"} className="font-corben font-normal w-4/5 md:w-[4ch] text-left ">
-            €{price.toFixed(2)}
-          </Typography>
           <Button asChild className=" w-full md:w-fit group-hover:scale-105 group-hover:shadow-xl transition-all duration-150 ">
             {/* group-hover:opacity-100  transition-all duration-300 opacity-20 */}
             <Link className="" href={`/shop/${slug.current}`}>
               {locale === "fr" ? "Voir Produit" : "See Product"}
             </Link>
-          </Button>
+          </Button>{" "}
+          <Typography variant={"h4"} className="font-corben font-normal w-4/5 md:w-[4ch] text-left ">
+            €{price.toFixed(2)}
+          </Typography>
         </div>
       )}
       {type === "title" && (

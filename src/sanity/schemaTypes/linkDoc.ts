@@ -8,14 +8,14 @@ export default defineType({
   options: { collapsible: true, collapsed: true },
   icon: LinkIcon,
   fields: [
-    defineField({
-      name: "ext",
-      title: "External",
-      // description: "Aanzetten als de link naar een externe site verwijst.",
-      type: "boolean",
-      initialValue: true,
-      validation: (Rule) => Rule.required(),
-    }),
+    // defineField({
+    //   name: "ext",
+    //   title: "External",
+    //   // description: "Aanzetten als de link naar een externe site verwijst.",
+    //   type: "boolean",
+    //   initialValue: true,
+    //   validation: (Rule) => Rule.required(),
+    // }),
     defineField({
       name: "text",
       title: "Text",

@@ -24,6 +24,19 @@ export default defineType({
       options: { collapsible: false },
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "confidential",
+      title: "Politique de confidentialité",
+      type: "linkDoc",
+      options: { collapsible: false },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "general",
+      title: "Conditions générals",
+      type: "linkDoc",
+      validation: (Rule) => Rule.required(),
+    }),
     // defineField({
     //   name: "placeholder",
     //   title: "Mail Exemple",
@@ -34,12 +47,13 @@ export default defineType({
     // }),
   ],
   preview: {
-    // select: {
-    //   title: "title",
-    // },
-    prepare() {
+    select: {
+      title: "title",
+      description:'description',
+    },
+    prepare({title,description}) {
       // const { title } = selection;
-      return { title: "Newsletter" };
+      return { title: title?.[uiLanguage.id], subTitle:description?.[uiLanguage.id] };
     },
   },
 });

@@ -42,6 +42,11 @@ export default defineType({
       // options: {collapsible: true, collapsed: true},
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "color",
+      title: "Couleur",
+      type: "optionsColors",
+    }),
   ],
   preview: {
     select: { title: "title", description: "description", altImage: "altImage" },

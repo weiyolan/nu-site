@@ -8,7 +8,7 @@ import ValueBar from "@/components/ValueBar";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/lib/client";
 import Reviews from "@/components/Reviews";
-import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, getHero, localeStringType } from "@/sanity/lib/interface";
 import slugify from "slugify";
 
 async function getEco(): Promise<{
@@ -50,18 +50,7 @@ async function getShopSections(): Promise<
   // console.log(reviews)
   return shopSections;
 }
-async function getHero(): Promise<{
-  title: localeStringType;
-  button: buttonType;
-  altImage: altImageType;
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const hero = await client.fetch(`*[_type=='hero'][_id=='shopHero'][0]{...,altImage{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }}`);
-  // console.log(reviews)
-  return hero;
-}
+
 export default async function Page({ params: { locale } }: { params: { locale: "en" | "fr" } }) {
   const eco = await getEco();
   const reviews = await getReviews("shopReviews");

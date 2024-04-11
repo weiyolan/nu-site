@@ -11,7 +11,7 @@ import Products from "@/components/Products";
 import HomeBlogs from "@/components/HomeBlogs";
 import HomeEssayerNu from "@/components/HomeEssayerNu";
 import { client } from "@/sanity/lib/client";
-import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, getHero, localeStringType } from "@/sanity/lib/interface";
 
 async function getReviews(id: string): Promise<{
   citationsOn: boolean;
@@ -174,19 +174,6 @@ async function getImagePop2(): Promise<{
   return imagePop;
 }
 
-async function getHero(): Promise<{
-  title: localeStringType;
-  button: buttonType;
-  altImage: altImageType;
-}> {
-  // Fetch shopSection with ID homeBlogs or something
-  const hero = await client.fetch(`*[_type=='hero'][_id=='homeHero'][0]{...,altImage{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }}`);
-  // console.log(reviews)
-  return hero;
-}
-
 export default async function Page({ params: { locale } }: { params: { locale: "en" | "fr" } }) {
   const reviews = await getReviews("homeReviews");
   const productPresentation = await getProductPresentation();
@@ -202,30 +189,31 @@ export default async function Page({ params: { locale } }: { params: { locale: "
       <Section id="produits" className="mt-16 pb-8 overflow-x-hidden">
         <ProductsPresentation locale={locale} sanityData={productPresentation} />
       </Section>
-      <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
-        <ValueBar locale={locale} />
-      </Section>
-      <Section id="reviews">
-        <Reviews reviews={reviews} />
-      </Section>
-      <Section id={"cta"} className="max-w-screen bg-nu-blue px-0 w-full">
-        <HomeEssayerNu locale={locale} cta={cta} />
+      <Section>
+        <NuLine className="flex justify-center " />
       </Section>
       <Section id={imagePop1.title.fr}>
         <ImagePop locale={locale} imagePop={imagePop1} />
       </Section>
-      <Section>
-        <NuLine className="flex justify-center " />
+      <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
+        <ValueBar locale={locale} />
+      </Section>
+      <Section id={imagePop2.title.fr} className="-mb-8">
+        <ImagePop locale={locale} imgRight imagePop={imagePop2} />
+      </Section>
+      <Section id="reviews">
+        <Reviews reviews={reviews} />
       </Section>
       {favoEnabled && (
         <Section id="vitrine">
           <Products locale={locale} shopSection={favos} />
         </Section>
       )}
-      <Section id={imagePop2.title.fr} className="-mb-8">
-        <ImagePop locale={locale} imgRight imagePop={imagePop2} />
-      </Section>
-
+      <div className="w-full overflow-x-hidden py-12">
+        <Section id={"cta"} className=" max-w-[110vw] w-[110vw] mx-auto bg-nu-blue rotate-2 px-0 ">
+          <HomeEssayerNu locale={locale} cta={cta} />
+        </Section>
+      </div>
       {/* <Section> */}
       {/* <HomeBlogs locale={locale} /> */}
       {/* </Section> */}
