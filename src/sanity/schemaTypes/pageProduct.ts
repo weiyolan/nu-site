@@ -1,12 +1,14 @@
 import { defineField, defineType } from "sanity";
 import { Package, StarIcon } from "lucide-react";
 import { uiLanguage } from "../supportedLanguages";
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 
 export default defineType({
   name: "product",
   title: "Produits",
   type: "document",
   icon: Package,
+  orderings: [orderRankOrdering],
   groups: [
     {
       name: "details",
@@ -41,6 +43,7 @@ export default defineType({
     },
   },
   fields: [
+    orderRankField({ type: "shopSection" }),
     defineField({
       name: "favorite",
       title: "Produit Préféré",

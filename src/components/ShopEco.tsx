@@ -37,7 +37,7 @@ export default function ShopEco({ eco, children, className, ...props }: ShopEcoP
       <Typography variant={"p"} affects={"subTitle"} className="text-nu-black max-w-prose mx-auto">
         {eco.description?.[locale || "fr"]}
       </Typography>
-      <NuLine className="mt-8 w-full px-8 mx-auto" big />
+      <NuLine className="mt-8 w-full px-8 mx-auto" />
       <div className="grid grid-cols-2 lg:grid-cols-4 grid-flow-row mt-8 gap-2 sm:gap-3 md:gap-4">
         {eco.cards.map((card, i) => (
           <EcoCard title={card.title?.[locale || "fr"]} text={card.text?.[locale || "fr"]} description={card.description?.[locale || "fr"]} name={card.icon.name} key={i} />

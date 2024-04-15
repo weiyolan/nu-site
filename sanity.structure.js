@@ -3,6 +3,7 @@ import {
   Blend,
   Book,
   BookOpen,
+  Box,
   Carrot,
   CookingPot,
   Flame,
@@ -109,7 +110,9 @@ export const myStructure = (S, context) => {
               // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
             ])
         ),
-      S.documentTypeListItem("product").id("productPages"),
+      // S.documentTypeListItem("product").id("productPages"),
+      orderableDocumentListDeskItem({ type: "product", title: "Produits", icon: Box, S: S, context: context }),
+
       S.divider(),
       S.listItem()
         .title("Bar de Navigation")

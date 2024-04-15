@@ -33,6 +33,11 @@ const config = defineConfig({
   // toolMenu: MyToolMenu,
   // }
   // },
+  document: {
+    unstable_comments: {
+      enabled: false,
+    },
+  },
 
   plugins:
     process.env.NODE_ENV === "development" //isDev

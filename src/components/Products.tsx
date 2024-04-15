@@ -31,10 +31,10 @@ async function getProducts(category: string): Promise<
 > {
   let products = await client.fetch(
     category === "favorites"
-      ? `*[_type=='product'][favorite==true]{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
+      ? `*[_type=='product'][favorite==true]|order(orderRank){rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
       : category === "recommended"
-        ? `*[_type=='product'][category=='${"shampoings-solides"}']{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
-        : `*[_type=='product'][category=='${category}']{rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
+        ? `*[_type=='product'][category=='${"shampoings-solides"}']|order(orderRank){rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
+        : `*[_type=='product'][category=='${category}']|order(orderRank){rating, title, price,slug,description,subTitle,images[0..1]{alt,'image':image.asset->{url, metadata{lqip}}}}`
   );
   // altImage{
   // alt, 'image':image.asset->{url, metadata{lqip}}
