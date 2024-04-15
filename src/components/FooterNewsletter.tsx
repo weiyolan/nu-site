@@ -33,7 +33,7 @@ export interface NewsletterProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function Newsletter({ newsletter: { text, title, confidential, general }, locale, className, ...props }: NewsletterProps) {
   return (
-    <div className={cn("mr-auto w-full md:w-96 space-y-2", className)} {...props}>
+    <div className={cn("mr-auto w-full max-w-96 space-y-2", className)} {...props}>
       <Typography variant={"h3"} className="text-3xl mb-4 ">
         {title?.[locale]}
       </Typography>

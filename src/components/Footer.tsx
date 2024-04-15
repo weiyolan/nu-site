@@ -72,7 +72,7 @@ export default function Footer({ footerLists, footerInfo: { messages, quote, new
           </div>
         </Section>
 
-        <Section className="flex-col md:flex-row flex gap-8 lg:gap-16 mt-0 md:mt-0 pb-12">
+        <Section className="flex-col lg:flex-row flex gap-8 lg:gap-12 xl:gap-16 lg:px-16 min-[1100px]:px-24 mt-0 md:mt-0 pb-12">
           <Newsletter newsletter={newsletter} locale={locale} />
           {/* Correct for documents */}
           {/* <pre>{console.log(footerLists)}</pre> */}

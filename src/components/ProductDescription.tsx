@@ -43,7 +43,7 @@ export default function ProductDescription({
         <Typography variant={"h2"} className="mt-0 mb-1">
           {subTitle}
         </Typography>
-        <Stars rating={rating} dark className="my-2" />
+        <Stars rating={rating} options={{ dark: true }} className="my-2" />
         <Typography variant={"p"} className="mb-2">
           {description}
         </Typography>

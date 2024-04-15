@@ -16,7 +16,7 @@ const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "-
 const mulish = Mulish({ subsets: ["latin"], variable: "--font-mulish" });
 
 export const metadata: Metadata = {
-  title: "Nu Soins | Pour le corps et la nature",
+  title: "Nu Soins | Pour corps et nature",
   description: "Shampoings solides à base de levure de bière",
 };
 

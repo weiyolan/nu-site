@@ -31,7 +31,7 @@ import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 
 export const myStructure = (S, context) => {
   return S.list()
-    .title("Contenu ~ Profitez Lou!")
+    .title("Nu Studio ~ Profites-en Lou!")
     .items([
       S.listItem()
         .title("Accueil")

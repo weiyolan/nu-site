@@ -59,7 +59,7 @@ export default function Reviews({ reviews: { title, description, citationsOn }, 
         </Carousel>
       ) : (
         <>
-          <Stars className="text-xl mx-auto mt-6 mb-4" large rating={4.8 / 5} />
+          <Stars className="text-xl mx-auto mt-6 mb-4" options={{ large: true }} rating={4.8 / 5} />
           <Typography variant={"h3"} className="">
             {`${35} avis sur nos produits`}
           </Typography>
