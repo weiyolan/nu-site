@@ -24,7 +24,7 @@ export default defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "localeText",
+      type: "localeBlockContent",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -45,7 +45,7 @@ export default defineType({
     select: { title: "title", description: "description" },
     prepare(selection) {
       const { title, description } = selection;
-      return { title: title?.[uiLanguage.id], subtitle: description?.[uiLanguage.id] };
+      return { title: title?.[uiLanguage.id] };
     },
   },
 });

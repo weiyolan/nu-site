@@ -1,12 +1,12 @@
 import { defineType, defineField } from "sanity";
 import { uiLanguage } from "../supportedLanguages";
-import { ListCollapse , Rows3} from "lucide-react";
+import { ListCollapse, Rows3, Rows3Icon } from "lucide-react";
 
 export default defineType({
   name: "accordion",
   title: "Accordion",
   type: "object",
-  icon:Rows3,
+  icon: Rows3Icon,
   fields: [
     defineField({
       title: "Accordion Items",
@@ -17,10 +17,10 @@ export default defineType({
   ],
 
   preview: {
-    select:{items:'items'},
+    select: { items: "items" },
     prepare(selection) {
-      const {items} = selection
-      return { title: `Accordéon ${items.length} Pièce${items.length>1 && 's'}: ${items.map(item=>` ${item.title[uiLanguage.id]}`)}` };
+      const { items } = selection;
+      return { title: `Accordéon ${items.length} Pièce${items.length > 1 && "s"}: ${items.map((item) => ` ${item.title[uiLanguage.id]}`)}` };
     },
   },
 });

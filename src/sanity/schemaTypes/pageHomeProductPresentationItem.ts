@@ -34,8 +34,9 @@ export default defineType({
       title: "Description",
       name: "description",
       type: "localeText",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.max(220).warning("Restez au point pour garder tes visiteurs curieux."),
     }),
+
     defineField({
       title: "Text du Bouton",
       name: "button",

@@ -11,7 +11,7 @@ import Products from "@/components/Products";
 import HomeBlogs from "@/components/HomeBlogs";
 import HomeEssayerNu from "@/components/HomeEssayerNu";
 import { client } from "@/sanity/lib/client";
-import { altImageType, buttonType, colorSanityType, getHero, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, getHero, localeBlockContentType, localeStringType } from "@/sanity/lib/interface";
 
 async function getReviews(id: string): Promise<{
   citationsOn: boolean;
@@ -148,7 +148,8 @@ async function getImagePop1(): Promise<{
   color: colorSanityType;
   title: localeStringType;
   button: buttonType;
-  description: localeStringType;
+  description: localeBlockContentType;
+
   altImage: altImageType;
 }> {
   // Fetch shopSection with ID homeBlogs or something
@@ -163,7 +164,7 @@ async function getImagePop2(): Promise<{
   color: colorSanityType;
   title: localeStringType;
   button: buttonType;
-  description: localeStringType;
+  description: localeBlockContentType;
   altImage: altImageType;
 }> {
   // Fetch shopSection with ID homeBlogs or something

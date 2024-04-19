@@ -11,7 +11,7 @@ export default defineType({
   icon: Carrot,
   orderings: [orderRankOrdering],
   fields: [
-    orderRankField({ type: "shopSection" }),
+    orderRankField({ type: "aboutIngredient" }),
     defineField({
       name: "category",
       title: "Catégorie",
@@ -32,7 +32,7 @@ export default defineType({
       name: "description",
       title: "Déscription",
       // initialValue:{en:'Get Your Own Experience', nl:'Ervaar Het Zelf'},
-      type: "localeText",
+      type: "localeBlockContent",
       // options: {collapsible: true, collapsed: true},
       validation: (Rule) => Rule.required(),
     }),
@@ -41,7 +41,7 @@ export default defineType({
     select: { title: "title", description: "description", category: "category" },
     prepare({ title, description, category }) {
       // const {date, completion} = selection
-      return { title: title?.[uiLanguage.id], subtitle: (category === "major" ? "A" : "B") + " | " + description?.[uiLanguage.id] };
+      return { title: title?.[uiLanguage.id], subtitle: category === "major" ? "A" : "B" };
     },
   },
 });

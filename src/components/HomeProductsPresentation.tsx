@@ -50,10 +50,10 @@ export default function ProductsPresentation({ sanityData: { title, description,
             title={topLeft.title?.[locale]}
             slug={topLeft.slug}
             button={topLeft.button?.[locale]}
-            description={
-              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
-            }
-            // description={topLeft.description?.[locale]}
+            // description={
+            //   "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            // }
+            description={topLeft.description?.[locale]}
           />
           <Image
             className="cursor-pointer w-1/2  sm:w-[40%] mr-auto lg:mx-0 lg:ml-auto lg:w-[45%] 2xl:w-[270px] drop-shadow-xl h-auto lg:-mb-6 group-hover/topLeft:-translate-x-2 group-hover/topLeft:-translate-y-2 hover:-translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
@@ -81,10 +81,10 @@ export default function ProductsPresentation({ sanityData: { title, description,
             title={topRight.title?.[locale]}
             slug={topRight.slug}
             button={topRight.button?.[locale]}
-            description={
-              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
-            }
-            // description={topRight.description?.[locale]}
+            // description={
+            //   "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            // }
+            description={topRight.description?.[locale]}
           />
         </Presentation>
 
@@ -94,10 +94,10 @@ export default function ProductsPresentation({ sanityData: { title, description,
             title={bottomLeft.title?.[locale]}
             slug={bottomLeft.slug}
             button={bottomLeft.button?.[locale]}
-            description={
-              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
-            }
-            // description={bottomLeft.description?.[locale]}
+            // description={
+            //   "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            // }
+            description={bottomLeft.description?.[locale]}
           />
           <Image
             className=" mr-auto lg:mx-0 lg:-mr-14 cursor-pointer w-3/4 sm:w-[45%] lg:w-[55%]  drop-shadow-xl lg:-mt-6  h-auto group-hover/bottomLeft:-translate-x-2 group-hover/bottomLeft:translate-y-2 hover:-translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500"
@@ -124,10 +124,10 @@ export default function ProductsPresentation({ sanityData: { title, description,
             title={bottomRight.title?.[locale]}
             slug={bottomRight.slug}
             button={bottomRight.button?.[locale]}
-            description={
-              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
-            }
-            // description={bottomRight.description?.[locale]}
+            // description={
+            //   "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            // }
+            description={bottomRight.description?.[locale]}
           />
         </Presentation>
         {/* </AspectRatio> */}

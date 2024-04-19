@@ -32,7 +32,7 @@ export type altImageType = {
     };
   };
 };
-
+export type localeBlockContentType = { en: []; fr: [] };
 // ======================================= ROOT LAYOUT =======================================
 export async function getBannerInfo() {
   const banner = await client.fetch(`*[_type=='navigationBanner'][0]`);
@@ -145,7 +145,7 @@ export async function getImagePop(): Promise<{
   color: colorSanityType;
   title: localeStringType;
   button: buttonType;
-  description: localeStringType;
+  description: localeBlockContentType;
   altImage: altImageType;
 }> {
   // Fetch shopSection with ID homeBlogs or something
@@ -219,8 +219,8 @@ export async function getIngredientInfo(): Promise<{
   return ingredientInfo;
 }
 export async function getIngredients(): Promise<{
-  major: { title: localeStringType; description: localeStringType }[];
-  minor: { title: localeStringType; description: localeStringType }[];
+  major: { title: localeStringType; description: localeBlockContentType }[];
+  minor: { title: localeStringType; description: localeBlockContentType }[];
 }> {
   // Fetch shopSection with ID homeBlogs or something
   // const ingredientInfo = await client.fetch(`*[_type=='aboutIngredientSection'][_id=='ingredients'][0]`);

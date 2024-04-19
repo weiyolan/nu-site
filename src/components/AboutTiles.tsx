@@ -46,7 +46,7 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             {square.description?.[locale]}
           </Typography>
         </div>
-        <div className={`relative ${getColor(colors[1])} col-span-1 row-start-3 col-start-1 lg:col-start-3 flex items-center justify-center `}>
+        <div className={`relative ${getColor(colors[1])} col-span-1 row-start-1 col-start-1 lg:col-start-3 flex items-center justify-center `}>
           <NuLogo />
         </div>
         <div className="relative bg-nu-peach row-start-4 lg:row-start-2 col-span-1 col-start-1 lg:col-start-3 hover:scale-[1.01] hover:shadow-lg transition-all duration-150 ">

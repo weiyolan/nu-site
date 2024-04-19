@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import Typography from "./Typography";
 import ProductGallery from "./ProductGallery";
-import { PortableText, toPlainText } from "@portabletext/react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import PortableText from "./PortableText";
 import slugify from "slugify";
 import { altImageType, localeType } from "@/sanity/lib/interface";
 
@@ -37,40 +36,10 @@ export function ProductDetail({ locale, details, title }) {
         {title}
       </Typography>
 
-      <PortableText value={details} components={components(locale)} />
+      <PortableText value={details} locale={locale} />
     </div>
   );
 }
-
-const components = (locale: localeType) => {
-  return {
-    types: {
-      // normal:({children})=><Typography variant={'p'} affects={"withPMargin"}>{children}</Typography>,
-      accordion: ({ value: { items } }) => (
-        <Accordion type="single" collapsible className=" w-full ">
-          {items.map((item, i) => (
-            <AccordionItem key={item.title?.[locale] + i} value={`item-${i}`} className="border-nu-black/30">
-              <AccordionTrigger>{item.title?.[locale]}</AccordionTrigger>
-              <AccordionContent>{item.description?.[locale]}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      ),
-    },
-
-    list: {
-      bullet: ({ children }) => <ul className="my-6 ml-12 list-disc [&>li]:mt-2">{children}</ul>,
-    },
-    block: {
-      normal: ({ children }) => (
-        <Typography variant={"p"} affects={"withPMargin"}>
-          {children}
-        </Typography>
-      ),
-    },
-    // marks:{} link? list? normal p?
-  };
-};
 
 export function ProductDetailExample() {
   return (

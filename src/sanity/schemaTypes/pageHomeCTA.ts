@@ -20,7 +20,7 @@ export default defineType({
       name: "description",
       title: "Description",
       // initialValue:{en:'Get Your Own Experience', nl:'Ervaar Het Zelf'},
-      type: "localeText",
+      type: "localeBlockContent",
       // options: {collapsible: true, collapsed: true},
       validation: (Rule) => Rule.required(),
     }),

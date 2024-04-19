@@ -3,25 +3,18 @@ import Image from "next/image";
 import Typography from "./Typography";
 import { Button } from "./ui/button";
 import { AspectRatio } from "./ui/aspect-ratio";
-import { colorSanityType, getColor } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, getColor, localeBlockContentType, localeStringType } from "@/sanity/lib/interface";
 import Link from "next/link";
+import PortableText from "./PortableText";
 
 export interface ImagePopProps extends React.HTMLAttributes<HTMLDivElement> {
   imgRight?: boolean;
   locale: "en" | "fr";
   imagePop: {
-    altImage: {
-      alt: { en: string; fr: string };
-      image: {
-        url: string;
-        metadata: {
-          lqip: string;
-        };
-      };
-    };
-    title: { en: string; fr: string };
-    description: { en: string; fr: string };
-    button: { ext: boolean; text: { en: string; fr: string }; url: string };
+    altImage: altImageType;
+    title: localeStringType;
+    description: localeBlockContentType;
+    button: buttonType;
     color: colorSanityType;
   };
 }
@@ -54,9 +47,9 @@ export default function ImagePop({ children, locale, imgRight, imagePop: { altIm
         <Typography variant={"h2"} className="text-balance">
           {title?.[locale]}
         </Typography>
-        <Typography variant={"p"} className=" text-balance">
-          {description?.[locale]}
-        </Typography>
+        <div>
+          <PortableText value={description?.[locale]} locale={locale}></PortableText>
+        </div>
         <Button asChild className="w-fit">
           <Link href={button.url}>{button.text?.[locale]}</Link>
         </Button>
