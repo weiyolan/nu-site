@@ -63,7 +63,7 @@ export default function Product({ product: { slug, title, type, description, pri
   return (
     <div
       className={cn(
-        `flex relative flex-col group w-full mt-4 gap-2 sm:gap-3 lg:gap-4 sm:px-3 ${type === "title" || type === "shopTitle" ? " col-span-2 md:col-span-1 justify-center text-center py-4 px-4 " : " items-start"}`,
+        `flex cursor-pointer relative flex-col group w-full mt-4 gap-2 sm:gap-3 lg:gap-4 sm:px-3 ${type === "title" || type === "shopTitle" ? " col-span-2 md:col-span-1 justify-center text-center py-4 px-4 " : " items-start"}`,
         className
       )}
       {...props}>
@@ -97,7 +97,10 @@ export default function Product({ product: { slug, title, type, description, pri
       <Typography variant={type === "title" || type === "shopTitle" ? "h2" : "h3"} className={`relative text-balance ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
         {title}
       </Typography>
-      <Typography variant={"p"} className={`relative ${type === "title" || type === "shopTitle" ? "text-center leading-normal font-normal " : "text-justify text-sm"}`}>
+      <Typography
+        variant={"p"}
+        style={{ overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 8, lineClamp: 8, WebkitBoxOrient: "vertical" }}
+        className={`relative  ${type === "title" || type === "shopTitle" ? "text-center leading-normal font-normal " : "text-justify text-sm "}`}>
         {description}
       </Typography>
 
@@ -125,7 +128,7 @@ export default function Product({ product: { slug, title, type, description, pri
       )}
       {type === "article" && (
         <Button variant="link" asChild size="sm" className=" relative items-center -mt-2 -ml-2 group/button text-base mt-auto">
-          <Link className="" href={`/shop#${slug}`}>
+          <Link className="" href={`/shop#${slug}`} title="">
             {locale === "fr" ? "Lire article" : "Read article"}
             <ChevronRight className="size-4 group-hover/button:translate-x-1 transition-transform   mt-1" />
           </Link>

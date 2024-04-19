@@ -42,18 +42,21 @@ export default function ProductsPresentation({ sanityData: { title, description,
       <Typography variant="p" affects={"subTitle"} className=" font-semibold text-center max-w-prose mx-auto text-balance ">
         {description?.[locale]}
       </Typography>
-      <div className="relative w-full xl:max-w-xl mx-auto mt-12 xl:aspect-square ">
+      <div className="relative w-full sm:px-12 lg:mb-28 lg:px-0 lg:w-1/2 lg:h-[500px]  mx-auto mt-12  lg:aspect-square ">
         {/* <AspectRatio ratio={1} className="relative mx-auto "> */}
-        <Presentation className="group/topLeft lg:w-full items-center mr-auto mt-0 lg:mx-auto left-0 xl:-translate-x-1/2 xl:flex">
+        <Presentation className="group/topLeft items-center flex-col-reverse sm:flex-row-reverse  left-0 lg:-translate-x-1/2  lg:items-end mr-auto mt-0 lg:mx-auto  ">
           <PresentationDetails
-            className="text-nowrap z-10  group-focus/topLeft:visible  "
+            className="text-nowrap text-left mr-auto group-focus/topLeft:visible sm:text-center xl:-translate-y-8"
             title={topLeft.title?.[locale]}
             slug={topLeft.slug}
             button={topLeft.button?.[locale]}
-            description={topLeft.description?.[locale]}
+            description={
+              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            }
+            // description={topLeft.description?.[locale]}
           />
           <Image
-            className="cursor-pointer w-1/3 xl:w-[270px] drop-shadow-xl h-auto group-hover/topLeft:-translate-x-2 group-hover/topLeft:-translate-y-2 hover:-translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
+            className="cursor-pointer w-1/2  sm:w-[40%] mr-auto lg:mx-0 lg:ml-auto lg:w-[45%] 2xl:w-[270px] drop-shadow-xl h-auto lg:-mb-6 group-hover/topLeft:-translate-x-2 group-hover/topLeft:-translate-y-2 hover:-translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
             alt={topLeft.altImage.alt?.[locale]}
             src={topLeft.altImage.image.url}
             placeholder="empty"
@@ -63,9 +66,9 @@ export default function ProductsPresentation({ sanityData: { title, description,
           />
         </Presentation>
 
-        <Presentation className="group/topRight ml-auto xl:w-full justify-end items-center right-0 xl:translate-x-1/2 ">
+        <Presentation className="group/topRight min-[300px]:-mt-12  ml-auto   lg:translate-x-1/2 lg:items-end flex-col sm:flex-row-reverse   justify-end items-center right-0 ">
           <Image
-            className="cursor-pointer w-1/3 xl:w-[270px] h-auto drop-shadow-xl group-hover/topRight:translate-x-2 group-hover/topRight:-translate-y-2 hover:translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
+            className="cursor-pointer w-1/2  sm:w-[40%]  ml-auto lg:mx-0 lg:mr-auto lg:w-[45%] 2xl:w-[270px] h-auto drop-shadow-xl lg:-mb-6 group-hover/topRight:translate-x-2 group-hover/topRight:-translate-y-2 hover:translate-x-2 hover:-translate-y-2 transition-transform ease-out duration-500"
             alt={topRight.altImage.alt?.[locale]}
             src={topRight.altImage.image.url}
             placeholder="empty"
@@ -74,48 +77,57 @@ export default function ProductsPresentation({ sanityData: { title, description,
             height={750}
           />
           <PresentationDetails
-            className=" group-focus/topRight:visible "
+            className=" group-focus/topRight:visible text-right sm:text-center xl:-translate-y-8 "
             title={topRight.title?.[locale]}
             slug={topRight.slug}
             button={topRight.button?.[locale]}
-            description={topRight.description?.[locale]}
+            description={
+              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            }
+            // description={topRight.description?.[locale]}
           />
         </Presentation>
 
-        <Presentation className="mr-auto group/bottomLeft bottom-0 left-0 xl:-translate-x-1/2 items-center xl:items-end">
+        <Presentation className="lg:-mt-8 mr-auto group/bottomLeft sm:flex-row-reverse  flex-col-reverse  left-0 lg:translate-y-1/2 lg:-translate-x-1/2 items-center lg:items-start bottom-0">
           <PresentationDetails
-            className="    group-focus/bottomLeft:visible  "
+            className="  text-left mr-auto  sm:text-center group-focus/bottomLeft:visible lg:translate-y-12  "
             title={bottomLeft.title?.[locale]}
             slug={bottomLeft.slug}
             button={bottomLeft.button?.[locale]}
-            description={bottomLeft.description?.[locale]}
+            description={
+              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            }
+            // description={bottomLeft.description?.[locale]}
           />
           <Image
-            className="cursor-pointer w-[40%] xl:w-[350px] drop-shadow-xl h-auto group-hover/bottomLeft:-translate-x-2 group-hover/bottomLeft:translate-y-2 hover:-translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500"
+            className=" mr-auto lg:mx-0 lg:-mr-14 cursor-pointer w-3/4 sm:w-[45%] lg:w-[55%]  drop-shadow-xl lg:-mt-6  h-auto group-hover/bottomLeft:-translate-x-2 group-hover/bottomLeft:translate-y-2 hover:-translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500"
             alt={bottomLeft.altImage.alt?.[locale]}
             src={bottomLeft.altImage.image.url}
-            placeholder="blur"
+            placeholder="empty"
             blurDataURL={bottomLeft.altImage.image.metadata.lqip}
             width={350}
             height={600}
           />
         </Presentation>
-        <Presentation className="mt-2 lg:w-full justify-end group/bottomRight bottom-4 right-0 ml-auto xl:translate-x-[55%] items-start xl:items-end">
+        <Presentation className=" sm:mt-16  flex-col sm:flex-row-reverse justify-end  group/bottomRight right-0 ml-auto lg:translate-y-1/2 lg:translate-x-1/2   items-start lg:items-center bottom-0">
           <Image
-            className="cursor-pointer  w-1/3 h-auto drop-shadow-xl group-hover/bottomRight:translate-x-2 group-hover/bottomRight:translate-y-2 hover:translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500 "
+            className=" ml-auto sm:mt-16  cursor-pointer w-3/5 sm:w-[40%] lg:mx-0 lg:w-2/5 lg:mr-auto lg:ml-8  lg:mt-0 h-auto drop-shadow-xl  group-hover/bottomRight:translate-x-2 group-hover/bottomRight:translate-y-2 hover:translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500 "
             alt={bottomRight.altImage.alt?.[locale]}
             src={bottomRight.altImage.image.url}
-            placeholder="blur"
+            placeholder="empty"
             blurDataURL={bottomRight.altImage.image.metadata.lqip}
             width={200}
             height={750}
           />
           <PresentationDetails
-            className="    group-focus/bottomRight:visible  "
+            className="  ml-auto lg:ml-0 text-right sm:text-center group-focus/bottomRight:visible lg:translate-y-12 "
             title={bottomRight.title?.[locale]}
             slug={bottomRight.slug}
             button={bottomRight.button?.[locale]}
-            description={bottomRight.description?.[locale]}
+            description={
+              "Découvre le Shampoing Solide Nyx, spécialement conçu pour les cheveux à tendance grasse. Cette formule associe la levure de bière, l'huile d'olive de Provence, l'argile blanche du bassin méditerrannéen et la poudre d'ortie bio. Ensemble, ces"
+            }
+            // description={bottomRight.description?.[locale]}
           />
         </Presentation>
         {/* </AspectRatio> */}
@@ -126,8 +138,10 @@ export default function ProductsPresentation({ sanityData: { title, description,
 
 export function PresentationDetails({ title, description, button, slug, className }: PresentationDetailsProps) {
   return (
-    <div className={cn("text-center w-1/2 space-y-4 text-balance relative min-w-72", className)}>
-      <Typography variant={"h3"}>{title}</Typography>
+    <div className={cn("text-center w-full lg:w-64 min-[1200px]:w-72 lg:flex-shrink-0 space-y-4 text-balance relative  ", className)}>
+      <Typography variant={"h3"} className="whitespace-pre-wrap text-balance">
+        {title}
+      </Typography>
       <Typography variant={"p"} className="text-sm text-balance mx-auto">
         {description}
       </Typography>
@@ -139,5 +153,5 @@ export function PresentationDetails({ title, description, button, slug, classNam
 }
 
 export function Presentation({ children, className }: PresentationProps) {
-  return <div className={cn("lg:absolute w-3/4 -mt-12 xl:mt-0 flex gap-16 lg:gap-8", className)}>{children}</div>;
+  return <div className={cn("lg:absolute w-full sm:mt-6   flex lg:flex-row lg:flex lg:w-full gap-4 sm:gap-8 md:gap-16 lg:gap-0 ", className)}>{children}</div>;
 }

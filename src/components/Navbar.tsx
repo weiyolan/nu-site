@@ -79,7 +79,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
       {/* <TransitionBackground className="absolute top-0 left-0 bottom-0 right-0" /> */}
       {enabled && (
         <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
-          <Section className={cn(`mt-0 md:mt-0 h-full`, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
+          <Section className={cn(`mt-0 md:mt-0 h-full `, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
             <ul
               style={{ "--values-amount": messages.length, "--values-width": `calc(${200 + 0}px + ${25}vw)` }} //width of space-x css
               className="animate-slide md:animate-slideSlow flex justify-between items-center space-x-8 md:space-x-[25vw]">

@@ -42,12 +42,20 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* disableTransitionOnChange */}
           <TrpcProvider cookies={cookies().toString()}>
-            <div className={`w-full min-h-screen relative `}>
+            <div style={{}} className={`w-full min-h-screen relative `}>
               <NuLogoBackground />
               <Navbar locale={locale} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
               {/* <pre>{JSON.stringify(footerLists, null, 2)}</pre> */}
               {children}
               <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" />
+              <svg className="w-full hidden">
+                <filter id="noiseFilter">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.6" stitchTiles="stitch" />
+                  <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
+                  <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
+                  <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
+                </filter>
+              </svg>
             </div>
           </TrpcProvider>
           <Toaster />
