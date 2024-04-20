@@ -25,7 +25,7 @@ export default function ImagePop({ children, locale, imgRight, imagePop: { altIm
     <div
       className={cn("flex flex-col lg:flex-row w-full gap-12 lg:gap-24 xl:gap-32 2xl:gap-48 xl:mb-44", imgRight && " flex-col-reverse lg:flex-row-reverse", className)}
       {...props}>
-      <div className={`flex-1 relative w-[90%] sm:w-4/5 lg:w-1/2   ${imgRight ? "ml-auto mb-16 " : "mt-16 lg:mt-0"}`}>
+      <div className={`flex-1 relative w-[90%] sm:w-4/5 lg:w-1/2   ${imgRight ? "ml-auto mb-24 " : "mt-16 lg:mt-0"}`}>
         <AspectRatio ratio={1} className="after:block after:w-full after:h-full after:shadow-lg after:absolute after:top-0">
           <div
             className={`block w-full h-full ${getColor(color)} relative  ${imgRight ? "  top-8 md:top-12 xl:top-16 -left-8 md:-left-12 xl:-left-16" : " -top-8 md:-top-12 lg:top-12 xl:top-16 -right-8 md:-right-12 xl:-right-16"}`}></div>

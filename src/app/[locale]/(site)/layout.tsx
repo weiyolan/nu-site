@@ -12,6 +12,7 @@ import NuLogoBackground from "@/components/NuLogoBackground";
 import { getBannerInfo, getFooterInfo, getFooterLists, getNavbarInfo, localeType } from "@/sanity/lib/interface";
 import Footer from "@/components/Footer";
 import ShoppingCard from "@/components/navShoppingCard";
+import { TooltipProvider } from "@/components/ui/tooltip";
 // const inter = Inter({ subsets: ["latin"] });
 
 const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-corben" });
@@ -42,26 +43,28 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${corben.variable} ${mulish.variable} font-mulish relative`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* disableTransitionOnChange */}
-          <TrpcProvider cookies={cookies().toString()}>
-            <div style={{}} className={`w-full relative `}>
-              <NuLogoBackground />
-              <Navbar locale={locale} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
-              {/* <pre>{JSON.stringify(footerLists, null, 2)}</pre> */}
-              {children}
-              <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" />
-              <svg className="w-full hidden">
-                <filter id="noiseFilter">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.6" stitchTiles="stitch" />
-                  <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
-                  <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
-                  <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
-                </filter>
-              </svg>
-            </div>
-          </TrpcProvider>
-          <Toaster />
-          <SonnerToaster />
+          <TooltipProvider>
+            {/* disableTransitionOnChange */}
+            <TrpcProvider cookies={cookies().toString()}>
+              <div style={{}} className={`w-full relative `}>
+                <NuLogoBackground />
+                <Navbar locale={locale} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
+                {/* <pre>{JSON.stringify(footerLists, null, 2)}</pre> */}
+                {children}
+                <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" />
+                {/* <svg className="w-full hidden">
+                  <filter id="noiseFilter">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.6" stitchTiles="stitch" />
+                    <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
+                    <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
+                    <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
+                  </filter>
+                </svg> */}
+              </div>
+            </TrpcProvider>
+            <Toaster />
+            <SonnerToaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

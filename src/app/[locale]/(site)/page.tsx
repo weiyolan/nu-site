@@ -210,7 +210,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
           <Products locale={locale} shopSection={favos} />
         </Section>
       )}
-      <div className="w-full overflow-x-hidden py-12 md:py-16">
+      <div className="w-full overflow-x-hidden py-12 md:py-16 md:-mb-16">
         <Section id={"cta"} className=" max-w-[110vw] w-[110vw] mx-auto bg-nu-blue rotate-2 -ml-[5vw] md:px-0 ">
           <HomeEssayerNu locale={locale} cta={cta} className="-rotate-2 px-12 " />
         </Section>

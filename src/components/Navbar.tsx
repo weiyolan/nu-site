@@ -95,200 +95,202 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
           </Section>
         </div>
       )}
-
-      <NavigationMenu className="mx-auto hidden md:flex">
-        <NavigationMenuList className="">
-          {links.slice(0, 2).map((link, i) => {
-            return link._type === "navigationButtonTrigger" ? (
-              <NavigationMenuItem key={`item-${i}`}>
-                <Link href={link.url} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
-                    )}>
-                    {link.title?.[locale]}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ) : (
-              <NavigationMenuItem key={`item-${i}`} className="">
-                <Link href={link.url} legacyBehavior passHref className="">
-                  <NavigationMenuLink>
-                    <NavigationMenuTrigger
-                      className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-                      {link.title?.[locale]}
-                    </NavigationMenuTrigger>
-                  </NavigationMenuLink>
-                </Link>
-                <NavigationMenuContent className="">
-                  <ul className="grid  gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className={cn(
-                            "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
-                            getColor(link.color)
-                          )}
-                          href={link.links[0].url}>
-                          <Image
-                            alt={link.altImage.alt?.[locale]}
-                            fill
-                            blurDataURL={link.altImage.image.metadata.lqip}
-                            placeholder="blur"
-                            className="object-cover "
-                            src={link.altImage.image.url}
-                          />
-                          <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-nu-white/60 "></div>
-                          <NuLogo className="h-6 w-6 relative" />
-                          <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
-                          <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    {link.links.slice(1).map((linkSimple, i) => (
-                      <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url}>
-                        {linkSimple.description?.[locale]}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            );
-          })}
-
-          {logoToggle && (
-            <NavigationMenuItem className={``}>
-              <Link href="/" title={locale === "en" ? "Go to main page" : "Aller à l'accueil"} legacyBehavior passHref>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent h-fit p-1 px-4")}>
-                  <NuLogo className={`transition-all duration-300 ${scrolled ? "size-6" : "size-8"} `}></NuLogo>
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )}
-
-          {links.slice(2).map((link, i) => {
-            return link._type === "navigationButtonTrigger" ? (
-              <NavigationMenuItem key={`item-${i + 2}`}>
-                <Link href={link.url} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
-                    )}>
-                    {link.title?.[locale]}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ) : (
-              <NavigationMenuItem key={`item-${i + 2}`}>
-                <Link href={link.url} legacyBehavior passHref>
-                  <NavigationMenuLink>
-                    <NavigationMenuTrigger
-                      className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-                      {link.title?.[locale]}
-                    </NavigationMenuTrigger>
-                  </NavigationMenuLink>
-                </Link>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className={cn(
-                            "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
-                            getColor(link.color)
-                          )}
-                          href={link.links[0].url}>
-                          {/* <Image src="/about_transparent.jpg" className="object-cover relative " fill alt="" /> */}
-                          <Image
-                            alt={link.altImage.alt?.[locale]}
-                            fill
-                            blurDataURL={link.altImage.image.metadata.lqip}
-                            placeholder="blur"
-                            className="object-cover"
-                            src={link.altImage.image.url}
-                          />
-                          <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-white/50 "></div>
-                          <NuLogo className="h-6 w-6 relative" />
-                          <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
-                          <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    {link.links.slice(1).map((linkSimple, i) => (
-                      <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url}>
-                        {linkSimple.description?.[locale]}
-                      </ListItem>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            );
-          })}
-        </NavigationMenuList>
-      </NavigationMenu>
-
-      <Sheet key={"left"}>
-        <SheetTrigger className="ml-auto" asChild>
-          <Button className="ml-auto md:hidden bg-transparent border-transparent" variant="outline">
-            <LucideIcon className=" w-6 h-6" name="lucide:menu" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side={"left"}>
-          <SheetHeader>
-            <SheetTitle>
-              <SheetClose asChild>
-                <Link href="/" title="">
-                  <NuLogo className="mx-auto " />
-                </Link>
-              </SheetClose>
-            </SheetTitle>
-            <SheetDescription>{locale === "fr" ? "Bienvenue chez Nu." : "Welcome at Nu."}</SheetDescription>
-          </SheetHeader>
-          <ol className="space-y-2 mt-12 text-left">
-            {links.map((link, i) => {
+      <div className="max-w-7xl mx-auto relative">
+        <NavigationMenu className="mx-auto hidden md:flex">
+          <NavigationMenuList className="">
+            {links.slice(0, 2).map((link, i) => {
               return link._type === "navigationButtonTrigger" ? (
-                <li key={`item-${i}`}>
-                  <SheetClose asChild>
-                    <Link href={link.url}>
-                      <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
-                        {link.title?.[locale]}
-                      </Typography>
-                    </Link>
-                  </SheetClose>
-                </li>
+                <NavigationMenuItem key={`item-${i}`}>
+                  <Link href={link.url} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
+                      )}>
+                      {link.title?.[locale]}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
               ) : (
-                <div key={`item-${i}`}>
-                  <SheetClose asChild>
-                    <Link href={link.url}>
-                      <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                <NavigationMenuItem key={`item-${i}`} className="">
+                  <Link href={link.url} legacyBehavior passHref className="">
+                    <NavigationMenuLink>
+                      <NavigationMenuTrigger
+                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
                         {link.title?.[locale]}
-                      </Typography>
-                    </Link>
-                  </SheetClose>
-                  {link.links.map((linkSimple, i) => (
-                    <li key={`subItem-${i}`}>
-                      {" "}
-                      <SheetClose asChild>
-                        <Button variant={"outline"} asChild>
-                          <Link title={linkSimple.title?.[locale]} href={linkSimple.url}>
-                            {linkSimple.title?.[locale]}
+                      </NavigationMenuTrigger>
+                    </NavigationMenuLink>
+                  </Link>
+                  <NavigationMenuContent className="">
+                    <ul className="grid  gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            className={cn(
+                              "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
+                              getColor(link.color)
+                            )}
+                            href={link.links[0].url}>
+                            <Image
+                              alt={link.altImage.alt?.[locale]}
+                              fill
+                              blurDataURL={link.altImage.image.metadata.lqip}
+                              placeholder="blur"
+                              className="object-cover "
+                              src={link.altImage.image.url}
+                            />
+                            <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-nu-white/60 "></div>
+                            <NuLogo className="h-6 w-6 relative" />
+                            <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
+                            <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
                           </Link>
-                        </Button>
-                      </SheetClose>
-                    </li>
-                  ))}
-                </div>
+                        </NavigationMenuLink>
+                      </li>
+                      {link.links.slice(1).map((linkSimple, i) => (
+                        <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                          {linkSimple.description?.[locale]}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
               );
             })}
-          </ol>
-        </SheetContent>
-      </Sheet>
 
-      <div className="top-[20.5px] ml-auto absolute right-[17px] flex">
-        <LanguageToggle locale={locale} />
-        <ShoppingCard locale={locale} />
+            {logoToggle && (
+              <NavigationMenuItem className={``}>
+                <Link href="/" title={locale === "en" ? "Go to main page" : "Aller à l'accueil"} legacyBehavior passHref>
+                  <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent h-fit p-1 px-4")}>
+                    <NuLogo className={`transition-all duration-300 ${scrolled ? "size-6" : "size-8"} `}></NuLogo>
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
+
+            {links.slice(2).map((link, i) => {
+              return link._type === "navigationButtonTrigger" ? (
+                <NavigationMenuItem key={`item-${i + 2}`}>
+                  <Link href={link.url} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
+                      )}>
+                      {link.title?.[locale]}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ) : (
+                <NavigationMenuItem key={`item-${i + 2}`}>
+                  <Link href={link.url} legacyBehavior passHref>
+                    <NavigationMenuLink>
+                      <NavigationMenuTrigger
+                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+                        {link.title?.[locale]}
+                      </NavigationMenuTrigger>
+                    </NavigationMenuLink>
+                  </Link>
+                  <NavigationMenuContent>
+                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                      <li className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            className={cn(
+                              "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
+                              getColor(link.color)
+                            )}
+                            href={link.links[0].url}>
+                            {/* <Image src="/about_transparent.jpg" className="object-cover relative " fill alt="" /> */}
+                            <Image
+                              alt={link.altImage.alt?.[locale]}
+                              fill
+                              blurDataURL={link.altImage.image.metadata.lqip}
+                              placeholder="blur"
+                              className="object-cover"
+                              src={link.altImage.image.url}
+                            />
+                            <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-white/50 "></div>
+                            <NuLogo className="h-6 w-6 relative" />
+                            <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
+                            <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                      {link.links.slice(1).map((linkSimple, i) => (
+                        <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                          {linkSimple.description?.[locale]}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              );
+            })}
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <Sheet key={"left"}>
+          <SheetTrigger className="ml-auto" asChild>
+            <Button className="ml-auto md:hidden bg-transparent border-transparent" variant="outline">
+              <LucideIcon className=" w-6 h-6" name="lucide:menu" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side={"left"}>
+            <SheetHeader>
+              <SheetTitle>
+                <SheetClose asChild>
+                  <Link href="/" title="">
+                    <NuLogo className="mx-auto " />
+                  </Link>
+                </SheetClose>
+              </SheetTitle>
+              <SheetDescription>{locale === "fr" ? "Bienvenue chez Nu." : "Welcome at Nu."}</SheetDescription>
+            </SheetHeader>
+            <ol className="space-y-2 mt-12 text-left">
+              {links.map((link, i) => {
+                return link._type === "navigationButtonTrigger" ? (
+                  <li key={`item-${i}`}>
+                    <SheetClose asChild>
+                      <Link href={link.url}>
+                        <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                          {link.title?.[locale]}
+                        </Typography>
+                      </Link>
+                    </SheetClose>
+                  </li>
+                ) : (
+                  <div key={`item-${i}`}>
+                    <SheetClose asChild>
+                      <Link href={link.url}>
+                        <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                          {link.title?.[locale]}
+                        </Typography>
+                      </Link>
+                    </SheetClose>
+                    {link.links.map((linkSimple, i) => (
+                      <li key={`subItem-${i}`}>
+                        {" "}
+                        <SheetClose asChild>
+                          <Button variant={"outline"} asChild>
+                            <Link title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                              {linkSimple.title?.[locale]}
+                            </Link>
+                          </Button>
+                        </SheetClose>
+                      </li>
+                    ))}
+                  </div>
+                );
+              })}
+            </ol>
+          </SheetContent>
+        </Sheet>
+
+        <div className="top-0 ml-auto absolute right-0 lg:right-[17px] flex ">
+          {/* top-[20.5px] */}
+          <LanguageToggle scrolled={scrolled} locale={locale} />
+          <ShoppingCard scrolled={scrolled} locale={locale} />
+        </div>
       </div>
     </div>
   );

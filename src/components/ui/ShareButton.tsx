@@ -35,17 +35,15 @@ export default function ShareButton({ shareValue, locale, children, className, .
   };
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger onClick={handleCopy(shareValue)} className={cn("my-auto", className)} {...props}>
-          {/* <button> */}
-          <Share className={cn("size-4 mt-auto")} />
-          {/* </button> */}
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>{locale === "en" ? "Copy url" : "Copier lien"}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger onClick={handleCopy(shareValue)} className={cn("my-auto", className)} {...props}>
+        {/* <button> */}
+        <Share className={cn("size-4 mt-auto")} />
+        {/* </button> */}
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{locale === "en" ? "Copy url" : "Copier lien"}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }

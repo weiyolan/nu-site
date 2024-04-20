@@ -35,7 +35,9 @@ export default function AboutValues({ locale, valueInfo: { title, description, p
   const styles: string[] = ["mt-20 lg:mt-48", "mt-4 lg:mt-24", "mt-20 lg:mt-36", "-mt-6 lg:-mt-6"];
   return (
     <div className={cn("w-full", className)} {...props}>
-      <Typography variant="h2">{title?.[locale]}</Typography>
+      <Typography variant="h2" className="text-left ml-0">
+        {title?.[locale]}
+      </Typography>
       <Typography variant={"p"} affects={"subTitle"} className="max-w-prose">
         {description?.[locale]}
       </Typography>

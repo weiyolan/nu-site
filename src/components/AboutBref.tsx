@@ -26,7 +26,9 @@ export default function AboutBref({ locale, brefInfo: { title, description, altI
         </Section>
       </div>
 
-      <Section className={cn("flex flex-col lg:flex-row w-full gap-24 lg:gap-16 xl:gap-32 text-right mt-8 md:mt-8 pb-16 ", className)} {...props}>
+      <Section
+        className={cn("flex flex-col lg:flex-row w-full gap-24 lg:gap-16 xl:gap-32 text-right mt-8 md:mt-8 mb-16 min-[480px]:mb-32 sm:mb-48 md:mb-24 lg:mb-12", className)}
+        {...props}>
         <div className={`flex-1 flex flex-col justify-center gap-6 `}>
           <Typography variant={"h2"} className="">
             {title?.[locale]}

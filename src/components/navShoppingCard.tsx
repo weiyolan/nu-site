@@ -9,19 +9,28 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { localeType } from "@/sanity/lib/interface";
 import { ShoppingBagIcon, ShoppingBasketIcon, ShoppingCartIcon } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export interface ShoppingCardProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
+  scrolled: boolean;
 }
 
-export default function ShoppingCard({ children, className, locale, ...props }: ShoppingCardProps) {
+export default function ShoppingCard({ children, className, scrolled, locale, ...props }: ShoppingCardProps) {
   return (
     <Sheet key={"right"}>
-      <SheetTrigger className=" " asChild>
-        <Button className=" bg-transparent border-transparent" variant="outline">
-          <ShoppingBasketIcon className="w-6 h-6" />
-        </Button>
-      </SheetTrigger>
+      <Tooltip>
+        <SheetTrigger asChild>
+          <TooltipTrigger asChild>
+            <Button className="bg-transparent border-transparent p-3" variant="outline">
+              <ShoppingBasketIcon className={`size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+            </Button>
+          </TooltipTrigger>
+        </SheetTrigger>
+        <TooltipContent className="">
+          <p>{locale === "en" ? "Open shopping cart" : "Ouvrir le panier"}</p>
+        </TooltipContent>
+      </Tooltip>
       <SheetContent side={"right"}>
         <SheetHeader>
           <SheetTitle>
