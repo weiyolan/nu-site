@@ -11,6 +11,7 @@ import NuLogoBackground from "@/components/NuLogoBackground";
 
 import { getBannerInfo, getFooterInfo, getFooterLists, getNavbarInfo, localeType } from "@/sanity/lib/interface";
 import Footer from "@/components/Footer";
+import ShoppingCard from "@/components/navShoppingCard";
 // const inter = Inter({ subsets: ["latin"] });
 
 const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-corben" });
@@ -39,11 +40,11 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${corben.variable} ${mulish.variable} font-mulish`}>
+      <body className={`${corben.variable} ${mulish.variable} font-mulish relative`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* disableTransitionOnChange */}
           <TrpcProvider cookies={cookies().toString()}>
-            <div style={{}} className={`w-full min-h-screen relative `}>
+            <div style={{}} className={`w-full relative `}>
               <NuLogoBackground />
               <Navbar locale={locale} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
               {/* <pre>{JSON.stringify(footerLists, null, 2)}</pre> */}

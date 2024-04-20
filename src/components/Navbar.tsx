@@ -22,6 +22,8 @@ import Image from "next/image";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import Typography from "./Typography";
+import ShoppingCard from "./navShoppingCard";
+import LanguageToggle from "./navLanguageToggle";
 
 // import { Button } from "@/registry/new-york/ui/button"
 // import { Input } from "@/registry/new-york/ui/input"
@@ -75,7 +77,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
   }, [scrolled]);
 
   return (
-    <div className={`w-full  fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
+    <div className={`w-screen lg:pr-[12px] fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
       {enabled && (
         <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
           <Section className={cn(`mt-0 md:mt-0 h-full `, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
@@ -265,31 +267,6 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                       </Typography>
                     </Link>
                   </SheetClose>
-
-                  {/* <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]"> */}
-                  {/* <li className="row-span-3"> */}
-                  {/* <NavigationMenuLink asChild>
-                          <Link
-                            className={cn(
-                              "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
-                              getColor(link.color)
-                            )}
-                            href={link.links[0].url}>
-                            <Image
-                              alt={link.altImage.alt?.[locale]}
-                              fill
-                              blurDataURL={link.altImage.image.metadata.lqip}
-                              placeholder="blur"
-                              className="object-cover"
-                              src={link.altImage.image.url}
-                            />
-                            <div className="absolute z-0 top-0 left-0 right-0 bottom-0 bg-gradient-to-b from-transparent to-white/50 "></div>
-                            <NuLogo className="h-6 w-6 relative" />
-                            <div className="mb-2 mt-4 text-lg font-corben relative">{link.links[0].title?.[locale]}</div>
-                            <p className="text-sm leading-tight text-muted-foreground font-mulish relative">{link.links[0].description?.[locale]}</p>
-                          </Link>
-                        </NavigationMenuLink> */}
-                  {/* </li> */}
                   {link.links.map((linkSimple, i) => (
                     <li key={`subItem-${i}`}>
                       {" "}
@@ -302,33 +279,17 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                       </SheetClose>
                     </li>
                   ))}
-                  {/* </ul> */}
                 </div>
               );
             })}
           </ol>
-          {/* <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" value="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
-              </Label>
-              <Input id="username" value="@peduarte" className="col-span-3" />
-            </div>
-          </div> */}
-          {/* FOOTER */}
-          {/* <SheetFooter>
-            <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
-            </SheetClose>
-          </SheetFooter> */}
         </SheetContent>
       </Sheet>
+
+      <div className="top-[20.5px] ml-auto absolute right-[17px] flex">
+        <LanguageToggle locale={locale} />
+        <ShoppingCard locale={locale} />
+      </div>
     </div>
   );
 }
