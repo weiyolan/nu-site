@@ -44,9 +44,9 @@ export default function ProductsPresentation({ sanityData: { title, description,
       </Typography>
       <div className="relative w-full sm:px-12 lg:mb-28 lg:px-0 lg:w-1/2 lg:h-[500px]  mx-auto mt-12  lg:aspect-square ">
         {/* <AspectRatio ratio={1} className="relative mx-auto "> */}
-        <Presentation className="group/topLeft items-center flex-col-reverse sm:flex-row-reverse  left-0 lg:-translate-x-1/2  lg:items-end mr-auto mt-0 lg:mx-auto  ">
+        <Presentation className="group/topLeft items-center flex-col-reverse sm:flex-row-reverse  left-0 lg:-translate-x-1/2  lg:items-end mr-auto mt-0     ">
           <PresentationDetails
-            className="text-nowrap text-left mr-auto group-focus/topLeft:visible sm:text-center xl:-translate-y-8"
+            className="text-nowrap text-left mr-auto group-focus/topLeft:visible sm:text-center xl:-translate-y-16 2xl:-translate-y-16 "
             title={topLeft.title?.[locale]}
             slug={topLeft.slug}
             button={topLeft.button?.[locale]}
@@ -77,7 +77,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
             height={750}
           />
           <PresentationDetails
-            className=" group-focus/topRight:visible text-right sm:text-center xl:-translate-y-8 "
+            className=" group-focus/topRight:visible text-right sm:text-center xl:-translate-y-16 2xl:-translate-y-16 "
             title={topRight.title?.[locale]}
             slug={topRight.slug}
             button={topRight.button?.[locale]}
@@ -88,7 +88,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
           />
         </Presentation>
 
-        <Presentation className="lg:-mt-8 mr-auto group/bottomLeft sm:flex-row-reverse  flex-col-reverse  left-0 lg:translate-y-1/2 lg:-translate-x-1/2 items-center lg:items-start bottom-0">
+        <Presentation className="lg:-mt-8  mr-auto group/bottomLeft sm:flex-row-reverse  flex-col-reverse  left-0 lg:translate-y-1/2 lg:-translate-x-1/2 items-center lg:items-start bottom-0">
           <PresentationDetails
             className="  text-left mr-auto  sm:text-center group-focus/bottomLeft:visible lg:translate-y-12  "
             title={bottomLeft.title?.[locale]}
@@ -100,7 +100,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
             description={bottomLeft.description?.[locale]}
           />
           <Image
-            className=" mr-auto lg:mx-0 lg:-mr-14 cursor-pointer w-3/4 sm:w-[45%] lg:w-[55%]  drop-shadow-xl lg:-mt-6  h-auto group-hover/bottomLeft:-translate-x-2 group-hover/bottomLeft:translate-y-2 hover:-translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500"
+            className=" mr-auto lg:mx-0 lg:-mr-14 cursor-pointer w-3/4 sm:w-[45%] lg:w-[55%] xl:w-[50%] drop-shadow-xl lg:-mt-10  h-auto group-hover/bottomLeft:-translate-x-2 group-hover/bottomLeft:translate-y-2 hover:-translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500"
             alt={bottomLeft.altImage.alt?.[locale]}
             src={bottomLeft.altImage.image.url}
             placeholder="empty"
@@ -111,7 +111,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
         </Presentation>
         <Presentation className=" sm:mt-16  flex-col sm:flex-row-reverse justify-end  group/bottomRight right-0 ml-auto lg:translate-y-1/2 lg:translate-x-1/2   items-start lg:items-center bottom-0">
           <Image
-            className=" ml-auto sm:mt-16  cursor-pointer w-3/5 sm:w-[40%] lg:mx-0 lg:w-2/5 lg:mr-auto lg:ml-8  lg:mt-0 h-auto drop-shadow-xl  group-hover/bottomRight:translate-x-2 group-hover/bottomRight:translate-y-2 hover:translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500 "
+            className=" ml-auto sm:mt-16 xl:mt-18  cursor-pointer w-3/5 sm:w-[40%] xl:w-[35%] lg:mx-0 lg:w-2/5 lg:mr-auto lg:ml-8  lg:mt-0 h-auto drop-shadow-xl  group-hover/bottomRight:translate-x-2 group-hover/bottomRight:translate-y-2 hover:translate-x-2 hover:translate-y-2 transition-transform ease-out duration-500 "
             alt={bottomRight.altImage.alt?.[locale]}
             src={bottomRight.altImage.image.url}
             placeholder="empty"
@@ -138,7 +138,7 @@ export default function ProductsPresentation({ sanityData: { title, description,
 
 export function PresentationDetails({ title, description, button, slug, className }: PresentationDetailsProps) {
   return (
-    <div className={cn("text-center w-full lg:w-64 min-[1200px]:w-72 lg:flex-shrink-0 space-y-4 text-balance relative  ", className)}>
+    <div className={cn("text-center w-full lg:w-64 min-[1200px]:w-72 xl:w-96 lg:flex-shrink-0 space-y-4 text-balance relative  ", className)}>
       <Typography variant={"h3"} className="whitespace-pre-wrap text-balance">
         {title}
       </Typography>

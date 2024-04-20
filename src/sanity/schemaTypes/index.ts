@@ -55,6 +55,7 @@ import navigationButtonTrigger from "./navigationButtonTrigger";
 import footerMessage from "./footerMessage";
 import footerMessages from "./footerMessages";
 import helpTitle from "./pageHelpTitle";
+import productExtraInfo from "./pageProductExtraInfo";
 
 export const schemaTypes = [
   blockContent,
@@ -80,6 +81,7 @@ export const schemaTypes = [
   // hpNetwork,
   // card,
   product,
+  productExtraInfo,
   productDetail,
   productRecommended,
   accordion,

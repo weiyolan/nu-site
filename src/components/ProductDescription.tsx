@@ -17,7 +17,8 @@ export interface ProductDescriptionProps extends React.HTMLAttributes<HTMLDivEle
     subTitle: string;
     rating: number;
     description: string;
-    weight: number;
+    // weight: number;
+    extraInfo: { title: localeStringType; description: localeStringType }[];
     price: number;
     details: { title: localeStringType; details: { fr: []; en: [] } }[];
   };
@@ -26,7 +27,7 @@ export interface ProductDescriptionProps extends React.HTMLAttributes<HTMLDivEle
 export default function ProductDescription({
   locale,
   altImage: { image, alt },
-  product: { title, subTitle, rating, price, description, weight, details },
+  product: { title, subTitle, rating, price, description, extraInfo, details },
   className,
   ...props
 }: ProductDescriptionProps) {
@@ -38,7 +39,7 @@ export default function ProductDescription({
       </div>
       <div className="flex-1 w-full flex-col flex items-start justify-start gap-2">
         <Typography variant={"h1"} className="mb-0">
-          {title} - €{price.toFixed(2)}
+          {title}
         </Typography>
         <Typography variant={"h2"} className="mt-0 mb-1">
           {subTitle}
@@ -47,10 +48,20 @@ export default function ProductDescription({
         <Typography variant={"p"} className="mb-2">
           {description}
         </Typography>
-        <Typography variant={"p"} className="font-bold text-sm ">{`Poids net: ${weight}g`}</Typography>
-        <Button className="my-10" size="lg">
-          Ajouter au panier
-        </Button>
+        {extraInfo && (
+          <div className="flex-col gap-2">
+            {extraInfo.map((info, i) => (
+              <Typography key={"info-" + (i + 1)} variant={"p"} className="font-bold text-sm ">{`${info?.title?.[locale]}: ${info?.description?.[locale]}`}</Typography>
+            ))}
+          </div>
+        )}
+        <div className="flex my-6 gap-6">
+          <Button className="" size="lg">
+            {locale === "en" ? "Add to basket" : "Ajouter au panier"}
+          </Button>
+          <Typography variant={"h2"}>€{price.toFixed(2)}</Typography>
+        </div>
+
         <div className="flex ">
           {details.map((section, i) => (
             <Button variant="link" key={i} asChild className=" relative items-center -mt-2 -ml-2 group/button text-base">

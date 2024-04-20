@@ -44,7 +44,7 @@ function Message({ text, name, ...props }: MessageProps) {
   // const Comp = icon || "BaggageClaim";
   return (
     <div
-      className=" flex flex-col lg:flex-row items-center lg:items-start justify-start lg:justify-center gap-3 text-center mx-auto lg:text-left text-balance w-[44%] lg:w-[20%] h-32 lg:h-auto"
+      className=" flex flex-col lg:flex-row items-center lg:items-start justify-start lg:justify-center gap-3 lg:text-left mx-auto text-center text-balance w-[44%] lg:w-[20%] h-32 lg:h-auto"
       {...props}>
       <LucideIcon name={name} className="w-8 h-8 shrink-0" />
       <Typography variant={"p"} className="inline-flex text-balance ">

@@ -31,7 +31,9 @@ export default function AboutIngredients({
 }: AboutIngredientsProps) {
   return (
     <div className={cn("text-center ", className)} {...props}>
-      <Typography variant={"h2"}>{title?.[locale]}</Typography>
+      <Typography variant={"h2"} className="text-center  mx-auto">
+        {title?.[locale]}
+      </Typography>
       <Typography variant={"p"} affects={"subTitle"} className="max-w-prose mx-auto">
         {description?.[locale]}
       </Typography>

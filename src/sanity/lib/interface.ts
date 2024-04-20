@@ -176,7 +176,7 @@ export async function getSquareInfo(): Promise<{
 
 export async function getBeerInfo(): Promise<{
   title: localeStringType;
-  description: localeStringType;
+  description: localeBlockContentType;
   color: colorSanityType;
   altImage: altImageType;
   button: buttonType;

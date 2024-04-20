@@ -61,9 +61,9 @@ export default function Footer({ footerLists, footerInfo: { messages, quote, new
 
         <Section className="flex justify-between items-center py-16 pb-8 md:pb-16 mt-0 md:mt-0 ">
           <Nu />
-          <div className="opacity-85 relative translate-x-4">
+          <div className="opacity-85 relative translate-x-4 max-w-[20ch] sm:max-w-[40ch]">
             <Quote className="opacity-20" />
-            <Typography variant={"h3"} className="text-lg leading-snug whitespace-pre-wrap  max-w-[20ch]">
+            <Typography variant={"h3"} className="text-lg leading-snug whitespace-pre-wrap">
               {quote.quote?.[locale]}
             </Typography>
             <Typography variant={"p"} className="text-sm pt-1">

@@ -24,7 +24,6 @@ export default defineType({
       // fieldset: 'translations',
       fieldset: lang.isDefault ? undefined : "translations",
       // validation: (Rule) => Rule.required(),
-      validation: (Rule) => Rule.max(220).warning("Restez au point pour garder tes visiteurs curieux."),
       components: { field: CustomTitle },
     })
   ),

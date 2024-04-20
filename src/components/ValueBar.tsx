@@ -36,7 +36,7 @@ export default async function ValueBar({ locale, className, ...props }: ValueBar
   return (
     <div
       style={{ "--values-amount": values.length / 2, "--values-width": `${112 + 128}px` }}
-      className={cn("flex animate-slide hover:paused space-x-14 md:space-x-28  ", className)}
+      className={cn("flex animate-slide hover:paused space-x-14 md:space-x-28  my-4 sm:my-0 ", className)}
       {...props}>
       {values.map((value, i) => (
         <Value name={value.icon.name} title={value.title?.[locale]} key={i} />

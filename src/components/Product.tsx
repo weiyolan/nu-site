@@ -7,6 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { AspectRatio } from "./ui/aspect-ratio";
 import Image from "next/image";
 import { altImageType, buttonType, localeType } from "@/sanity/lib/interface";
+import ConditionalLink from "./ConditionalLink";
 
 type productType =
   | {
@@ -60,15 +61,17 @@ export interface ProductProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Product({ product: { slug, title, type, description, price, rating, button, color, images }, locale, className, ...props }: ProductProps) {
+  // let Cmp: React.ElementType = type === "title" || type === "shopTitle" ? "div" : "link";
   return (
     <div
+      // href={type === "title" || type === "shopTitle" ? undefined : `/shop/${slug.current}`}
       className={cn(
-        `flex cursor-pointer relative flex-col group w-full mt-4 gap-2 sm:gap-3 lg:gap-4 sm:px-3 ${type === "title" || type === "shopTitle" ? " col-span-2 md:col-span-1 justify-center text-center py-4 px-4 " : " items-start"}`,
+        `flex  relative flex-col group w-full  gap-2 sm:gap-3 lg:gap-4 sm:px-3 ${type === "title" || type === "shopTitle" ? " col-span-2 md:col-span-1 justify-center text-center py-4 px-4 mb-8 md:mb-0 " : " items-start"}`,
         className
       )}
       {...props}>
       {type !== "title" && type !== "shopTitle" && (
-        <div className="w-full ">
+        <Link title={locale === "en" ? "Go to product" : "Voir le produit"} href={`/shop/${slug.current}`} className="w-full ">
           <AspectRatio className="relative">
             {/* {console.log("images alt", images?.alt?.fr)} */}
             <Image
@@ -90,20 +93,24 @@ export default function Product({ product: { slug, title, type, description, pri
               className="object-cover opacity-0 group-hover:opacity-100 blur group-hover:blur-0  transition-all duration-300  "
             />
           </AspectRatio>
-        </div>
+        </Link>
       )}
       {(type === "title" || type === "shopTitle") && <div className={`absolute z-0 top-0 left-0 right-0 bottom-0 ${color}`} />}
-      {type === "product" && <Stars className="mr-auto mt-1" rating={rating} options={{ dark: true, full: true }} />}
-      <Typography variant={type === "title" || type === "shopTitle" ? "h2" : "h3"} className={`relative text-balance ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
-        {title}
-      </Typography>
-      <Typography
-        variant={"p"}
-        style={{ overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 8, lineClamp: 8, WebkitBoxOrient: "vertical" }}
-        className={`relative  ${type === "title" || type === "shopTitle" ? "text-center leading-normal font-normal " : "text-justify text-sm "}`}>
-        {description}
-      </Typography>
 
+      {type === "product" && <Stars className="mr-auto mt-1" rating={rating} options={{ dark: true, full: true }} />}
+      <ConditionalLink title={locale === "en" ? "Go to product" : "Voir le produit"} href={slug && `/shop/${slug.current}`} className="gap-2 sm:gap-3 lg:gap-4 flex flex-col">
+        <Typography
+          variant={type === "title" || type === "shopTitle" ? "h2" : "h3"}
+          className={`relative text-balance ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
+          {title}
+        </Typography>
+        <Typography
+          variant={"p"}
+          style={{ overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 8, lineClamp: 8, WebkitBoxOrient: "vertical" }}
+          className={`relative  ${type === "title" || type === "shopTitle" ? "text-center leading-normal font-normal " : "text-justify text-sm "}`}>
+          {description}
+        </Typography>
+      </ConditionalLink>
       {type === "product" && (
         <div className="flex flex-col justify-end  gap-4 items-center w-full p-1 relative mt-auto">
           {/* gap-16 */}
@@ -127,7 +134,7 @@ export default function Product({ product: { slug, title, type, description, pri
         </Button>
       )}
       {type === "article" && (
-        <Button variant="link" asChild size="sm" className=" relative items-center -mt-2 -ml-2 group/button text-base mt-auto">
+        <Button variant="link" asChild size="sm" className=" relative items-center -mt-2 -ml-2 group/button text-base ">
           <Link className="" href={`/shop#${slug}`} title="">
             {locale === "fr" ? "Lire article" : "Read article"}
             <ChevronRight className="size-4 group-hover/button:translate-x-1 transition-transform   mt-1" />

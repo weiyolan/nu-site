@@ -76,7 +76,6 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
 
   return (
     <div className={`w-full  fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
-      {/* <TransitionBackground className="absolute top-0 left-0 bottom-0 right-0" /> */}
       {enabled && (
         <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
           <Section className={cn(`mt-0 md:mt-0 h-full `, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
@@ -91,7 +90,6 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                 );
               })}
             </ul>
-            {/* <Icon name={message.icon.name.split(':')[1]}/> */}
           </Section>
         </div>
       )}
@@ -113,12 +111,14 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
               </NavigationMenuItem>
             ) : (
               <NavigationMenuItem key={`item-${i}`} className="">
-                <NavigationMenuTrigger
-                  className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-                  <Link href={link.url} legacyBehavior passHref>
-                    <NavigationMenuLink>{link.title?.[locale]}</NavigationMenuLink>
-                  </Link>
-                </NavigationMenuTrigger>
+                <Link href={link.url} legacyBehavior passHref className="">
+                  <NavigationMenuLink>
+                    <NavigationMenuTrigger
+                      className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+                      {link.title?.[locale]}
+                    </NavigationMenuTrigger>
+                  </NavigationMenuLink>
+                </Link>
                 <NavigationMenuContent className="">
                   <ul className="grid  gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
@@ -129,7 +129,6 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                             getColor(link.color)
                           )}
                           href={link.links[0].url}>
-                          {/* <Image src="/about_transparent.jpg" className="object-cover relative " fill alt="" /> */}
                           <Image
                             alt={link.altImage.alt?.[locale]}
                             fill
@@ -155,21 +154,10 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
               </NavigationMenuItem>
             );
           })}
-          {/* <NavigationMenuTrigger className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-              Accueil
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {components.map((component) => (
-                  <ListItem key={component.title} title={component.title} href={component.href}>
-                    {component.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent> */}
+
           {logoToggle && (
             <NavigationMenuItem className={``}>
-              <Link href="/" legacyBehavior passHref>
+              <Link href="/" title={locale === "en" ? "Go to main page" : "Aller à l'accueil"} legacyBehavior passHref>
                 <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent h-fit p-1 px-4")}>
                   <NuLogo className={`transition-all duration-300 ${scrolled ? "size-6" : "size-8"} `}></NuLogo>
                 </NavigationMenuLink>
@@ -192,12 +180,14 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
               </NavigationMenuItem>
             ) : (
               <NavigationMenuItem key={`item-${i + 2}`}>
-                <NavigationMenuTrigger
-                  className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
-                  <Link href={link.url} legacyBehavior passHref>
-                    <NavigationMenuLink>{link.title?.[locale]}</NavigationMenuLink>
-                  </Link>
-                </NavigationMenuTrigger>
+                <Link href={link.url} legacyBehavior passHref>
+                  <NavigationMenuLink>
+                    <NavigationMenuTrigger
+                      className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+                      {link.title?.[locale]}
+                    </NavigationMenuTrigger>
+                  </NavigationMenuLink>
+                </Link>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">

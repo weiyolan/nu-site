@@ -43,7 +43,7 @@ async function getRecommendedProducts(): Promise<{
 
 async function getProduct(slug: string): Promise<{
   rating: number;
-  weight: number;
+  // weight: number;
   slug: { current: string };
   price: number;
   reviews: { description: localeStringType; title: localeStringType; citationsOn: boolean };
@@ -52,6 +52,7 @@ async function getProduct(slug: string): Promise<{
   color: colorSanityType;
   images: altImageType[];
   subTitle: localeStringType;
+  extraInfo: { title: localeStringType; description: localeStringType }[];
   category: string;
   details: { title: localeStringType; details: { fr: []; en: [] } }[];
 }> {
@@ -61,7 +62,7 @@ async function getProduct(slug: string): Promise<{
 }
 
 export default async function Page({ params: { slug, locale } }: { params: { slug: string; locale: "en" | "fr" } }) {
-  const { price, category, images, details, rating, weight, reviews, description, title, subTitle } = await getProduct(slug);
+  const { price, category, images, details, rating, extraInfo, reviews, description, title, subTitle } = await getProduct(slug);
 
   const recommendedProducts = await getRecommendedProducts();
   // console.log("recommendedProducts", recommendedProducts);
@@ -72,7 +73,7 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
         <pre className="bg-secondary/50 p-4 rounded-lg my-2 ">{JSON.stringify(details, null, 2)}</pre>
       </Section> */}
       <Section className="">
-        <BreadcrumbWithCustomSeparator category={category} title={title?.[locale]} />
+        <BreadcrumbWithCustomSeparator locale={locale} category={category} title={title?.[locale]} />
       </Section>
       <Section id="description">
         <ProductDescription
@@ -80,7 +81,8 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
           altImage={images[0]}
           product={{
             price: price,
-            weight: weight,
+            // weight: weight,
+            extraInfo: extraInfo,
             title: title?.[locale],
             subTitle: subTitle?.[locale],
             rating: rating,

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Corben, Mulish } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import TrpcProvider from "@/lib/trpc/Provider";
 import { cookies } from "next/headers";
 import Navbar from "@/components/Navbar";
@@ -59,6 +60,7 @@ export default async function RootLayout({
             </div>
           </TrpcProvider>
           <Toaster />
+          <SonnerToaster />
         </ThemeProvider>
       </body>
     </html>

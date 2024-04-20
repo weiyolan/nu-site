@@ -187,7 +187,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
     <>
       <Hero locale={locale} hero={hero} increasedContrast />
 
-      <Section id="produits" className="mt-16 pb-8 sm:px-4 md:px-6 lg:px-12 xl:px-12 2xl:px-12">
+      <Section id="produits" className="mt-16 pb-8 sm:px-4 md:px-6 lg:px-12 xl:px-0 2xl:px-0 2xl:max-w-[1300px]">
         <ProductsPresentation locale={locale} sanityData={productPresentation} />
       </Section>
       <Section>

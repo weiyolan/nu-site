@@ -30,7 +30,7 @@ export default async function Page({ params: { locale } }: { params: { locale: l
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
         <ValueBar locale={locale} />
       </Section>
-      <Section id="beer">
+      <Section id="beer" className="px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0">
         <AboutBeer locale={locale} beerInfo={beerInfo} />
       </Section>
       <Section id={imagePop.title.fr}>
@@ -43,21 +43,14 @@ export default async function Page({ params: { locale } }: { params: { locale: l
         <NuLine />
       </Section>
       <div className="relative">
-        <Image
-          src="/about_ingredients.png"
-          alt="spoons filled with spices"
-          width={1460 / 3}
-          height={2735 / 3}
-          className="w-1/6 h-auto absolute left-0 top-0 -translate-y-1/3 md:top-24 "
-        />
+        <Image src="/about_ingredients.png" alt="spoons filled with spices" width={1460 / 3} height={2735 / 3} className="w-1/6 h-auto absolute left-0 top-36   hidden lg:block" />
         <Section id="ingredients">
           <AboutIngredients ingredientInfo={ingredientInfo} ingredients={ingredients} locale={locale} />
         </Section>
       </div>
-      <Section id="bref">
+      <Section id="bref" className="px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 2xl:max-w-[1450px]">
         <AboutBref locale={locale} brefInfo={brefInfo} />
       </Section>
-      {/* <Footer /> */}
     </>
   );
 }

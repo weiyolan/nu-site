@@ -6,9 +6,9 @@ const variants = {
   variant: {
     h1: "scroll-m-20 leading-normal text-3xl font-corben tracking-wide mb-6 whitespace-pre-wrap text-balance",
     // h1: "scroll-m-20 text-4xl font-extrabold leading-snug tracking-tight lg: text-5xl",
-    h2: "scroll-m-20 font-corben text-3xl first:mt-0 whitespace-pre-wrap text-balance",
+    h2: "scroll-m-20 font-corben text-3xl first:mt-0 whitespace-pre-wrap text-balance max-w-[48rem]",
     // h2: "scroll-m-20 border-b font-corben pb-2 text-3xl font-semibold tracking-tight first:mt-0",
-    h3: "scroll-m-20 font-corben text-2xl tracking-tight text-balance",
+    h3: "scroll-m-20 font-corben text-2xl tracking-tight text-balance whitespace-pre-wrap",
     // h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
     h4: "scroll-m-20 text-xl font-semibold tracking-tight",
     p: "font-medium text-base leading-7 [&:not(:first-child)]:mt-0",
