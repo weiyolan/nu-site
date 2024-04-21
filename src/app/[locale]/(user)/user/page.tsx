@@ -5,7 +5,7 @@ import { checkAuth } from "@/lib/auth/utils";
 
 export default async function Home() {
   const { session } = await getUserAuth();
-  // if (!session) redirect("/sign-up");
+  if (!session) redirect("/sign-up");
 
   // Equivalent to checkAuth()
   return (

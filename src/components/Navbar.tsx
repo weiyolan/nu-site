@@ -24,6 +24,7 @@ import { Button } from "./ui/button";
 import Typography from "./Typography";
 import ShoppingCard from "./navShoppingCard";
 import LanguageToggle from "./navLanguageToggle";
+import UserButton from "./navUserButton";
 
 // import { Button } from "@/registry/new-york/ui/button"
 // import { Input } from "@/registry/new-york/ui/input"
@@ -96,7 +97,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
         </div>
       )}
       <div className="max-w-7xl mx-auto relative">
-        <NavigationMenu className="mx-auto hidden md:flex">
+        <NavigationMenu className="mx-auto hidden md:flex ">
           <NavigationMenuList className="">
             {links.slice(0, 2).map((link, i) => {
               return link._type === "navigationButtonTrigger" ? (
@@ -124,7 +125,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                   <NavigationMenuContent className="">
                     <ul className="grid  gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       <li className="row-span-3">
-                        <NavigationMenuLink asChild>
+                        <NavigationMenuLink asChild className="">
                           <Link
                             className={cn(
                               "flex relative h-full w-full select-none flex-col justify-end rounded-md bg-nu-yellow p-6 no-underline outline-none focus:shadow-md",
@@ -147,7 +148,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                         </NavigationMenuLink>
                       </li>
                       {link.links.slice(1).map((linkSimple, i) => (
-                        <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                        <ListItem key={`subItem-${i}`} title={linkSimple.title?.[locale]} href={linkSimple.url} className="">
                           {linkSimple.description?.[locale]}
                         </ListItem>
                       ))}
@@ -288,6 +289,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
 
         <div className="top-0 ml-auto absolute right-0 lg:right-[17px] flex ">
           {/* top-[20.5px] */}
+          <UserButton scrolled={scrolled} locale={locale} />
           <LanguageToggle scrolled={scrolled} locale={locale} />
           <ShoppingCard scrolled={scrolled} locale={locale} />
         </div>

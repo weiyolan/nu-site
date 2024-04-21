@@ -1,25 +1,52 @@
+"use client";
 import { cn } from "@/lib/utils";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
-import LucideIcon from "./LucideIcon";
-import Link from "next/link";
-import NuLogo from "./NuLogo";
-import Typography from "./Typography";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+
 import { localeType } from "@/sanity/lib/interface";
-import { Globe2Icon, GlobeIcon, Languages, LanguagesIcon, ShoppingBagIcon, ShoppingBasketIcon, ShoppingCartIcon } from "lucide-react";
+import { LanguagesIcon } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { SelectGroup, SelectLabel } from "@radix-ui/react-select";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 export interface LanguageToggleProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
   scrolled: boolean;
 }
+import * as React from "react";
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
+
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import Typography from "./Typography";
+
+type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export default function LanguageToggle({ children, className, locale, scrolled, ...props }: LanguageToggleProps) {
+  // const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);
+  // const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
+  // const [showPanel, setShowPanel] = React.useState<Checked>(false);
+
+  // return (
+  //   <DropdownMenu>
+  //     <DropdownMenuTrigger asChild>
+  //       <Button className="bg-transparent border-transparent p-3" variant="outline">
+  //         <LanguagesIcon className={`size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+  //       </Button>
+  //       {/* <Button variant="outline">Open</Button> */}
+  //     </DropdownMenuTrigger>
+  //     <DropdownMenuContent className="w-56">
+  //       <DropdownMenuLabel>{locale === "en" ? "Langue" : "Language"}</DropdownMenuLabel>
+  //       <DropdownMenuSeparator />
+  //       <DropdownMenuCheckboxItem checked={showStatusBar} onCheckedChange={setShowStatusBar}>
+  //         Status Bar
+  //       </DropdownMenuCheckboxItem>
+  //       <DropdownMenuCheckboxItem checked={showActivityBar} onCheckedChange={setShowActivityBar} disabled>
+  //         Activity Bar
+  //       </DropdownMenuCheckboxItem>
+  //       <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
+  //         Panel
+  //       </DropdownMenuCheckboxItem>
+  //     </DropdownMenuContent>
+  //   </DropdownMenu>
+  // );
   return (
     <Select>
       <Tooltip>
@@ -38,22 +65,22 @@ export default function LanguageToggle({ children, className, locale, scrolled, 
       {/* <SelectValue placeholder="Theme" className="hidden" /> */}
       <SelectContent className="mr-3 text-left  ">
         <SelectGroup>
-          {/* <SelectLabel className=""> */}
-          {/* <Typography variant={"h3"} className="text-lg pb-1">
+          {/* <SelectLabel className="">
+            <Typography variant={"h3"} className="text-lg pb-1">
               {" "}
               Langues
-            </Typography> */}
-          {/* </SelectLabel> */}
+            </Typography>
+          </SelectLabel> */}
           <SelectItem className="" value="francais">
             Français
           </SelectItem>
           <SelectItem className="" value="english">
             English
           </SelectItem>
-          {/* <SelectItem value="system">System</SelectItem> */}
         </SelectGroup>
       </SelectContent>
     </Select>
+
     // <Popover>
     //   <PopoverTrigger asChild>
     //     <Button className=" bg-transparent border-transparent" variant="outline">
