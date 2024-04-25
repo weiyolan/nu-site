@@ -9,19 +9,19 @@ export default defineType({
   options: { collapsible: true, collapsed: true },
   icon: LinkIcon,
   fields: [
-    defineField({
-      name: "ext",
-      title: uiLanguage.id === "en" ? "External" : uiLanguage.id === "fr" ? "Lien externe" : "Externe link",
-      description:
-        uiLanguage.id === "en"
-          ? "Toggle on when referring to another website"
-          : uiLanguage.id === "fr"
-            ? "Allumer si le lien est vers un site externe."
-            : "Aanzetten als de link naar een externe site verwijst.",
-      type: "boolean",
-      initialValue: false,
-      validation: (Rule) => Rule.required(),
-    }),
+    // defineField({
+    //   name: "ext",
+    //   title: uiLanguage.id === "en" ? "External" : uiLanguage.id === "fr" ? "Lien externe" : "Externe link",
+    //   description:
+    //     uiLanguage.id === "en"
+    //       ? "Toggle on when referring to another website"
+    //       : uiLanguage.id === "fr"
+    //         ? "Allumer si le lien est vers un site externe."
+    //         : "Aanzetten als de link naar een externe site verwijst.",
+    //   type: "boolean",
+    //   initialValue: false,
+    //   validation: (Rule) => Rule.required(),
+    // }),
     defineField({
       name: "text",
       title: uiLanguage.id === "en" ? "Text" : uiLanguage.id === "fr" ? "Text" : "Tekst",
@@ -30,7 +30,7 @@ export default defineType({
     }),
     defineField({
       name: "url",
-      title: "url",
+      // title: "",
       type: "url",
       validation: (Rule) =>
         Rule.required().uri({

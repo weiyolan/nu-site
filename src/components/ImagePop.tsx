@@ -6,6 +6,7 @@ import { AspectRatio } from "./ui/aspect-ratio";
 import { altImageType, buttonType, colorSanityType, getColor, localeBlockContentType, localeStringType } from "@/sanity/lib/interface";
 import Link from "next/link";
 import PortableText from "./PortableText";
+import ConditionalLink from "./ConditionalLink";
 
 export interface ImagePopProps extends React.HTMLAttributes<HTMLDivElement> {
   imgRight?: boolean;
@@ -47,7 +48,7 @@ export default function ImagePop({ children, locale, imgRight, imagePop: { altIm
           <PortableText value={description?.[locale]} locale={locale}></PortableText>
         </div>
         <Button asChild className="w-fit">
-          <Link href={button.url}>{button.text?.[locale]}</Link>
+          <ConditionalLink href={button.url}>{button.text?.[locale]}</ConditionalLink>
         </Button>
       </div>
     </div>

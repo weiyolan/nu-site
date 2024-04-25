@@ -5,6 +5,7 @@ import Link from "next/link";
 import Section from "./Section";
 import PortableText from "./PortableText";
 import { buttonType, localeStringType, localeType } from "@/sanity/lib/interface";
+import ConditionalLink from "./ConditionalLink";
 
 export interface HomeEssayerNuProps extends React.HTMLAttributes<HTMLDivElement> {
   cta: {
@@ -28,7 +29,7 @@ export default function HomeEssayerNu({ locale, cta: { title, description, butto
       </div>
       <div className="flex-col flex gap-2 justify-center items-center">
         <Button asChild className="hover:scale-105 hover:shadow-lg transition-all duration-150">
-          <Link href={button.url}>{button.text?.[locale]}</Link>
+          <ConditionalLink href={button.url}>{button.text?.[locale]}</ConditionalLink>
         </Button>
         <Typography variant={"p"} className="text-sm font-bold w-fit">
           {promotion?.[locale]}

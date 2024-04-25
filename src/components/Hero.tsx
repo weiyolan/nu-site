@@ -4,6 +4,7 @@ import Typography from "./Typography";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { altImageType, buttonType, colorSanityType, getColor, localeStringType, localeType } from "@/sanity/lib/interface";
+import ConditionalLink from "./ConditionalLink";
 // import { PropsWithChildren } from "react";
 export interface HeroProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
@@ -35,7 +36,7 @@ export default function Hero({ locale, hero: { title, button, altImage, color },
           {title?.[locale]}
         </Typography>
         <Button asChild className="relative">
-          <Link href={button.url}>{button.text?.[locale]}</Link>
+          <ConditionalLink href={button.url}>{button.text?.[locale]}</ConditionalLink>
         </Button>
       </div>
       {children}

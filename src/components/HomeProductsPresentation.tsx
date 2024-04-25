@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { altImageType, localeStringType } from "@/sanity/lib/interface";
 import { AspectRatio } from "./ui/aspect-ratio";
+import ConditionalLink from "./ConditionalLink";
 
 type presentationType = {
   title: localeStringType;
@@ -142,11 +143,11 @@ export function PresentationDetails({ title, description, button, slug, classNam
       <Typography variant={"h3"} className="whitespace-pre-wrap text-balance">
         {title}
       </Typography>
-      <Typography variant={"p"} className="text-sm text-balance mx-auto">
+      <Typography variant={"p"} className="sm:text-base xl:leading-7 text-balance mx-auto">
         {description}
       </Typography>
       <Button asChild className="mx-auto">
-        <Link href={slug.current}>{button}</Link>
+        <ConditionalLink href={slug.current}>{button}</ConditionalLink>
       </Button>
     </div>
   );

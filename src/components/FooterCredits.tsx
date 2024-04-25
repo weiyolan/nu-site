@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Typography from "./Typography";
-import Link from "next/link";
+// import Link from "next/link";
+import ConditionalLink from "./ConditionalLink";
 
 export interface CreditsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -19,7 +20,7 @@ export default function Credits({ className, ...props }: CreditsProps) {
       <Typography variant={"p"} className="text-xs text-center whitespace-pre-wrap md:whitespace-nowrap">
         {"©2024 NU. Tous droits réservés.\nPowered by "}
         <span className="underline-offset-4 hover:underline">
-          <Link href="https://ywdesign.co">ywdesign.co</Link>
+          <ConditionalLink href="https://ywdesign.co">ywdesign.co</ConditionalLink>
         </span>
       </Typography>
     </div>

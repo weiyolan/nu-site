@@ -7,6 +7,7 @@ import { AspectRatio } from "./ui/aspect-ratio";
 import { altImageType, buttonType, colorSanityType, localeBlockContentType, localeStringType, localeType } from "@/sanity/lib/interface";
 import { useMediaQuery } from "usehooks-ts";
 import PortableText from "./PortableText";
+import ConditionalLink from "./ConditionalLink";
 
 export interface AboutBeerProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
@@ -36,9 +37,9 @@ export default function AboutBeer({ locale, beerInfo: { title, description, colo
         <PortableText value={description?.[locale]} locale={locale}></PortableText>
 
         <Button asChild className="w-fit mx-auto relative mt-6">
-          <Link className="w-fit mx-auto relative mt-6" href={button.url}>
+          <ConditionalLink className="w-fit mx-auto relative mt-6" href={button.url}>
             {button.text?.[locale]}
-          </Link>
+          </ConditionalLink>
         </Button>
       </div>
     </div>

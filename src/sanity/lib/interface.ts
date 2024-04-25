@@ -22,7 +22,8 @@ export type colorBgType = "bg-nu-yellow" | "bg-nu-green" | "bg-nu-blue" | "bg-nu
 export type colorSanityType = "yellow" | "green" | "blue" | "peach" | "purple";
 export type localeType = "en" | "fr";
 export type localeStringType = { en: string; fr: string };
-export type buttonType = { ext: boolean; text: localeStringType; url: string };
+// export type buttonType = { ext: boolean; text: localeStringType; url: string };
+export type buttonType = {  text: localeStringType; url: string };
 export type altImageType = {
   alt: localeStringType;
   image: {

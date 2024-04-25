@@ -3,6 +3,8 @@ import { localeType } from "@/sanity/lib/interface";
 import { PortableText as DefaultPortableText } from "@portabletext/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import Typography from "./Typography";
+import Link from "next/link";
+import ConditionalLink from "./ConditionalLink";
 
 export interface PortableTextProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
@@ -51,7 +53,17 @@ const components = (locale: localeType) => {
     },
     marks: {
       // strong: ()=>{}
-      // link? list? normal p?
+      // link? list?
+      link: ({ children, text, value: { url } }) => {
+        return (
+          <ConditionalLink
+            href={url}
+            title={locale === "fr" ? `Allez vers le site de ${text}` : `Go to ${text}`}
+            className="text-nu-black underline hover:text-nu-black/70 cursor-pointer ">
+            {children}
+          </ConditionalLink>
+        );
+      },
     },
   };
 };

@@ -38,18 +38,41 @@ export default defineType({
 
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
-          //   {
-          //     title: "URL",
-          //     name: "link",
-          //     type: "object",
-          //     fields: [
-          //       {
-          //         title: "URL",
-          //         name: "href",
-          //         type: "url",
-          //       },
-          //     ],
-          //   },
+          {
+            title: "URL",
+            name: "link",
+            type: "object",
+            fields: [
+              {
+                title: "url",
+                name: "url",
+                type: "url",
+                validation: (Rule) =>
+                  Rule.uri({
+                    allowRelative: true,
+                    scheme: ["http", "https", "mailto", "tel"],
+                  }),
+              },
+              // {
+              //   title: "Lien externe",
+              //   name: "ext",
+              //   type: "boolean",
+              //   initialValue: false,
+              // },
+              // {
+              //   title: "Titre",
+              //   name: "title",
+              //   type: "localeString",
+              // },
+            ],
+            preview: {
+              select: { url: "url" },
+              prepare({ url }) {
+                // const {date, completion} = selection
+                return { title: "Lien", subtitle: url };
+              },
+            },
+          },
         ],
       },
     }),

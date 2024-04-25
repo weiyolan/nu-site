@@ -78,7 +78,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
         <Products className="" locale={locale} shopSection={shopSections[3]} type="shopTitle" />
       </Section>
       <Section id="eco" className="bg-nu-blue md:bg-none">
-        <ShopEco eco={eco} />
+        <ShopEco locale={locale} eco={eco} />
       </Section>
       {/* <Footer /> */}
     </>

@@ -3,6 +3,7 @@ import Typography from "./Typography";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { localeStringType, localeType } from "@/sanity/lib/interface";
+import ConditionalLink from "./ConditionalLink";
 
 export interface FooterListProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -38,9 +39,9 @@ export default function FooterList({ locale, children, title, items, className, 
               {/* <Typography variant={"p"} affects={"small"} className="font-bold">
             </Typography> */}
               <Button asChild variant={"link"} className="p-0 font-semibold">
-                <Link href={link.url} className="p-0 h-fit ">
+                <ConditionalLink href={link.url} className="p-0 h-fit ">
                   {link.text?.[locale]}
-                </Link>
+                </ConditionalLink>
               </Button>
             </li>
           ) : (
