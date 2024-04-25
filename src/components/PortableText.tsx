@@ -50,6 +50,15 @@ const components = (locale: localeType) => {
           {children}
         </Typography>
       ),
+      blockquote: ({ children }) => {
+        return (
+          <blockquote className="pl-4 border-l-4 border-nu-blue/60 [&:not(:first-child)]:mt-6">
+            <Typography variant={"p"} className="text-nu-black font-semibold italic">
+              {children}
+            </Typography>
+          </blockquote>
+        );
+      },
     },
     marks: {
       // strong: ()=>{}
