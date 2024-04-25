@@ -147,7 +147,7 @@ export function PresentationDetails({ title, description, button, slug, classNam
         {description}
       </Typography>
       <Button asChild className="mx-auto">
-        <ConditionalLink href={slug.current}>{button}</ConditionalLink>
+        <ConditionalLink href={`/shop/${slug.current}`}>{button}</ConditionalLink>
       </Button>
     </div>
   );
