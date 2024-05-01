@@ -28,6 +28,24 @@ export const pathnames = {
     en: "/help",
     fr: "/aide",
   },
+  "/account": {
+    en: "/account",
+    fr: "/compte",
+  },
+  "/account/manage": {
+    en: "/account/manage",
+    fr: "/compte/manage",
+  },
+  "/account/resend": {
+    en: "/account/resend",
+    fr: "/compte/resend",
+  },
+  "/account/settings": {
+    en: "/account/settings",
+    fr: "/compte/parametres",
+  },
+  "/sign-in": "/sign-in",
+  "/sign-up": "/sign-up",
 
   // "/shop/[...slug]": "/shop/[...slug]",
 } satisfies Pathnames<typeof locales>;
