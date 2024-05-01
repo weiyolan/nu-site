@@ -1,5 +1,5 @@
 import { groq } from "next-sanity";
-import { supportedLanguages } from "../supportedLanguages";
+import { supportedLanguages } from "../../i18n/supportedLanguages";
 import { client } from "./client";
 
 export function getColor(color: colorSanityType): colorBgType {

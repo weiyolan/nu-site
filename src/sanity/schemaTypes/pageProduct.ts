@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { Package, StarIcon } from "lucide-react";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 
 export default defineType({

@@ -1,15 +1,11 @@
 import AuthForm from "@/components/auth/Form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getPageSession } from "@/lib/auth/lucia";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const Page = async () => {
-  const session = await getPageSession();
-  if (session?.user) redirect("/");
   return (
-    <main className="max-w-lg mx-auto my-4 bg-secondary p-10">
+    <main className="max-w-lg mx-auto my-4 bg-popover p-10">
       <h1 className="text-2xl font-bold text-center">
         Sign in to your account
       </h1>

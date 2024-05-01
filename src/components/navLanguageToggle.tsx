@@ -16,6 +16,10 @@ import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import Typography from "./Typography";
+import { supportedLanguages } from "@/i18n/supportedLanguages";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { useParams } from "next/navigation";
+// import Link from "next/link";
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -23,6 +27,9 @@ export default function LanguageToggle({ children, className, locale, scrolled, 
   // const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);
   // const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
   // const [showPanel, setShowPanel] = React.useState<Checked>(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const params = useParams();
 
   // return (
   //   <DropdownMenu>
@@ -48,7 +55,7 @@ export default function LanguageToggle({ children, className, locale, scrolled, 
   //   </DropdownMenu>
   // );
   return (
-    <Select>
+    <Select value={locale} onValueChange={(val) => router.replace({ pathname, params }, { locale: val, scroll: false })}>
       <Tooltip>
         <SelectTrigger asChild>
           <TooltipTrigger asChild>
@@ -64,20 +71,21 @@ export default function LanguageToggle({ children, className, locale, scrolled, 
 
       {/* <SelectValue placeholder="Theme" className="hidden" /> */}
       <SelectContent className="mr-3 text-left  ">
-        <SelectGroup>
-          {/* <SelectLabel className="">
+        {/* <SelectGroup> */}
+        {/* <SelectLabel className="">
             <Typography variant={"h3"} className="text-lg pb-1">
               {" "}
               Langues
             </Typography>
           </SelectLabel> */}
-          <SelectItem className="" value="francais">
-            Français
+        {supportedLanguages.map((lang) => (
+          <SelectItem key={lang.id} className="cursor-pointer" value={lang.id}>
+            {/* <Link href={pathname} locale={lang.id}> */}
+            {lang.title}
+            {/* </Link> */}
           </SelectItem>
-          <SelectItem className="" value="english">
-            English
-          </SelectItem>
-        </SelectGroup>
+        ))}
+        {/* </SelectGroup> */}
       </SelectContent>
     </Select>
 

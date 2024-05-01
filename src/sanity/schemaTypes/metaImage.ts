@@ -1,5 +1,5 @@
 import { defineType, defineField } from 'sanity'
-import { supportedLanguages } from '../supportedLanguages'
+import { supportedLanguages } from "../../i18n/supportedLanguages";
 
 export default defineType({
   title: 'Image',

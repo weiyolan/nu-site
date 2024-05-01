@@ -1,5 +1,5 @@
 import { defineType, defineField } from "sanity";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import { MousePointerClick } from "lucide-react";
 // import { supportedLanguages } from "./supportedLanguages";
 

@@ -1,8 +1,8 @@
 import { env } from "@/lib/env.mjs";
   
-import { drizzle } from "drizzle-orm/planetscale-serverless";
-import { migrate } from "drizzle-orm/planetscale-serverless/migrator";
-import { connect } from "@planetscale/database";
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
+import { migrate } from "drizzle-orm/libsql/migrator";
 
 
 const runMigrate = async () => {
@@ -11,9 +11,11 @@ const runMigrate = async () => {
   }
 
   
-const connection = connect({ url: env.DATABASE_URL });
- 
-const db = drizzle(connection);
+  const client = createClient({
+    url: env.DATABASE_URL,
+    authToken: env.DATABASE_AUTH_TOKEN,
+  });
+  const db = drizzle(client);
 
 
   console.log("⏳ Running migrations...");

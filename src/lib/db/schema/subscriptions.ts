@@ -1,20 +1,21 @@
 import {
-  mysqlTable,
+  sqliteTable,
   primaryKey,
-  timestamp,
-  varchar,
-} from "drizzle-orm/mysql-core";
+  integer,
+  text
+} from "drizzle-orm/sqlite-core";
 
-export const subscriptions = mysqlTable(
+export const subscriptions = sqliteTable(
   "subscriptions",
   {
-    userId: varchar("user_id", { length: 255 }).unique(),
-    stripeCustomerId: varchar("stripe_customer_id", { length: 255 }).unique(),
-    stripeSubscriptionId: varchar("stripe_subscription_id", {
-      length: 255,
-    }).unique(),
-    stripePriceId: varchar("stripe_price_id", { length: 255 }),
-    stripeCurrentPeriodEnd: timestamp("stripe_current_period_end"),
+    userId: text("user_id")
+      .unique(),
+    stripeCustomerId: text("stripe_customer_id").unique(),
+    stripeSubscriptionId: text("stripe_subscription_id").unique(),
+    stripePriceId: text("stripe_price_id"),
+    stripeCurrentPeriodEnd: integer("stripe_current_period_end", {
+       mode: "timestamp",
+    }),
   },
   (table) => {
     return {

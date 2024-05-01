@@ -118,7 +118,7 @@ export async function generateStaticParams() {
   //   { slug: "product1", category: "Shampoing-solide" },
   //   { slug: "product2", category: "accessoires" },
   // ];
-
+  // console.log(slugs);
   return slugs;
   // return posts.map(() => ({
   //   slug: 'product1',

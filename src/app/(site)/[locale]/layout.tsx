@@ -1,6 +1,3 @@
-import Navbar from "@/components/ProfileNavbar";
-import Sidebar from "@/components/Sidebar";
-
 import "../../globals.css";
 import type { Metadata } from "next";
 import { Corben, Mulish } from "next/font/google";
@@ -9,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import TrpcProvider from "@/lib/trpc/Provider";
 import { cookies } from "next/headers";
+import Navbar from "@/components/Navbar";
 import NuLogoBackground from "@/components/NuLogoBackground";
 
 import { getBannerInfo, getFooterInfo, getFooterLists, getNavbarInfo, localeType } from "@/sanity/lib/interface";
@@ -44,23 +42,29 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${corben.variable} ${mulish.variable} font-mulish relative`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TooltipProvider>
-            {/* disableTransitionOnChange */}
-            <TrpcProvider cookies={cookies().toString()}>
-              <div className="flex h-screen">
-                <Sidebar />
-                <main className="flex-1 md:p-8 pt-2 p-8 overflow-y-auto">
-                  <Navbar />
-                  {children}
-                </main>
-                {/* <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" /> */}
-              </div>
-            </TrpcProvider>
-            <Toaster />
-            <SonnerToaster />
-          </TooltipProvider>
-        </ThemeProvider>
+        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange> */}
+        <TooltipProvider>
+          {/* <TrpcProvider cookies={cookies().toString()}> */}
+          <NuLogoBackground />
+          <header>
+            <Navbar locale={locale} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
+          </header>
+          {/* <pre>{JSON.stringify(footerLists, null, 2)}</pre> */}
+          <main className="relative">{children}</main>
+          <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" />
+          {/* <svg className="w-full hidden">
+                  <filter id="noiseFilter">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.6" stitchTiles="stitch" />
+                    <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />
+                    <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
+                    <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
+                  </filter>
+                </svg> */}
+          {/* </TrpcProvider> */}
+          <Toaster />
+          <SonnerToaster />
+        </TooltipProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

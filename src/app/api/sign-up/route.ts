@@ -60,7 +60,7 @@ export const POST = async (request: NextRequest) => {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "/", // redirect to profile page
+        Location: "/dashboard", // redirect to profile page
       },
     });
   } catch (e) {

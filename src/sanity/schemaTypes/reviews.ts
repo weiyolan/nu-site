@@ -1,5 +1,5 @@
 import { defineType, defineField } from "sanity";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import { Stars } from "lucide-react";
 // import { ListCollapse , Rows3} from "lucide-react";
 

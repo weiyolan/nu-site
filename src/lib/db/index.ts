@@ -1,10 +1,10 @@
-import { drizzle } from "drizzle-orm/planetscale-serverless";
-import { connect } from "@planetscale/database";
+import { drizzle } from 'drizzle-orm/libsql';
+import { createClient } from "@libsql/client";
 import { env } from "@/lib/env.mjs";
  
-// create the connection
-export const connection = connect({
-  url: env.DATABASE_URL
+export const sqlite = createClient({
+  url: env.DATABASE_URL,
+  authToken: env.DATABASE_AUTH_TOKEN,
 });
- 
-export const db = drizzle(connection);
+
+export const db = drizzle(sqlite);

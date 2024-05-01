@@ -1,6 +1,6 @@
-import { defineType, defineField } from 'sanity'
-import {  uiLanguage } from '../supportedLanguages'
-import { ChevronDown } from 'lucide-react';
+import { defineType, defineField } from "sanity";
+import { uiLanguage } from "../../i18n/supportedLanguages.ts";
+import { ChevronDown } from "lucide-react";
 
 export default defineType({
   title: "Item",

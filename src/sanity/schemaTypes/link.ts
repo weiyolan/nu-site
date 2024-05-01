@@ -1,6 +1,6 @@
 import { defineType, defineField } from "sanity";
 import { LinkIcon } from "@sanity/icons";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 
 export default defineType({
   name: "link",

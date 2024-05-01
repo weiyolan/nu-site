@@ -1,5 +1,5 @@
 import { defineType, defineField } from "sanity";
-import { supportedLanguages, uiLanguage } from "../supportedLanguages";
+import { supportedLanguages, uiLanguage } from "../../i18n/supportedLanguages";
 import CustomTitle from "../lib/localeCustomTitle";
 
 export default defineType({

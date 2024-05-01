@@ -1,5 +1,5 @@
 import { defineType } from "sanity";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 
 export default defineType({
   title: uiLanguage.id === "fr" ? "Catégorie" : "Category",

@@ -2,12 +2,12 @@ import { lucia } from "lucia";
 import { nextjs_future } from "lucia/middleware";
 import { cache } from "react";
 import * as context from "next/headers";
-import { planetscale } from "@lucia-auth/adapter-mysql";
-import { connection } from "@/lib/db/index"
+import { libsql } from "@lucia-auth/adapter-sqlite";
+import { sqlite } from "@/lib/db/index"
 
 export const auth = lucia({
-  adapter: planetscale(connection, {
-		user: "auth_user",
+  adapter: libsql(sqlite, {
+		user: "user",
 		key: "user_key",
 		session: "user_session"
 	}),

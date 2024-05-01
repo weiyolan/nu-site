@@ -1,6 +1,6 @@
 import { defineType, defineField } from "sanity";
 import { LinkIcon } from "@sanity/icons";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import { Icon } from "@iconify/react";
 export default defineType({
   name: "ecologyCard",

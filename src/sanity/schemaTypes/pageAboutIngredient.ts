@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 // import { defineField, defineType } from "@sanity-typed/types";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import { Blend, Carrot } from "lucide-react";
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 

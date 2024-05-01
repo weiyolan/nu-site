@@ -78,7 +78,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
   }, [scrolled]);
 
   return (
-    <div className={`w-screen lg:pr-[12px] fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
+    <nav className={`w-screen lg:pr-[12px] fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
       {enabled && (
         <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
           <Section className={cn(`mt-0 md:mt-0 h-full `, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
@@ -106,7 +106,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
+                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center`
                       )}>
                       {link.title?.[locale]}
                     </NavigationMenuLink>
@@ -117,7 +117,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                   <Link href={link.url} legacyBehavior passHref className="">
                     <NavigationMenuLink>
                       <NavigationMenuTrigger
-                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center`}>
                         {link.title?.[locale]}
                       </NavigationMenuTrigger>
                     </NavigationMenuLink>
@@ -175,7 +175,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`
+                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center`
                       )}>
                       {link.title?.[locale]}
                     </NavigationMenuLink>
@@ -186,7 +186,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                   <Link href={link.url} legacyBehavior passHref>
                     <NavigationMenuLink>
                       <NavigationMenuTrigger
-                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-36 text-center`}>
+                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center`}>
                         {link.title?.[locale]}
                       </NavigationMenuTrigger>
                     </NavigationMenuLink>
@@ -287,14 +287,14 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
           </SheetContent>
         </Sheet>
 
-        <div className="top-0 ml-auto absolute right-0 lg:right-[17px] flex ">
+        <div className="top-0 ml-auto absolute right-0 md:right-[17px] flex ">
           {/* top-[20.5px] */}
           <UserButton scrolled={scrolled} locale={locale} />
           <LanguageToggle scrolled={scrolled} locale={locale} />
           <ShoppingCard scrolled={scrolled} locale={locale} />
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
 

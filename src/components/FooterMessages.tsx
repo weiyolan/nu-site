@@ -2,7 +2,6 @@
 // import { cn } from "@/lib/utils";
 import Section from "./Section";
 import { Separator } from "./ui/separator";
-import { useMediaQuery } from "usehooks-ts";
 import { localeStringType, localeType } from "@/sanity/lib/interface";
 import LucideIcon from "./LucideIcon";
 import Typography from "./Typography";
@@ -14,8 +13,6 @@ export interface FooterMessagesProps extends React.HTMLAttributes<HTMLDivElement
 }
 
 export default function FooterMessages({ locale, messages, className, ...props }: FooterMessagesProps) {
-  const mdScreen = useMediaQuery("(min-width: 1024px)");
-
   return (
     <Section className="w-full gap-2 lg:gap-4 p-6 lg:px-24 flex flex-wrap items-center justify-center relative mb-0 ">
       {messages.slice(0, 2).map((message, i) => (
@@ -24,7 +21,7 @@ export default function FooterMessages({ locale, messages, className, ...props }
           <Message name={message.icon.name} text={message.text?.[locale]} />
         </React.Fragment>
       ))}
-      {<Separator key={"middle seperator"} orientation={mdScreen ? "vertical" : "horizontal"} className="bg-nu-black h-0.5 lg:h-16 lg:w-0.5 " />}
+      {<Separator key={"middle seperator"} className="bg-nu-black h-0.5 w-full lg:h-16 lg:w-0.5 " />}
       {messages.slice(2).map((message, i) => (
         <React.Fragment key={`item-${i}b`}>
           {i !== 0 && <Separator orientation={"vertical"} className="bg-nu-black my-2 h-32 lg:h-16 w-0.5" />}

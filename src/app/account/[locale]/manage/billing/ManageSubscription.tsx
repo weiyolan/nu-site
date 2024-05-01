@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 interface ManageUserSubscriptionButtonProps {
@@ -47,7 +47,7 @@ export function ManageUserSubscriptionButton({
         }
       } catch (err) {
         console.error((err as Error).message);
-        toast({ description: "Something went wrong, please try again later." });
+        toast.error("Something went wrong, please try again later.");
       }
     });
   };

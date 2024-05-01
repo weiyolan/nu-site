@@ -36,7 +36,7 @@ export default function ShopEco({ eco, locale, children, className, ...props }: 
   // const { locale } = useRouter();
 
   return (
-    <div className={cn("text-center py-16 px-0 lg:p-16 lg:w-[120%] lg:-ml-[10%] bg-nu-blue", className)} {...props}>
+    <div className={cn("text-center py-16 px-0 xl:p-16 xl:w-[120%] xl:-ml-[10%] bg-nu-blue", className)} {...props}>
       <Typography variant={"h2"}>{eco.title?.[locale || "fr"]}</Typography>
       <Typography variant={"p"} affects={"subTitle"} className="text-nu-black max-w-prose mx-auto">
         {eco.description?.[locale || "fr"]}

@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 // import { defineField, defineType } from "@sanity-typed/types";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 
 export default defineType({
   name: "cta",

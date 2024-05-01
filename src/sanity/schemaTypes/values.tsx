@@ -1,5 +1,5 @@
 import { defineType, defineField, PreviewProps } from "sanity";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 // import Icon from "../lib/lucideIcon";
 import { Icon } from "@iconify/react";
 import { Heart } from "lucide-react";

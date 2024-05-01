@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 // import { defineField, defineType } from "@sanity-typed/types";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import { Blend, GalleryThumbnails } from "lucide-react";
 
 export default defineType({

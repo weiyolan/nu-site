@@ -1,6 +1,6 @@
 import {  defineType } from "sanity";
 // import { Package } from "lucide-react";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 
 export default defineType({
   name: "optionsCategory",

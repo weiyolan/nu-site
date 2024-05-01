@@ -1,6 +1,6 @@
 import { Images, Scale } from "lucide-react";
 import { defineType, defineField } from "sanity";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 
 export default defineType({
   name: "imagePop",

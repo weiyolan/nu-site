@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import {   SquareGantt } from "lucide-react";
 
 export default defineType({

@@ -1,7 +1,7 @@
 import { defineType, defineField, PreviewProps } from "sanity";
 // import { uiLanguage } from "../supportedLanguages";
 import { Icon } from "@iconify/react";
-import { uiLanguage } from "../supportedLanguages";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 
 export default defineType({
   name: "navigationBanner",
