@@ -3,7 +3,7 @@ import { localeType } from "@/sanity/lib/interface";
 import { PortableText as DefaultPortableText } from "@portabletext/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import Typography from "./Typography";
-import Link from "next/link";
+// import Link from "next/link";
 import ConditionalLink from "./ConditionalLink";
 
 export interface PortableTextProps extends React.HTMLAttributes<HTMLDivElement> {

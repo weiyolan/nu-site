@@ -193,13 +193,13 @@ export default async function Page({ params: { locale } }: { params: { locale: "
       <Section>
         <NuLine className="flex justify-center " />
       </Section>
-      <Section id={imagePop1.title.fr}>
+      <Section id={"levure-de-bière"}>
         <ImagePop locale={locale} imagePop={imagePop1} />
       </Section>
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
         <ValueBar locale={locale} />
       </Section>
-      <Section id={imagePop2.title.fr} className="-mb-8">
+      <Section id={"corps-et-nature"} className="-mb-8">
         <ImagePop locale={locale} imgRight imagePop={imagePop2} />
       </Section>
       <Section id="reviews">
@@ -211,7 +211,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
         </Section>
       )}
       <div className="w-full overflow-x-hidden py-12 md:py-16 md:-mb-16">
-        <Section id={"cta"} className=" max-w-[110vw] w-[110vw] mx-auto bg-nu-blue rotate-2 -ml-[5vw] md:px-0 ">
+        <Section id={"essayer-nu"} className=" max-w-[110vw] w-[110vw] mx-auto bg-nu-blue rotate-2 -ml-[5vw] md:px-0 ">
           <HomeEssayerNu locale={locale} cta={cta} className="-rotate-2 px-12 " />
         </Section>
       </div>

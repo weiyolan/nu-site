@@ -30,10 +30,10 @@ export default async function Page({ params: { locale } }: { params: { locale: l
       <Section className="max-w-screen overflow-hidden w-full px-0 md:px-0 ">
         <ValueBar locale={locale} />
       </Section>
-      <Section id="beer" className="px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0">
+      <Section id="beer" className="px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 scroll-m-40">
         <AboutBeer locale={locale} beerInfo={beerInfo} />
       </Section>
-      <Section id={imagePop.title.fr}>
+      <Section id={"mission"}>
         <ImagePop locale={locale} imagePop={imagePop} />
       </Section>
       <Section id="valeurs">
