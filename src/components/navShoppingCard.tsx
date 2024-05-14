@@ -31,7 +31,7 @@ export default function ShoppingCard({ children, className, scrolled, locale, ..
         <TooltipTrigger asChild>
           <SheetTrigger asChild>
             <Button className="bg-transparent border-transparent p-3" variant="outline">
-              <ShoppingBasketIcon className={`size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+              <ShoppingBasketIcon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
             </Button>
           </SheetTrigger>
         </TooltipTrigger>

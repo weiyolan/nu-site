@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Typography from "./Typography";
 import { Button } from "./ui/button";
-import Link from "next/link";
+// import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { altImageType, localeStringType } from "@/sanity/lib/interface";
-import { AspectRatio } from "./ui/aspect-ratio";
+// import { AspectRatio } from "./ui/aspect-ratio";
 import ConditionalLink from "./ConditionalLink";
 
 type presentationType = {

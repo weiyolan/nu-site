@@ -1,3 +1,4 @@
+import PortableText from "@/components/PortableText";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -7,6 +8,7 @@ import Image from "next/image";
 export default async function Page({ params: { locale } }: { params: { locale: localeType } }) {
   const helpInfo = await getHelpInfo();
   const faq = await getFAQ();
+  // console.log(faq.items);
   return (
     <>
       {/* <Hero locale={locale} hero={hero} /> */}
@@ -30,15 +32,21 @@ export default async function Page({ params: { locale } }: { params: { locale: l
       </div>
 
       <Section>
+        <Typography variant="h1" className="text-center relative md:w-[25ch] mx-auto">
+          FAQ
+        </Typography>
         <Accordion type="multiple" className=" w-full ">
+          {/* {console.log(faq.items)} */}
           {faq.items.map((item, i) => (
-            <AccordionItem key={i + item.title?.[locale]} value={`item-${i}`} className="border-nu-black/30">
+            <AccordionItem key={i + item.title?.fr} value={`item-${i}`} className="border-nu-black/30">
               <AccordionTrigger>
                 <Typography variant={"h2"} className="text-2xl">
                   {item.title?.[locale]}
                 </Typography>
               </AccordionTrigger>
-              <AccordionContent className="text-base">{item.description?.[locale]}</AccordionContent>
+              <AccordionContent className="text-base">
+                <PortableText value={item.description?.[locale]} locale={locale} />
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

@@ -55,7 +55,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
   const eco = await getEco();
   const reviews = await getReviews("shopReviews");
   const shopSections = await getShopSections();
-  const hero = await getHero();
+  const hero = await getHero("shopHero");
   return (
     <>
       <Hero locale={locale} hero={hero} />

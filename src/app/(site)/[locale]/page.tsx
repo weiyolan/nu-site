@@ -11,7 +11,7 @@ import Products from "@/components/Products";
 import HomeBlogs from "@/components/HomeBlogs";
 import HomeEssayerNu from "@/components/HomeEssayerNu";
 import { client } from "@/sanity/lib/client";
-import { altImageType, buttonType, colorSanityType, getHero, localeBlockContentType, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, getHero, getProductPresentation, localeBlockContentType, localeStringType } from "@/sanity/lib/interface";
 
 async function getReviews(id: string): Promise<{
   citationsOn: boolean;
@@ -52,84 +52,6 @@ async function getFavorites(): Promise<{
   const favos = await client.fetch(`*[_type=='homeFavorites'][0]`);
   // console.log(reviews)
   return { ...favos, category: "favorites" };
-}
-
-async function getProductPresentation(): Promise<{
-  title: localeStringType;
-  description: localeStringType;
-  topLeft: {
-    title: localeStringType;
-    description: localeStringType;
-    button: localeStringType;
-    slug: { current: string };
-    altImage: altImageType;
-  };
-  topRight: {
-    title: localeStringType;
-    description: localeStringType;
-    button: localeStringType;
-    slug: { current: string };
-    altImage: altImageType;
-  };
-  bottomLeft: {
-    title: localeStringType;
-    description: localeStringType;
-    button: localeStringType;
-    slug: { current: string };
-    altImage: altImageType;
-  };
-  bottomRight: {
-    title: localeStringType;
-    description: localeStringType;
-    button: localeStringType;
-    slug: { current: string };
-    altImage: altImageType;
-  };
-}> {
-  const productPresentation = await client.fetch(
-    `*[_type=='homeProductPresentation'][0]{
-      description,
-      title,
-      topLeft{
-        button,
-        title,
-        description,
-        'slug':url->slug,
-        altImage{
-          alt, 'image':image.asset->{url, metadata{lqip}}
-        }
-      },
-      topRight{
-        button,
-        title,
-        description,
-        'slug':url->slug,
-        altImage{
-          alt,'image':image.asset->{url, metadata{lqip}}
-        }
-      },
-      bottomLeft{
-        button,
-        title,
-        description,
-        'slug':url->slug,
-        altImage{
-          alt,'image':image.asset->{url, metadata{lqip}}
-        }
-      },
-      bottomRight{
-        button,
-        title,
-        description,
-        'slug':url->slug,
-        altImage{
-          alt,'image':image.asset->{url, metadata{lqip}}
-        }
-      }
-    }
-    `
-  );
-  return productPresentation;
 }
 
 async function getCTA(): Promise<{
@@ -182,7 +104,8 @@ export default async function Page({ params: { locale } }: { params: { locale: "
   const imagePop1 = await getImagePop1();
   const imagePop2 = await getImagePop2();
   const { enabled: favoEnabled, ...favos } = await getFavorites();
-  const hero = await getHero();
+  const hero = await getHero("homeHero");
+  // console.log(productPresentation);
   return (
     <>
       <Hero locale={locale} hero={hero} increasedContrast />

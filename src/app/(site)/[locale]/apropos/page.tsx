@@ -20,7 +20,7 @@ export default async function Page({ params: { locale } }: { params: { locale: l
   const ingredientInfo = await getIngredientInfo();
   const ingredients = await getIngredients();
   const brefInfo = await getBrefInfo();
-  const hero = await getHero();
+  const hero = await getHero("aboutHero");
   return (
     <>
       <Hero locale={locale} hero={hero} />

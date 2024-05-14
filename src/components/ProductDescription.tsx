@@ -32,8 +32,8 @@ export default function ProductDescription({
   ...props
 }: ProductDescriptionProps) {
   return (
-    <div className={cn("w-full flex gap-8", className)} {...props}>
-      <div className="flex-1 w-full relative flex items-center justify-center ">
+    <div className={cn("w-full flex-col lg:flex-row gap-8", className)} {...props}>
+      <div className="flex-1 w-full h-56 relative flex items-center justify-center ">
         <Image src={image.url} alt={alt?.[locale]} fill priority className="object-contain drop-shadow-lg" />
         {/* placeholder="blur" blurDataURL={image.metadata.lqip} */}
       </div>
@@ -62,10 +62,10 @@ export default function ProductDescription({
           <Typography variant={"h2"}>€{price.toFixed(2)}</Typography>
         </div>
 
-        <div className="flex ">
+        <div className="flex flex-wrap md:flex-nowrap">
           {details.map((section, i) => (
             <Button variant="link" key={i} asChild className=" relative items-center -mt-2 -ml-2 group/button text-base">
-              <Link className="" href={`#${slugify(section.title?.[locale], { lower: true })}`}>
+              <Link className="" href={`#${slugify(section.title?.[locale], { lower: true })}`} scroll={true}>
                 {section.title?.[locale]}
                 <ChevronRight className="size-4 group-hover/button:translate-x-1 transition-transform duration-200 ease-out  mt-1" />
               </Link>

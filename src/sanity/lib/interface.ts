@@ -140,6 +140,87 @@ export async function getFooterLists(): Promise<{
   );
 }
 
+// ================================================== Home Page ==================================================
+
+export async function getProductPresentation(): Promise<{
+  title: localeStringType;
+  description: localeStringType;
+  topLeft: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+  topRight: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+  bottomLeft: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+  bottomRight: {
+    title: localeStringType;
+    description: localeStringType;
+    button: localeStringType;
+    slug: { current: string };
+    altImage: altImageType;
+  };
+}> {
+  const productPresentation = await client.fetch(
+    `*[_type=='homeProductPresentation'][0]{
+      description,
+      title,
+      topLeft{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt, 'image':image.asset->{url, metadata{lqip}}
+        }
+      },
+      topRight{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt,'image':image.asset->{url, metadata{lqip}}
+        }
+      },
+      bottomLeft{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt,'image':image.asset->{url, metadata{lqip}}
+        }
+      },
+      bottomRight{
+        button,
+        title,
+        description,
+        'slug':url->slug,
+        altImage{
+          alt,'image':image.asset->{url, metadata{lqip}}
+        }
+      }
+    }
+    `
+  );
+
+  return productPresentation;
+}
+
 // ================================================== About Page ==================================================
 
 export async function getImagePop(): Promise<{
@@ -247,14 +328,14 @@ export async function getBrefInfo(): Promise<{
   return brefInfo;
 }
 
-export async function getHero(): Promise<{
+export async function getHero(id: "aboutHero" | "shopHero" | "homeHero"): Promise<{
   title: localeStringType;
   button: buttonType;
   altImage: altImageType;
   color: colorSanityType;
 }> {
   // Fetch shopSection with ID homeBlogs or something
-  const hero = await client.fetch(`*[_type=='hero'][_id=='aboutHero'][0]{...,altImage{
+  const hero = await client.fetch(`*[_type=='hero'][_id=='${id}'][0]{...,altImage{
           alt, 'image':image.asset->{url, metadata{lqip}}
         }}`);
   // console.log(reviews)
@@ -275,7 +356,7 @@ export async function getHelpInfo(): Promise<{
 export async function getFAQ(): Promise<{
   items: {
     title: localeStringType;
-    description: localeStringType;
+    description: localeBlockContentType;
   }[];
 }> {
   const faq = await client.fetch(`*[_type=='accordion'][0]{items}`);

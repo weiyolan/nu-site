@@ -75,7 +75,7 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
       <Section className="">
         <BreadcrumbWithCustomSeparator locale={locale} category={category} title={title?.[locale]} />
       </Section>
-      <Section id="description">
+      <Section id="description" className="mt-6">
         <ProductDescription
           locale={locale}
           altImage={images[0]}

@@ -34,7 +34,7 @@ export default defineType({
       title: "Description",
       name: "description",
       type: "localeText",
-      validation: (Rule) => Rule.max(220).warning("Restez au point pour garder tes visiteurs curieux."),
+      // validation: (Rule) => Rule.max(220).warning("Restez au point pour garder tes visiteurs curieux."),
     }),
 
     defineField({

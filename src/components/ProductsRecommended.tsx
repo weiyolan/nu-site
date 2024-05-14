@@ -53,6 +53,51 @@ export default async function ProductsRecommended({
   const products = await getRecommendedProducts(currentProduct);
 
   return (
+    // <>
+    //   {!integrated && (
+    //     <>
+    //       <Typography variant="h2" className={cn("text-center", className)}>
+    //         {title?.[locale]}
+    //       </Typography>
+    //       <Typography variant="p" affects="subTitle" className={cn("text-center max-w-prose mx-auto text-balance mb-8", className)}>
+    //         {description?.[locale]}
+    //       </Typography>
+    //     </>
+    //   )}
+    //   <div className={cn("grid grid-cols-4 grid-flow-row gap-4 sm:gap-6", className)} {...props}>
+    //     {integrated && (
+    //       <Product
+    //         locale={locale}
+    //         product={{
+    //           type: "shopTitle",
+    //           color: getColor(color),
+    //           // slug: "product-slug",
+    //           // rating: 1,
+    //           // price: 15,
+    //           title: title?.[locale],
+    //           description: description?.[locale],
+    //         }}
+    //       />
+    //     )}
+    //     {products.map((product, i) => (
+    //       // <div key={index} className="bg-nu-purple h-96"></div>
+    //       <Product
+    //         locale={locale}
+    //         key={i}
+    //         product={{
+    //           type: "product",
+    //           slug: product.slug,
+    //           rating: product.rating,
+    //           price: product.price,
+    //           title: product.title?.[locale],
+    //           description: product.description?.[locale],
+    //           images: product.images,
+    //           // button: button,
+    //         }}
+    //       />
+    //     ))}
+    //   </div>
+    // </>
     <>
       {!integrated && (
         <>
@@ -64,7 +109,7 @@ export default async function ProductsRecommended({
           </Typography>
         </>
       )}
-      <div className={cn("grid grid-cols-4 grid-flow-row gap-4 sm:gap-6", className)} {...props}>
+      <div className={cn("grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-flow-row gap-4  scroll-mt-20", className)} {...props}>
         {integrated && (
           <Product
             locale={locale}
@@ -76,6 +121,7 @@ export default async function ProductsRecommended({
               // price: 15,
               title: title?.[locale],
               description: description?.[locale],
+              button: undefined,
             }}
           />
         )}

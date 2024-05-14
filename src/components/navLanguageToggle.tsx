@@ -1,11 +1,11 @@
 "use client";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
 import { localeType } from "@/sanity/lib/interface";
 import { LanguagesIcon } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { SelectGroup, SelectLabel } from "@radix-ui/react-select";
+// import { SelectGroup, SelectLabel } from "@radix-ui/react-select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 export interface LanguageToggleProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
@@ -14,8 +14,8 @@ export interface LanguageToggleProps extends React.HTMLAttributes<HTMLDivElement
 import * as React from "react";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import Typography from "./Typography";
+// import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+// import Typography from "./Typography";
 import { supportedLanguages } from "@/i18n/supportedLanguages";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
@@ -60,7 +60,7 @@ export default function LanguageToggle({ children, className, locale, scrolled, 
         <SelectTrigger asChild>
           <TooltipTrigger asChild>
             <Button className="bg-transparent border-transparent p-3" variant="outline">
-              <LanguagesIcon className={`size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+              <LanguagesIcon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
             </Button>
           </TooltipTrigger>
         </SelectTrigger>
