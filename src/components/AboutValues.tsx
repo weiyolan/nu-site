@@ -66,13 +66,13 @@ export function Value({ value: { title, description, altImage, prefix }, locale,
         {description?.[locale]}
       </Typography>
       <Image
-        src={altImage.image.url}
+        src={altImage.image.url + ""}
         placeholder="blur"
         blurDataURL={altImage.image.metadata.lqip}
         alt={altImage.alt?.[locale]}
         width="200"
         height="200"
-        className="w-full aspect-square"></Image>
+        className="w-full aspect-square object-cover"></Image>
     </div>
   );
 }

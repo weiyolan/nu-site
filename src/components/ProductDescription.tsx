@@ -32,8 +32,8 @@ export default function ProductDescription({
   ...props
 }: ProductDescriptionProps) {
   return (
-    <div className={cn("w-full flex-col lg:flex-row gap-8", className)} {...props}>
-      <div className="flex-1 w-full h-56 relative flex items-center justify-center ">
+    <div className={cn("w-full flex flex-col md:flex-row gap-8", className)} {...props}>
+      <div className="flex-1 w-full h-56 md:h-auto relative flex items-center justify-center ">
         <Image src={image.url} alt={alt?.[locale]} fill priority className="object-contain drop-shadow-lg" />
         {/* placeholder="blur" blurDataURL={image.metadata.lqip} */}
       </div>
@@ -41,7 +41,7 @@ export default function ProductDescription({
         <Typography variant={"h1"} className="mb-0">
           {title}
         </Typography>
-        <Typography variant={"h2"} className="mt-0 mb-1">
+        <Typography variant={"h2"} className="mt-0 mb-1 text-2xl">
           {subTitle}
         </Typography>
         <Stars rating={rating} options={{ dark: true }} className="my-2" />
