@@ -22,7 +22,7 @@ import Image from "next/image";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import Typography from "./Typography";
-import ShoppingCart from "./ShoppingCart/ShoppingCart";
+import ShoppingCart from "./shoppingCart/ShoppingCart";
 import LanguageToggle from "./navLanguageToggle";
 import UserButton from "./navUserButton";
 
