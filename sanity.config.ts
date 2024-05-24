@@ -60,8 +60,8 @@ const config = defineConfig({
                 sites: [
                   {
                     title: "nu-cosmétique.com",
-                    apiId: "cedb80f0-961a-4e99-b04a-fbe699e42959",
-                    buildHookId: "66159c34abed712b09aaf25e",
+                    apiId: "a3df9879-197e-482f-a5ef-395591656627",
+                    buildHookId: "66511f0734c0689e1e779caf",
                     name: "nu-site",
                   },
                 ],
@@ -83,8 +83,8 @@ const config = defineConfig({
                 sites: [
                   {
                     title: "nu-cosmétique.com",
-                    apiId: "cedb80f0-961a-4e99-b04a-fbe699e42959",
-                    buildHookId: "66159c34abed712b09aaf25e",
+                    apiId: "a3df9879-197e-482f-a5ef-395591656627",
+                    buildHookId: "66511f0734c0689e1e779caf",
                     name: "nu-site",
                   },
                 ],
