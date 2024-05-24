@@ -44,6 +44,14 @@ export const pathnames = {
     en: "/account/settings",
     fr: "/compte/parametres",
   },
+  "/account/pages": {
+    en: "/account/pages",
+    fr: "/compte/pages",
+  },
+  "/account/pages/[pageId]": {
+    en: "/account/pages/[pageId]",
+    fr: "/compte/pages/[pageId]",
+  },
   "/sign-in": "/sign-in",
   "/sign-up": "/sign-up",
 

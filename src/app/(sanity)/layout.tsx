@@ -24,19 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={``}>
-        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange> */}
-        {/* <TrpcProvider cookies={cookies().toString()}> */}
         <div className="w-full min-h-screen relative">
-          {/* <NuLogoBackground /> */}
-          {/* <Navbar /> */}
           {children}
         </div>
-        {/* </TrpcProvider> */}
-        {/* <Toaster /> */}
-        {/* </ThemeProvider> */}
-      </body>
-    </html>
+    // <html lang="fr">
+    //   <body className={``}>
+    //   </body>
+    // </html>
   );
 }

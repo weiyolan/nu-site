@@ -1,11 +1,11 @@
 "use client";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
 import { localeType } from "@/sanity/lib/interface";
-import { CircleUser, CircleUserIcon, CircleUserRoundIcon, LanguagesIcon, User2Icon, UserIcon } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { SelectGroup, SelectLabel } from "@radix-ui/react-select";
+import { User2Icon } from "lucide-react";
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+// import { SelectGroup, SelectLabel } from "@radix-ui/react-select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 export interface UserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
@@ -14,8 +14,9 @@ export interface UserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
 import * as React from "react";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import Typography from "./Typography";
+// import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+// import Typography from "./Typography";
+import Link from "next/link";
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -23,12 +24,14 @@ export default function UserButton({ children, className, locale, scrolled, ...p
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="bg-transparent border-transparent p-3" variant="outline">
-          <User2Icon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+        <Button asChild className="bg-transparent border-transparent p-3" variant="outline">
+          <Link href="/account">
+            <User2Icon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+          </Link>
         </Button>
       </TooltipTrigger>
       <TooltipContent className="mr-1.5">
-        <p>{locale === "en" ? "Change language" : "Changer votre langue"}</p>
+        <p>{locale === "en" ? "Go to account" : "Voir mon compte"}</p>
       </TooltipContent>
     </Tooltip>
 

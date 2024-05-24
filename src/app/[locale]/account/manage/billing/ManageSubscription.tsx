@@ -14,14 +14,7 @@ interface ManageUserSubscriptionButtonProps {
   stripePriceId: string;
 }
 
-export function ManageUserSubscriptionButton({
-  userId,
-  email,
-  isCurrentPlan,
-  isSubscribed,
-  stripeCustomerId,
-  stripePriceId,
-}: ManageUserSubscriptionButtonProps) {
+export function ManageUserSubscriptionButton({ userId, email, isCurrentPlan, isSubscribed, stripeCustomerId, stripePriceId }: ManageUserSubscriptionButtonProps) {
   const [isPending, startTransition] = React.useTransition();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,7 +36,7 @@ export function ManageUserSubscriptionButton({
         });
         const session: { url: string } = await res.json();
         if (session) {
-          window.location.href = session.url ?? "/dashboard/billing";
+          window.location.href = session.url ?? "/account/manage/billing";
         }
       } catch (err) {
         console.error((err as Error).message);
@@ -54,11 +47,7 @@ export function ManageUserSubscriptionButton({
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <Button
-        disabled={isPending}
-        className="w-full"
-        variant={isCurrentPlan ? "default" : "outline"}
-      >
+      <Button disabled={isPending} className="w-full" variant={isCurrentPlan ? "default" : "outline"}>
         {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {isCurrentPlan ? "Manage Subscription" : "Subscribe"}
       </Button>

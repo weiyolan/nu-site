@@ -1,12 +1,19 @@
 {
   "version": "5",
-  "dialect": "sqlite",
+  "dialect": "pg",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1714234425041,
-      "tag": "0000_groovy_sister_grimm",
+      "when": 1715001236123,
+      "tag": "0000_hesitant_wild_pack",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1715003515845,
+      "tag": "0001_conscious_wither",
       "breakpoints": true
     }
   ]

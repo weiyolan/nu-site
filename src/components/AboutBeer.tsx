@@ -25,7 +25,7 @@ export default function AboutBeer({ locale, beerInfo: { title, description, colo
   return (
     <div className={cn("w-full h-[120vh] md:h-[550px] xl:h-[720px] 2xl:w-[120%] 2xl:-ml-[10%] relative md:mt-48 xl:mt-56", className)} {...props}>
       {/* <AspectRatio ratio={mdScreen ? 16 / 9 : undefined} className="h-full relative"> */}
-      <div className="h-full reltaive">
+      <div className="h-full relative">
         <Image placeholder="blur" sizes="100vw" blurDataURL={altImage.image.metadata.lqip} src={altImage.image.url} className="object-cover" fill alt={altImage.alt?.[locale]} />
         {/* </AspectRatio> */}
       </div>

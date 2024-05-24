@@ -22,7 +22,7 @@ import Image from "next/image";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Button } from "./ui/button";
 import Typography from "./Typography";
-import ShoppingCard from "./navShoppingCard";
+import ShoppingCart from "./ShoppingCart/ShoppingCart";
 import LanguageToggle from "./navLanguageToggle";
 import UserButton from "./navUserButton";
 
@@ -291,7 +291,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
           {/* top-[20.5px] */}
           <UserButton scrolled={scrolled} locale={locale} />
           <LanguageToggle scrolled={scrolled} locale={locale} />
-          <ShoppingCard scrolled={scrolled} locale={locale} />
+          <ShoppingCart scrolled={scrolled} locale={locale} />
         </div>
       </div>
     </nav>

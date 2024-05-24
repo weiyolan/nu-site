@@ -8,9 +8,20 @@ type AdditionalLinks = {
 
 export const defaultLinks: SidebarLink[] = [
   { href: "/account", title: "Home", icon: HomeIcon },
-  { href: "/account/details", title: "Details", icon: Cog },
+  { href: "/account/manage", title: "Manage", icon: Cog },
   { href: "/account/settings", title: "Settings", icon: Cog },
   { href: "/account/resend", title: "Resend", icon: PlaneIcon },
 ];
 
-export const additionalLinks: AdditionalLinks[] = [];
+export const additionalLinks: AdditionalLinks[] = [
+  {
+    title: "Entities",
+    links: [
+      {
+        href: "/account/pages",
+        title: "Pages",
+        icon: Globe,
+      },
+    ],
+  },
+];

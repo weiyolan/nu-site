@@ -12,21 +12,14 @@ export async function POST(request: Request) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      process.env.STRIPE_WEBHOOK_SECRET || ""
-    );
+    event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET || "");
     console.log(event.type);
   } catch (err) {
-    return new Response(
-      `Webhook Error: ${err instanceof Error ? err.message : "Unknown Error"}`,
-      { status: 400 }
-    );
+    return new Response(`Webhook Error: ${err instanceof Error ? err.message : "Unknown Error"}`, { status: 400 });
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
-  // console.log("this is the session metadata -> ", session);
+  console.log("this is the session metadata -> ", session);
 
   if (!session?.metadata?.userId && session.customer == null) {
     console.error("session customer", session.customer);
@@ -37,9 +30,7 @@ export async function POST(request: Request) {
   }
 
   if (event.type === "checkout.session.completed") {
-    const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string
-    );
+    const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
     const updatedData = {
       stripeSubscriptionId: subscription.id,
       stripeCustomerId: subscription.customer as string,
@@ -48,50 +39,29 @@ export async function POST(request: Request) {
     };
 
     if (session?.metadata?.userId != null) {
-      const [sub] = await db
-        .select()
-        .from(subscriptions)
-        .where(eq(subscriptions.userId, session.metadata.userId));
+      const [sub] = await db.select().from(subscriptions).where(eq(subscriptions.userId, session.metadata.userId));
       if (sub != undefined) {
-        await db
-          .update(subscriptions)
-          .set(updatedData)
-          .where(eq(subscriptions.userId, sub.userId!));
+        await db.update(subscriptions).set(updatedData).where(eq(subscriptions.userId, sub.userId!));
       } else {
-        await db
-          .insert(subscriptions)
-          .values({ ...updatedData, userId: session.metadata.userId });
+        await db.insert(subscriptions).values({ ...updatedData, userId: session.metadata.userId });
       }
-
-    } else if (
-      typeof session.customer === "string" &&
-      session.customer != null
-    ) {
-      await db
-        .update(subscriptions)
-        .set(updatedData)
-        .where(eq(subscriptions.stripeCustomerId, session.customer));
-
+    } else if (typeof session.customer === "string" && session.customer != null) {
+      await db.update(subscriptions).set(updatedData).where(eq(subscriptions.stripeCustomerId, session.customer));
     }
   }
 
   if (event.type === "invoice.payment_succeeded") {
     // Retrieve the subscription details from Stripe.
-    const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string
-    );
+    const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
 
     // Update the price id and set the new period end.
     await db
       .update(subscriptions)
       .set({
         stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000
-        ),
+        stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
       })
       .where(eq(subscriptions.stripeSubscriptionId, subscription.id));
-
   }
 
   return new Response(null, { status: 200 });

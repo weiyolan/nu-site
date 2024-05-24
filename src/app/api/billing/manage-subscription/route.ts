@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const body: ManageStripeSubscriptionActionProps = await req.json();
   const { isSubscribed, stripeCustomerId, userId, stripePriceId, email } = body;
   console.log(body);
-  const billingUrl = absoluteUrl("/account/billing");
+  const billingUrl = absoluteUrl("/account/manage/billing");
 
   if (isSubscribed && stripeCustomerId) {
     const stripeSession = await stripe.billingPortal.sessions.create({
@@ -28,6 +28,7 @@ export async function POST(req: Request) {
   }
 
   const stripeSession = await stripe.checkout.sessions.create({
+    ui_mode: "embedded",
     success_url: billingUrl.concat("?success=true"),
     cancel_url: billingUrl,
     payment_method_types: ["card"],

@@ -85,6 +85,7 @@ export default async function Products({ locale, type, shopSection: { color, cat
               title: product.title?.[locale],
               description: product.description?.[locale],
               images: product.images,
+              subTitle: product.subTitle?.[locale],
               // button: button,
             }}
           />

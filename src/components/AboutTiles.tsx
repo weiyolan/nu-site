@@ -35,6 +35,7 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             alt={altImages[0].alt?.[locale]}
             src={altImages[0].image.url}
             fill
+            sizes="(max-width: 1024px) 90vw, (max-width: 1536px) 500px, 640px "
             className="object-cover object-center"
           />
         </div>
@@ -58,6 +59,7 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             alt={altImages[1].alt?.[locale]}
             src={altImages[1].image.url}
             fill
+            sizes="(max-width: 1024px) 45vw, (max-width: 1536px) 250px, 320px "
             className="object-cover object-center"
           />
         </div>
@@ -68,6 +70,7 @@ export default function AboutTiles({ locale, squareInfo: { title, description, a
             alt={altImages[2].alt?.[locale]}
             src={altImages[2].image.url}
             fill
+            sizes="(max-width: 1024px) 45vw, (max-width: 1536px) 250px, 320px "
             className="object-cover object-center"
           />
         </div>

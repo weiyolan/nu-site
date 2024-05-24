@@ -4,9 +4,8 @@ import { env } from "@/lib/env.mjs";
 export default {
   schema: "./src/lib/db/schema",
   out: "./src/lib/db/migrations",
-  driver: "turso",
+  driver: "pg",
   dbCredentials: {
-    url: env.DATABASE_URL,
-    authToken: env.DATABASE_AUTH_TOKEN,
+    connectionString: env.DATABASE_URL,
   },
 } satisfies Config;

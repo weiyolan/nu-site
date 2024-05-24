@@ -1,30 +1,42 @@
-import { sqliteTable, text, blob } from "drizzle-orm/sqlite-core";
+import { pgTable, bigint, varchar } from "drizzle-orm/pg-core";
 
-export const users = sqliteTable("user", {
-	id: text("id").primaryKey(),
+export const users = pgTable("auth_user", {
+	id: varchar("id", {
+		length: 15 // change this when using custom user ids
+	}).primaryKey(),
 	// other user attributes
-	name: text("name"),
-	email: text("email"),
-	username: text("username"),
+	name: varchar("name", { length: 255 }),
+	email: varchar("email", { length: 255 }),
+	username: varchar("username", { length: 255 }),
 });
 
-export const sessions = sqliteTable("user_session", {
-	id: text("id").primaryKey(),
-	userId: text("user_id")
+export const sessions = pgTable("user_session", {
+	id: varchar("id", {
+		length: 128
+	}).primaryKey(),
+	userId: varchar("user_id", {
+		length: 15
+	})
 		.notNull()
 		.references(() => users.id),
-	activeExpires: blob("active_expires", {
-		mode: "bigint"
+	activeExpires: bigint("active_expires", {
+		mode: "number"
 	}).notNull(),
-	idleExpires: blob("idle_expires", {
-		mode: "bigint"
+	idleExpires: bigint("idle_expires", {
+		mode: "number"
 	}).notNull()
 });
 
-export const keys = sqliteTable("user_key", {
-	id: text("id").primaryKey(),
-	userId: text("user_id")
+export const keys = pgTable("user_key", {
+	id: varchar("id", {
+		length: 255
+	}).primaryKey(),
+	userId: varchar("user_id", {
+		length: 15
+	})
 		.notNull()
 		.references(() => users.id),
-	hashedPassword: text("hashed_password")
+	hashedPassword: varchar("hashed_password", {
+		length: 255
+	})
 });

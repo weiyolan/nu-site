@@ -3,11 +3,14 @@ import Stars from "./Stars";
 import Typography from "./Typography";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, PlusIcon, ShoppingCart } from "lucide-react";
 import { AspectRatio } from "./ui/aspect-ratio";
 import Image from "next/image";
 import { altImageType, buttonType, localeType } from "@/sanity/lib/interface";
 import ConditionalLink from "./ConditionalLink";
+// import { useShoppingCart } from "use-shopping-cart";
+import AddToCartButton from "./ProductAddToCart";
+// import { Product } from "use-shopping-cart/core";
 
 type productType =
   | {
@@ -16,6 +19,7 @@ type productType =
       button: buttonType;
       title: string;
       description: string;
+      subTitle: never;
       price?: never;
       rating?: never;
       slug?: never;
@@ -30,6 +34,7 @@ type productType =
       price?: never;
       rating?: never;
       slug?: never;
+      subTitle: never;
       images?: never;
     }
   | {
@@ -39,6 +44,7 @@ type productType =
       title: string;
       description: string;
       price: number;
+      subTitle: string;
       rating: number;
       slug: { current: string };
       images: altImageType[];
@@ -49,6 +55,7 @@ type productType =
       button?: never;
       title: string;
       description: string;
+      subTitle: never;
       price?: never;
       rating?: never;
       slug: { current: string };
@@ -60,8 +67,9 @@ export interface ProductProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
 }
 
-export default function Product({ product: { slug, title, type, description, price, rating, button, color, images }, locale, className, ...props }: ProductProps) {
+export default function Product({ product: { slug, title, type, description, price, rating, button, color, images, subTitle }, locale, className, ...props }: ProductProps) {
   // let Cmp: React.ElementType = type === "title" || type === "shopTitle" ? "div" : "link";
+
   return (
     <div
       // href={type === "title" || type === "shopTitle" ? undefined : `/shop/${slug.current}`}
@@ -98,10 +106,10 @@ export default function Product({ product: { slug, title, type, description, pri
       {(type === "title" || type === "shopTitle") && <div className={`absolute z-0 top-0 left-0 right-0 bottom-0 ${color}`} />}
 
       {type === "product" && <Stars className="mr-auto mt-1" rating={rating} options={{ dark: true, full: true }} />}
-      <ConditionalLink title={locale === "en" ? "Go to product" : "Voir le produit"} href={slug && `/shop/${slug.current}`} className="gap-2 sm:gap-3 lg:gap-4 flex flex-col">
+      <ConditionalLink title={locale === "en" ? "Go to product" : "Voir le produit"} href={slug && `/shop/${slug?.current}`} className=" gap-2 sm:gap-3 lg:gap-4 flex flex-col">
         <Typography
           variant={type === "title" || type === "shopTitle" ? "h2" : "h3"}
-          className={`relative text-balance ${type === "title" || type === "shopTitle" ? "" : "mr-auto"}`}>
+          className={`relative text-balance  group-hover:border-b-nu-black transition-colors group-focus-within:border-b-nu-black border-b-2 border-b-transparent duration-200 ${type === "title" || type === "shopTitle" ? "" : "mr-auto"} `}>
           {title}
         </Typography>
         <Typography
@@ -118,12 +126,38 @@ export default function Product({ product: { slug, title, type, description, pri
             {"€ "}
             {price.toFixed(2)}
           </Typography>
-          <Button asChild className=" w-full  group-hover:scale-105 group-hover:shadow-xl transition-all duration-150 ">
-            {/* group-hover:opacity-100  transition-all duration-300 opacity-20 */}
-            <Link className="" href={`/shop/${slug.current}`}>
-              {locale === "fr" ? "Voir Produit" : "See Product"}
-            </Link>
-          </Button>{" "}
+          <div className="w-full flex gap-4">
+            <Button asChild variant="secondary" className="group/button1 flex-1 w-0 min-w-fit    ">
+              {/* group-hover:opacity-100  transition-all duration-300 opacity-20 */}
+              <Link className="" href={`/shop/${slug.current}`}>
+                {/* <span className="group-hover/button1:w-fit w-0 transition-all  inline-block duration-300 overflow-hidden">{locale === "fr" ? "Voir Plus" : "See More"}</span>{" "} */}
+                {locale === "fr" ? "Voir Plus" : "See More"}
+                {/* <PlusIcon /> */}
+              </Link>
+            </Button>
+            {/* {console.log(`https://nu-soins.com/shop/${slug.current}`)} */}
+            <AddToCartButton
+              locale={locale}
+              product={{
+                currency: "EUR",
+                id: slug.current,
+                name: title,
+                description: subTitle,
+                price: price * 100,
+                image: images[0].image.url,
+                product_data: {
+                  metadata: {
+                    // type: "soap",
+                  },
+                },
+                price_data: {
+                  // recurring: {
+                  //   interval: "week",
+                  // },
+                },
+              }}
+            />
+          </div>
         </div>
       )}
       {type === "title" && (
@@ -136,7 +170,7 @@ export default function Product({ product: { slug, title, type, description, pri
       {type === "article" && (
         <Button variant="link" asChild size="sm" className=" relative items-center -mt-2 -ml-2 group/button text-base ">
           <Link className="" href={`/shop#${slug}`} title="">
-            {locale === "fr" ? "Lire article" : "Read article"}
+            {locale === "fr" ? "Lire plus" : "Read more"}
             <ChevronRight className="size-4 group-hover/button:translate-x-1 transition-transform   mt-1" />
           </Link>
         </Button>

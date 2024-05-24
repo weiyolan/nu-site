@@ -1,5 +1,5 @@
 import { defineType, defineField } from "sanity";
-import { uiLanguage } from "../../i18n/supportedLanguages.ts";
+import { uiLanguage } from "../../i18n/supportedLanguages";
 import { ChevronDown } from "lucide-react";
 
 export default defineType({

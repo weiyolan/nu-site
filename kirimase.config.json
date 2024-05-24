@@ -1,20 +1,13 @@
 {
   "hasSrc": true,
-  "packages": [
-    "shadcn-ui",
-    "drizzle",
-    "lucia",
-    "trpc",
-    "resend",
-    "stripe"
-  ],
+  "packages": ["shadcn-ui", "drizzle", "lucia", "trpc", "resend", "stripe"],
   "preferredPackageManager": "npm",
   "t3": false,
   "alias": "@",
   "rootPath": "src/",
   "componentLib": "shadcn-ui",
-  "driver": "mysql",
-  "provider": "planetscale",
+  "driver": "pg",
+  "provider": "supabase",
   "orm": "drizzle",
   "auth": "lucia"
 }

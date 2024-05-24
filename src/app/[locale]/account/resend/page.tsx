@@ -3,6 +3,7 @@ import Link from "next/link"
 import { emailSchema } from "@/lib/email/utils";
 import { useRef, useState } from "react";
 import { z } from "zod";
+import { toast } from "sonner";
 
 type FormInput = z.infer<typeof emailSchema>;
 type Errors = { [K in keyof FormInput]: string[] };
@@ -28,62 +29,53 @@ export default function Home() {
           "Content-Type": "application/json",
         },
       });
-      const { id } = await req.json();
-      if (id) alert("Successfully sent!");
+      // const test = await req.json();
+      const data = await req.json();
+      console.log("data:", data.id);
+
+      if (data.id) {
+        toast.success("Successfully sent email.");
+      }
     } catch (err) {
       if (err instanceof z.ZodError) {
         setErrors(err.flatten().fieldErrors as Errors);
+        toast.error("There was a problem sending the email.");
       }
     } finally {
+      // console.log(id);
       setSending(false);
+      // toast.success("was sent email?");
     }
   };
   return (
     <main className="p-4 md:p-0">
-     <div>
-      <h1 className="text-2xl font-bold my-4">Send Email with Resend</h1>
       <div>
-        <ol className="list-decimal list-inside space-y-1">
-          <li>
-            <Link
-              className="text-primary hover:text-muted-foreground underline"
-              href="https://resend.com/signup"
-            >
-              Sign up
-            </Link>{" "}
-            or{" "}
-            <Link
-              className="text-primary hover:text-muted-foreground underline"
-              href="https://resend.com/login"
-            >
-              Login
-            </Link>{" "}
-            to your Resend account
-          </li>
-          <li>Add and verify your domain</li>
-          <li>
-            Create an API Key and add to{" "}
-            <span className="ml-1 font-mono font-thin text-neutral-600 bg-neutral-100 p-0.5">
-              .env
-            </span>
-          </li>
-          <li>
-            Update &quot;from:&quot; in{" "}
-            <span className="ml-1 font-mono font-thin text-neutral-600 bg-neutral-100 p-0.5">
-              app/api/email/route.ts
-            </span>
-          </li>
-          <li>Send email 🎉</li>
-        </ol>
+        <h1 className="text-2xl font-bold my-4">Send Email with Resend</h1>
+        <div>
+          <ol className="list-decimal list-inside space-y-1">
+            <li>
+              <Link className="text-primary hover:text-muted-foreground underline" href="https://resend.com/signup">
+                Sign up
+              </Link>{" "}
+              or{" "}
+              <Link className="text-primary hover:text-muted-foreground underline" href="https://resend.com/login">
+                Login
+              </Link>{" "}
+              to your Resend account
+            </li>
+            <li>Add and verify your domain</li>
+            <li>
+              Create an API Key and add to <span className="ml-1 font-mono font-thin text-neutral-600 bg-neutral-100 p-0.5">.env</span>
+            </li>
+            <li>
+              Update &quot;from:&quot; in <span className="ml-1 font-mono font-thin text-neutral-600 bg-neutral-100 p-0.5">app/api/email/route.ts</span>
+            </li>
+            <li>Send email 🎉</li>
+          </ol>
+        </div>
       </div>
-     </div>
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="space-y-3 pt-4 border-t mt-4"
-      >
-        {errors && (
-          <p className="bg-neutral-50 p-3">{JSON.stringify(errors, null, 2)}</p>
-        )}
+      <form onSubmit={(e) => e.preventDefault()} className="space-y-3 pt-4 border-t mt-4">
+        {errors && <p className="bg-neutral-50 p-3">{JSON.stringify(errors, null, 2)}</p>}
         <div>
           <label className="text-neutral-700 text-sm">Name</label>
           <input
@@ -92,9 +84,7 @@ export default function Home() {
             name="name"
             ref={nameInputRef}
             className={`
-              w-full px-3 py-2 text-sm rounded-md border focus:outline-neutral-700 ${
-                !!errors?.name ? "border-red-700" : "border-neutral-200"
-              }`}
+              w-full px-3 py-2 text-sm rounded-md border focus:outline-neutral-700 ${!!errors?.name ? "border-red-700" : "border-neutral-200"}`}
           />
         </div>
         <div>
@@ -105,16 +95,10 @@ export default function Home() {
             name="email"
             ref={emailInputRef}
             className={`
-              w-full px-3 py-2 text-sm rounded-md border focus:outline-neutral-700 ${
-                !!errors?.email ? "border-red-700" : "border-neutral-200"
-              }`}
+              w-full px-3 py-2 text-sm rounded-md border focus:outline-neutral-700 ${!!errors?.email ? "border-red-700" : "border-neutral-200"}`}
           />
         </div>
-        <button
-          onClick={() => sendEmail()}
-          className="text-sm bg-black text-white px-4 py-2.5 rounded-lg hover:bg-gray-800 disabled:opacity-70"
-          disabled={sending}
-        >
+        <button onClick={() => sendEmail()} className="text-sm bg-black text-white px-4 py-2.5 rounded-lg hover:bg-gray-800 disabled:opacity-70" disabled={sending}>
           {sending ? "sending..." : "Send Email"}
         </button>
       </form>
