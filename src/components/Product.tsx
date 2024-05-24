@@ -137,6 +137,7 @@ export default function Product({ product: { slug, title, type, description, pri
             </Button>
             {/* {console.log(`https://nu-soins.com/shop/${slug.current}`)} */}
             <AddToCartButton
+              className="group/button2 flex-1 w-0 min-w-fit"
               locale={locale}
               product={{
                 currency: "EUR",
@@ -155,8 +156,9 @@ export default function Product({ product: { slug, title, type, description, pri
                   //   interval: "week",
                   // },
                 },
-              }}
-            />
+              }}>
+              {locale === "fr" ? "Ajouter" : "Add"}
+            </AddToCartButton>
           </div>
         </div>
       )}

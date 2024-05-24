@@ -59,7 +59,7 @@ const config = defineConfig({
                 title: "Netlify deploy",
                 sites: [
                   {
-                    title: "nu-cosmétique.com",
+                    title: "nu-soins.com",
                     apiId: "a3df9879-197e-482f-a5ef-395591656627",
                     buildHookId: "66511f0734c0689e1e779caf",
                     name: "nu-site",
@@ -82,7 +82,7 @@ const config = defineConfig({
                 title: "Netlify deploy",
                 sites: [
                   {
-                    title: "nu-cosmétique.com",
+                    title: "nu-soins.com",
                     apiId: "a3df9879-197e-482f-a5ef-395591656627",
                     buildHookId: "66511f0734c0689e1e779caf",
                     name: "nu-site",

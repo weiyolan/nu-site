@@ -83,6 +83,7 @@ export default async function Page({ params: { slug, locale } }: { params: { slu
             price: price,
             // weight: weight,
             extraInfo: extraInfo,
+            slug: slug,
             title: title?.[locale],
             subTitle: subTitle?.[locale],
             rating: rating,

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import slugify from "slugify";
 import { altImageType, localeStringType, localeType } from "@/sanity/lib/interface";
+import AddToCartButton from "./ProductAddToCart";
 // import { toPlainText } from "@portabletext/react";
 
 export interface ProductDescriptionProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,6 +17,7 @@ export interface ProductDescriptionProps extends React.HTMLAttributes<HTMLDivEle
     title: string;
     subTitle: string;
     rating: number;
+    slug: string;
     description: string;
     // weight: number;
     extraInfo: { title: localeStringType; description: localeStringType }[];
@@ -27,7 +29,7 @@ export interface ProductDescriptionProps extends React.HTMLAttributes<HTMLDivEle
 export default function ProductDescription({
   locale,
   altImage: { image, alt },
-  product: { title, subTitle, rating, price, description, extraInfo, details },
+  product: { slug, title, subTitle, rating, price, description, extraInfo, details },
   className,
   ...props
 }: ProductDescriptionProps) {
@@ -56,9 +58,9 @@ export default function ProductDescription({
           </div>
         )}
         <div className="flex my-6 gap-6">
-          <Button className="" size="lg">
+          <AddToCartButton locale={locale} product={{ id: slug, name: title, description: subTitle, currency: "EUR", price: price * 100, image: image.url }} className="" size="lg">
             {locale === "en" ? "Add to basket" : "Ajouter au panier"}
-          </Button>
+          </AddToCartButton>
           <Typography variant={"h2"}>€{price.toFixed(2)}</Typography>
         </div>
 
