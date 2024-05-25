@@ -65,8 +65,8 @@ export async function POST(req: Request) {
     mode: "payment",
     billing_address_collection: "auto",
     shipping_address_collection: { allowed_countries: ["FR", "BE", "ES"] },
-    // shipping_options: [{ shipping_rate: "shr_1P7xBWLUFiXiOuXApaCl1fVJ" }], //dev
-    shipping_options: [{ shipping_rate: "shr_1PKD41LUFiXiOuXAHk37Phci" }],
+    shipping_options: [{ shipping_rate: "shr_1P7xBWLUFiXiOuXApaCl1fVJ" }], //live
+    // shipping_options: [{ shipping_rate: "shr_1PKD41LUFiXiOuXAHk37Phci" }],
     customer_email: email,
     line_items,
     metadata: {
