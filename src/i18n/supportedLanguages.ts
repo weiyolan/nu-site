@@ -55,6 +55,9 @@ export const pathnames = {
   "/sign-in": "/sign-in",
   "/sign-up": "/sign-up",
 
+  "/checkout": "/checkout",
+  "/checkout/return": "/checkout/return",
+
   // "/shop/[...slug]": "/shop/[...slug]",
 } satisfies Pathnames<typeof locales>;
 
