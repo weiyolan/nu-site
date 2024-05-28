@@ -22,7 +22,7 @@ export async function POST(req: Request) {
   const { isSubscribed, stripeCustomerId, userId, stripePriceId, email, locale, cartDetails } = body;
   // console.log("THE BODY OF THE API ROUTE");
   // console.log(body);
-  const billingUrl = absoluteUrl("/checkout/return");
+  const billingUrl = absoluteUrl("/return");
 
   let sanityInventory = await client.fetch(
     `*[_type=='product']{'name':title.${locale},price,'id':slug.current,'description':subTitle.${locale},'image':images[0].image.asset->{url}.url}`

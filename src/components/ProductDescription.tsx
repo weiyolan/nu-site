@@ -35,8 +35,8 @@ export default function ProductDescription({
 }: ProductDescriptionProps) {
   return (
     <div className={cn("w-full flex flex-col md:flex-row gap-8", className)} {...props}>
-      <div className="flex-1 w-full h-56 md:h-auto relative flex items-center justify-center ">
-        <Image src={image.url} alt={alt?.[locale]} fill priority className="object-contain drop-shadow-lg" />
+      <div className="relative md:flex-1 w-full h-56 md:h-auto flex items-center justify-center ">
+        <Image src={image.url} alt={alt?.[locale]} fill sizes="100vw" priority className="object-contain drop-shadow-lg" />
         {/* placeholder="blur" blurDataURL={image.metadata.lqip} */}
       </div>
       <div className="flex-1 w-full flex-col flex items-start justify-start gap-2">

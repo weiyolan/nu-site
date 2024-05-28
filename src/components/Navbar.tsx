@@ -84,7 +84,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
           <Section className={cn(`mt-0 md:mt-0 h-full `, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
             <ul
               style={{ "--values-amount": messages.length, "--values-width": `calc(${200 + 0}px + ${25}vw)` }} //width of space-x css
-              className="animate-slide md:animate-slideSlow flex justify-between items-center space-x-8 md:space-x-[25vw]">
+              className="animate-slideSlow flex justify-between items-center space-x-8 md:space-x-[25vw]">
               {[...messages, ...messages].map((message, i) => {
                 return (
                   <li key={`${i}-${message.text?.[locale]}`} className="align-middle flex-none w-[200px]">
@@ -106,7 +106,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center`
+                        `transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center `
                       )}>
                       {link.title?.[locale]}
                     </NavigationMenuLink>
@@ -117,7 +117,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                   <Link href={link.url} legacyBehavior passHref className="">
                     <NavigationMenuLink>
                       <NavigationMenuTrigger
-                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center`}>
+                        className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} min-w-24 lg:min-w-36 text-center `}>
                         {link.title?.[locale]}
                       </NavigationMenuTrigger>
                     </NavigationMenuLink>
@@ -252,8 +252,8 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                 return link._type === "navigationButtonTrigger" ? (
                   <li key={`item-${i}`}>
                     <SheetClose asChild>
-                      <Link href={link.url}>
-                        <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                      <Link href={link.url} className="focus-within:underline">
+                        <Typography variant={"h3"} className="p-1 focus-within:underline focus:underline  ">
                           {link.title?.[locale]}
                         </Typography>
                       </Link>
@@ -262,8 +262,8 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                 ) : (
                   <div key={`item-${i}`}>
                     <SheetClose asChild>
-                      <Link href={link.url}>
-                        <Typography variant={"h3"} className="p-1 hover:bg-nu-blue/20">
+                      <Link href={link.url} className="focus-within:underline">
+                        <Typography variant={"h3"} className="p-1 focus-within:underline focus:underline  ">
                           {link.title?.[locale]}
                         </Typography>
                       </Link>
@@ -273,7 +273,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
                         {" "}
                         <SheetClose asChild>
                           <Button variant={"outline"} asChild>
-                            <Link title={linkSimple.title?.[locale]} href={linkSimple.url}>
+                            <Link title={linkSimple.title?.[locale]} href={linkSimple.url} className="focus-within:underline">
                               {linkSimple.title?.[locale]}
                             </Link>
                           </Button>

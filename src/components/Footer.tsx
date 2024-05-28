@@ -59,9 +59,9 @@ export default function Footer({ footerLists, footerInfo: { messages, quote, new
       <div className="w-full bg-nu-peach relative">
         <Nu className="absolute fill-nu-purple opacity-10 h-auto w-full md:w-auto md:h-full bottom-0 top-auto md:top-0 md:bottom-auto" />
 
-        <Section className="flex gap-2 sm:gap-0 sm:justify-between items-center py-16 pb-8 md:pb-16 mt-0 md:mt-0 ">
-          <Nu className="shrink-0" />
-          <div className="opacity-85 relative translate-x-4  sm:max-w-[40ch]">
+        <Section className="flex flex-col items-end sm:flex-row gap-2 sm:gap-0 sm:justify-between sm:items-center py-16 pb-8 md:pb-16 mt-0 md:mt-0 ">
+          <Nu className="shrink-0 " />
+          <div className="opacity-85 relative translate-x-4 max-w-62 sm:max-w-[52ch]">
             <Quote className="opacity-20" />
             <Typography variant={"h3"} className="text-lg leading-snug whitespace-pre-wrap">
               {quote.quote?.[locale]}

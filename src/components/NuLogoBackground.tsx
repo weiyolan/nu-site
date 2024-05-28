@@ -5,7 +5,7 @@ export interface NuLogoBackgroundProps extends React.HTMLAttributes<HTMLOrSVGEle
 export default function NuLogoBackground({ className, ...props }: NuLogoBackgroundProps) {
   return (
     <svg
-      className={cn("w-[120vw] h-auto fill-nu-black opacity-[0.03] left-[50vw] bottom-1/2 -translate-x-1/2 translate-y-1/2 fixed z-0  ", className)}
+      className={cn("w-[120vw] h-auto fill-nu-black opacity-[0.03] left-[50vw] bottom-[50vh] -translate-x-1/2 translate-y-1/2 fixed z-0  ", className)}
       viewBox="0 0 1877 1315"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

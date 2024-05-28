@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ChevronRight, PlusIcon, ShoppingCart } from "lucide-react";
 import { AspectRatio } from "./ui/aspect-ratio";
 import Image from "next/image";
-import { altImageType, buttonType, localeType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, getColor, localeType } from "@/sanity/lib/interface";
 import ConditionalLink from "./ConditionalLink";
 // import { useShoppingCart } from "use-shopping-cart";
 import AddToCartButton from "./ProductAddToCart";
@@ -126,8 +126,8 @@ export default function Product({ product: { slug, title, type, description, pri
             {"€ "}
             {price.toFixed(2)}
           </Typography>
-          <div className="w-full flex gap-4">
-            <Button asChild variant="secondary" className="group/button1 flex-1 w-0 min-w-fit    ">
+          <div className="w-full flex gap-2 md:gap-4 flex-col md:flex-row">
+            <Button asChild variant="secondary" className="group/button1 flex-1 w-full md:w-0 min-w-fit    ">
               {/* group-hover:opacity-100  transition-all duration-300 opacity-20 */}
               <Link className="" href={`/shop/${slug.current}`}>
                 {/* <span className="group-hover/button1:w-fit w-0 transition-all  inline-block duration-300 overflow-hidden">{locale === "fr" ? "Voir Plus" : "See More"}</span>{" "} */}
@@ -137,7 +137,7 @@ export default function Product({ product: { slug, title, type, description, pri
             </Button>
             {/* {console.log(`https://nu-soins.com/shop/${slug.current}`)} */}
             <AddToCartButton
-              className="group/button2 flex-1 w-0 min-w-fit"
+              className={`group/button2 flex-1 w-full md:w-0 min-w-fit `}
               locale={locale}
               product={{
                 currency: "EUR",

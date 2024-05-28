@@ -54,7 +54,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
-import { Checkout } from "@/app/[locale]/(site)/checkout/Checkout";
+import { Checkout } from "@/components/shoppingCart/Checkout";
 import NuLogo from "../NuLogo";
 
 export interface ShoppingCartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -96,7 +96,7 @@ export default function ShoppingCart({ children, className, scrolled, locale, ..
         </TooltipContent>
       </Tooltip>
 
-      <SheetContent side={"right"} className="sm:max-w-lg overflow-auto  ">
+      <SheetContent side={"right"} className="w-full sm:max-w-lg overflow-auto  ">
         <SheetHeader>
           <SheetTitle>
             <ShoppingBasketIcon className="mx-auto " />
@@ -116,9 +116,9 @@ export default function ShoppingCart({ children, className, scrolled, locale, ..
           {cartDetails && Object.keys(cartDetails).map((id) => <CartItem locale={locale} key={cartDetails[id].name} product={cartDetails[id]} />)}
           {/* {console.log(cartDetails)} */}
           <Separator className="bg-muted-foreground" />
-          <CartSubtotal />
+          <CartSubtotal locale={locale} />
           <Separator className="bg-muted-foreground" />
-          <CartTotal />
+          <CartTotal locale={locale} />
         </div>
 
         {/* <Separator className="bg-foreground" /> */}
@@ -173,7 +173,7 @@ function CartItem({ product, locale }: { product: Product; locale: localeType })
   const { incrementItem, decrementItem, setItemQuantity, removeItem, storeLastClicked } = useShoppingCart();
   return (
     <Card className=" hover:shadow-sm bg-card/0 shadow-none rounded-[--radius] hover:bg-card/30 border-none  transition-all duration-150">
-      <CardContent className="relative flex p-2 bg-transparent border-none flex-row h-28 items-start  gap-2  ">
+      <CardContent className="relative flex p-2 bg-transparent border-none h-28 sm:h-28 items-start  gap-2  ">
         <Image alt={product.name} className=" p-2 object-contain size-24 rounded-[--radius] shrink-0" src={product.image + "?fit=clip&h=80&w=80"} width={80} height={80} />
         <div className="w-full h-full flex flex-col select-none">
           {/* <Link href={"nu-soins.com"}> */}
@@ -194,7 +194,7 @@ function CartItem({ product, locale }: { product: Product; locale: localeType })
           </Button>
         </div>
 
-        <div className="w-24 h-full shrink-0 flex flex-col justify-between">
+        <div className="w-24 h-full shrink-0 flex flex-col relative justify-between">
           <Typography variant="h2" className="text-lg text-right">{`€ ${(product.value / 100).toFixed(2)}`}</Typography>
           <div className="w-full h-8 mt-auto rounded-[--radius] overflow-hidden flex border border-muted-foreground/50 items-center">
             <Button variant="outline" size="icon" className="h-full w-1/3 " disabled={product.quantity === 1} onClick={() => decrementItem(product.id)}>
@@ -230,13 +230,13 @@ function CartItem({ product, locale }: { product: Product; locale: localeType })
   );
 }
 
-function CartSubtotal() {
+function CartSubtotal({ locale }: { locale: localeType }) {
   const { totalPrice } = useShoppingCart();
   return (
     <div className="p-6 bg- flex  flex-col gap-2 w-full  bg-card/0   ">
       <div className="flex justify-between w-full">
         <Typography variant={"p"} className="inline-block text-base text-muted-foreground">
-          {"Subtotal"}
+          {locale === "en" ? "Subtotal" : "Sous-total"}
         </Typography>
         <Typography variant={"p"} className="inline-block text-base text-muted-foreground">
           {"€ " + (totalPrice / 120 ?? 0).toFixed(2)}
@@ -244,15 +244,18 @@ function CartSubtotal() {
       </div>
       <div className="flex justify-between w-full">
         <Typography variant={"p"} className="inline-block text-base text-muted-foreground">
-          {"Shipping"}
+          {locale === "en" ? "Shipping" : "Envoie"}
         </Typography>
-        <Typography variant={"p"} className="inline-block text-base text-muted-foreground">
-          {"€ " + ((0 / 120) | 0).toFixed(2)}
+        <Typography variant={"p"} className="text-right inline-block text-base text-muted-foreground">
+          {totalPrice < 4000 ? "€ " + ((0 / 120) | 0).toFixed(2) : locale === "en" ? "Free!" : "Offert!"}
+
+          <span
+            className={`text-xs font-bold flex ${totalPrice < 4000 ? "" : "hidden"}`}>{`€ ${(40 - totalPrice / 100).toFixed(2)} ${locale === "en" ? "more for free shipping" : "plus pour envoie gratuit!"}`}</span>
         </Typography>
       </div>
       <div className="flex justify-between w-full">
         <Typography variant={"p"} className="inline-block text-base text-muted-foreground">
-          {"TVA (20%)"}
+          {locale === "en" ? "VAT 20% (incl)" : "TVA 20% (inclu)"}
         </Typography>
         <Typography variant={"p"} className="inline-block text-base text-muted-foreground">
           {"€ " + (((totalPrice / 120) * 0.2) | 0).toFixed(2)}
@@ -262,7 +265,7 @@ function CartSubtotal() {
   );
 }
 
-function CartTotal() {
+function CartTotal({ locale }: { locale: localeType }) {
   const { totalPrice } = useShoppingCart();
   return (
     <div className="p-6 py-2 bg- flex  flex-col gap-2 w-full  bg-card/0   ">
