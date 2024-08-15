@@ -9,5 +9,5 @@ export default async function AuthLayout({ children, params: { locale } }: { chi
 
   if (session?.session) redirect("/account");
 
-  return <div className="bg-muted h-screen flex">{children}</div>;
+  return <div className="bg-muted h-screen flex w-full">{children}</div>;
 }

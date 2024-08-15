@@ -12,10 +12,10 @@ const Page = async ({ params: { locale } }: { params: { locale: localeType } }) 
   const image = await getSingUpInfo();
   return (
     <>
-      <div className="bg-nu-blue w-1/2 flex-0 relative">
+      <div className="bg-nu-blue absolute w-full sm:w-1/2 h-full sm:relative">
         <Image fill alt={image?.alt?.[locale]} src={image.image.url} className="object-cover" />
       </div>
-      <div className=" w-1/2 flex-0 flex h-full items-center justifiy-center">
+      <div className=" w-full sm:w-1/2 flex-0 flex h-full items-center justifiy-center">
         <Card className="max-w-lg mx-auto my-4 bg-popover p-10">
           <CardHeader className="">
             <Typography variant="h1" className="text-center mb-0">
@@ -36,14 +36,16 @@ const Page = async ({ params: { locale } }: { params: { locale: localeType } }) 
               <br />
             </AuthForm>
             <div className="mt-4 text-muted-foreground text-center text-sm">
-              {locale == "en" ? "Already have an account?" : "Avez-vous déjà un compte?"}{" "}
+              {locale == "en" ? "Already have an account?" : "Déjà un compte?"}{" "}
               <Link href="/sign-in" className="text-secondary-foreground underline">
                 {locale == "en" ? "Sign in" : "Connecter"}
               </Link>
             </div>
           </CardContent>
           <CardFooter>
-            <NuLogo className="mx-auto size-6 fill-muted-foreground" />
+            <Link href="/" className="mx-auto w-fit">
+              <NuLogo className=" size-6 fill-muted-foreground" />{" "}
+            </Link>
           </CardFooter>
         </Card>
       </div>

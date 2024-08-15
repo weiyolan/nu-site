@@ -40,7 +40,7 @@ export default async function Home({ params: { locale } }: { params: { locale: l
         {locale === "en" ? "Your Orders" : "Vos Commandes"}
       </Typography>
 
-      <div className="gap-12 flex ">
+      <div className="gap-12 flex flex-wrap">
         {orders.map((order, i) => {
           return (
             // <pre key={i} className="bg-secondary p-4 rounded-lg my-2 inline-flex flex-col text-xs m-2 max-w-[25%]  overflow-hidden">
@@ -57,8 +57,8 @@ export default async function Home({ params: { locale } }: { params: { locale: l
 
 function OrderExample({ locale, order }: { locale: localeType; order: Order }) {
   return (
-    <Card className="">
-      <CardHeader className="flex flex-row items-start bg-muted/50">
+    <Card className="max-w-[480px]">
+      <CardHeader className="flex flex-row items-start bg-muted/50 cursor-pointer ">
         <div className="grid gap-0.5">
           <CardTitle className="group flex items-center gap-2 text-lg">
             {locale == "fr" ? "Commande " : "Order "} {order.number}
@@ -82,7 +82,7 @@ function OrderExample({ locale, order }: { locale: localeType; order: Order }) {
           <DropDown locale={locale} invoicePdf={order.invoicePdf} hostedInvoiceUrl={order.hostedInvoiceUrl} />
         </div>
       </CardHeader>
-      <CardContent className="p-6 text-sm">
+      <CardContent className={`p-6 text-sm `}>
         <div className="grid gap-3">
           <div className="font-semibold">{locale === "en" ? "Order Details" : "Détails"}</div>
           <ul className="grid gap-3">

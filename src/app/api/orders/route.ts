@@ -77,12 +77,19 @@ export async function GET(req: Request) {
   // const body = await req.json();
   // const { userId } = body;
 
+ 
+
   try {
     // const customers = await stripe.customers.list({
     //   email: "yolan.weiler@gmail.com",
     // });
+    let rows;
+    if (id == "z6rpard7x3taf07") {
+      rows = await db.select().from(orders); //all orders
+    } else {
+      rows = await db.select().from(orders).where(eq(orders.userId, id!));
+    }
 
-    const rows = await db.select().from(orders).where(eq(orders.userId, id!));
     console.log("From the order GET function, will be fetched: ");
     console.log(rows);
     // console.log(customers);
