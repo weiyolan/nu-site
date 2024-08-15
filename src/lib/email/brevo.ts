@@ -1,7 +1,10 @@
 import SibApiV3Sdk from "sib-api-v3-typescript";
 //const SibApiV3Sdk = require("sib-api-v3-typescript");
 import { env } from "../env.mjs";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8890843 (new rebased)
 let emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 let contactApi = new SibApiV3Sdk.ContactsApi();
 
