@@ -56,18 +56,18 @@ export default function LanguageToggle({ children, className, locale, scrolled, 
   // );
   return (
     <Select value={locale} onValueChange={(val) => router.replace({ pathname, params }, { locale: val, scroll: false })}>
-      <Tooltip>
-        <SelectTrigger asChild>
-          <TooltipTrigger asChild>
-            <Button className="bg-transparent border-transparent p-3" variant="outline">
-              <LanguagesIcon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
-            </Button>
-          </TooltipTrigger>
-        </SelectTrigger>
-        <TooltipContent className="mr-1.5">
-          <p>{locale === "en" ? "Change language" : "Changer votre langue"}</p>
-        </TooltipContent>
-      </Tooltip>
+      {/* <Tooltip> */}
+      <SelectTrigger asChild>
+        {/* <TooltipTrigger asChild> */}
+        <Button className="bg-transparent border-transparent p-3" variant="outline">
+          <LanguagesIcon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+        </Button>
+        {/* </TooltipTrigger> */}
+      </SelectTrigger>
+      {/* <TooltipContent className="mr-1.5"> */}
+      {/* <p>{locale === "en" ? "Change language" : "Changer votre langue"}</p> */}
+      {/* </TooltipContent> */}
+      {/* </Tooltip> */}
 
       {/* <SelectValue placeholder="Theme" className="hidden" /> */}
       <SelectContent className="mr-3 text-left  ">

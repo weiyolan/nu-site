@@ -9,9 +9,14 @@ export function cn(...inputs: ClassValue[]) {
 export const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789");
 
 export function absoluteUrl(path: string) {
-  return `${process.env.NEXT_PUBLIC_APP_URL || "https://nu-soins.com"}${path}`;
+
+  
+  return process.env.NODE_ENV === "development" //isDev
+    ? `http://localhost:3000${path}`
+    : `${process.env.NEXT_PUBLIC_APP_URL || "https://nu-soins.com"}${path}`;
   // return `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}${path}`;
 }
+
 export const timestamps: { createdAt: true; updatedAt: true } = {
   createdAt: true,
   updatedAt: true,

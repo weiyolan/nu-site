@@ -33,6 +33,9 @@ const config = defineConfig({
   // toolMenu: MyToolMenu,
   // }
   // },
+  scheduledPublishing: {
+    enabled: false,
+  },
   document: {
     unstable_comments: {
       enabled: false,

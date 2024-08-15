@@ -10,6 +10,7 @@ import { env } from "@/lib/env.mjs";
 import { localeType } from "@/sanity/lib/interface";
 import { Product } from "use-shopping-cart/core";
 import { CartDetails } from "use-shopping-cart/core";
+import { AuthSession } from "@/lib/auth/utils";
 
 interface CheckoutProps {
   userId?: string;
@@ -21,17 +22,19 @@ interface CheckoutProps {
   locale: localeType;
   // products: { [id: string]: Product };
   cartDetails: CartDetails;
+  session: AuthSession["session"];
 }
 const stripePromise = loadStripe(env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-export function Checkout({ userId, email, isCurrentPlan, isSubscribed, stripeCustomerId, stripePriceId, locale, cartDetails }: CheckoutProps) {
+export function Checkout({ userId, email, isCurrentPlan, session, isSubscribed, stripeCustomerId, stripePriceId, locale, cartDetails }: CheckoutProps) {
+  console.log(session);
   const fetchClientSecret = useCallback(() => {
     return fetch("/api/billing/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email,
-        userId,
+        email: session?.user?.email,
+        userId: session?.user?.id,
         // isSubscribed,
         // isCurrentPlan,
         // stripeCustomerId,

@@ -1,6 +1,7 @@
 import { groq } from "next-sanity";
 import { supportedLanguages } from "../../i18n/supportedLanguages";
 import { client } from "./client";
+import { LucideIcon } from "lucide-react";
 
 export function getColor(color: colorSanityType): colorBgType {
   switch (color) {
@@ -23,7 +24,7 @@ export type colorSanityType = "yellow" | "green" | "blue" | "peach" | "purple";
 export type localeType = "en" | "fr";
 export type localeStringType = { en: string; fr: string };
 // export type buttonType = { ext: boolean; text: localeStringType; url: string };
-export type buttonType = {  text: localeStringType; url: string };
+export type buttonType = { text: localeStringType; url: string };
 export type altImageType = {
   alt: localeStringType;
   image: {
@@ -35,10 +36,42 @@ export type altImageType = {
 };
 export type localeBlockContentType = { en: []; fr: [] };
 // ======================================= ROOT LAYOUT =======================================
-export async function getBannerInfo() {
-  const banner = await client.fetch(`*[_type=='navigationBanner'][0]`);
+export async function getBannerInfo(): Promise<{
+  enabled: boolean;
+  messages: {
+    icon: { name: string };
+    text: localeStringType;
+  }[];
+}> {
+  var enabled, messages;
+  try {
+    let info = await client.fetch(`*[_type=='navigationBanner'][0]`);
+    enabled = info.enabled;
+    messages = info.messages;
+    // console.log(JSON.stringify(messages, null, 2));
+  } catch (e) {
+    console.log("Error with navigation bar banner");
+    console.log(e);
+  }
   // console.log(banner);
-  return banner;
+  return { enabled, messages };
+}
+
+export async function getSingInInfo(): Promise<altImageType> {
+  // Fetch shopSection with ID homeBlogs or something
+  const info = await client.fetch(`*[_type=='accountSettings'][0]{...imageIn{
+          alt, 'image':image.asset->{url,metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return info;
+}
+export async function getSingUpInfo(): Promise<altImageType> {
+  // Fetch shopSection with ID homeBlogs or something
+  const info = await client.fetch(`*[_type=='accountSettings'][0]{...imageUp{
+          alt, 'image':image.asset->{url,metadata{lqip}}
+        }}`);
+  // console.log(reviews)
+  return info;
 }
 
 export async function getNavbarInfo(): Promise<{

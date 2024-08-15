@@ -54,15 +54,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
-import { Checkout } from "@/components/shoppingCart/Checkout";
+import { Checkout } from "./Checkout";
 import NuLogo from "../NuLogo";
+import { AuthSession } from "@/lib/auth/utils";
 
 export interface ShoppingCartProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
   scrolled: boolean;
+  session: AuthSession;
 }
 
-export default function ShoppingCart({ children, className, scrolled, locale, ...props }: ShoppingCartProps) {
+export default function ShoppingCart({ children, className, session, scrolled, locale, ...props }: ShoppingCartProps) {
   const { cartDetails, cartCount = 0 } = useShoppingCart();
 
   const [itemAdded, setItemAdded] = useState(false);
@@ -104,21 +106,25 @@ export default function ShoppingCart({ children, className, scrolled, locale, ..
           <SheetDescription className="mx-auto">
             {cartCount > 0
               ? locale === "fr"
-                ? `Votre panier contient ${cartCount} produit${cartCount === 1 ? "" : "s"}. C'est parti!`
-                : `Your cart contains ${cartCount} item${cartCount === 1 ? "" : "s"}. Let's go!`
+                ? `Votre panier contient ${cartCount} produit${cartCount === 1 ? "" : "s"}. C'est parti${session?.user?.name ? " " + session.user.name : ""}!`
+                : `Your cart contains ${cartCount} item${cartCount === 1 ? "" : "s"}. Let's go${session?.user?.name ? " " + session.user.name : ""}!`
               : locale === "fr"
-                ? `Votre panier est vide.`
-                : `Your shopping cart is empty.`}
+                ? `Salut${session?.user?.name ? " " + session.user.name : ""}, votre panier est vide.`
+                : `Hi${session?.user?.name ? " " + session.user.name : ""}, your shopping cart is empty.`}
           </SheetDescription>
         </SheetHeader>
 
         <div className="flex flex-col gap-4 mt-8">
           {cartDetails && Object.keys(cartDetails).map((id) => <CartItem locale={locale} key={cartDetails[id].name} product={cartDetails[id]} />)}
           {/* {console.log(cartDetails)} */}
-          <Separator className="bg-muted-foreground" />
-          <CartSubtotal locale={locale} />
-          <Separator className="bg-muted-foreground" />
-          <CartTotal locale={locale} />
+          {cartCount > 0 && (
+            <>
+              <Separator className="bg-muted-foreground" />
+              <CartSubtotal locale={locale} />
+              <Separator className="bg-muted-foreground" />
+              <CartTotal locale={locale} />
+            </>
+          )}
         </div>
 
         {/* <Separator className="bg-foreground" /> */}
@@ -150,7 +156,7 @@ export default function ShoppingCart({ children, className, scrolled, locale, ..
                       {locale === "fr" ? "Merci de nous confiez pour le soin de vos cheveux!" : "Thanks for trusting us your hair care."}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
-                  <Checkout locale={locale} cartDetails={cartDetails} />
+                  <Checkout locale={locale} cartDetails={cartDetails} session={session} />
                   <AlertDialogCancel tabIndex={9000} className="absolute top-8 left-8 text-base  font-corben align-middle">
                     <ArrowLeft className="size-5 mr-1" /> Retour
                   </AlertDialogCancel>

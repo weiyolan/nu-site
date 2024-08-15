@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { redirect} from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Loader2Icon } from "lucide-react";
 import { useShoppingCart } from "use-shopping-cart";
@@ -16,22 +16,27 @@ import Link from "next/link";
 export default function Return({ params: { locale } }: { params: { locale: localeType } }) {
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState("");
+  const [data, setData] = useState();
   const searchParams = useSearchParams();
   // const success = searchParams.get("success") as Boolean | null;
   const sessionId = searchParams.get("session_id") as string | null;
   const { clearCart } = useShoppingCart();
+
   useEffect(() => {
     // fetch(`/api/checkout_sessions?session_id=${sessionId}`, {
     fetch(`/api/billing/checkout?session_id=${sessionId}`, {
       method: "GET",
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return res.json();
       })
       .then((data) => {
+        // console.log("=====The Returned Checkout Data=======");
+        // console.log(data);
         setStatus(data.status);
         setCustomerEmail(data.customer_email);
+        setData(data);
       });
   }, [sessionId]);
 
@@ -58,14 +63,17 @@ export default function Return({ params: { locale } }: { params: { locale: local
             : `Merci pour votre commande! Un mail de confirmation vous est envoyé sur ${customerEmail}. Nous vous tiendrons au courant dés que votre coli est sur chemin.`}
         </Typography>
         <NuLogo className="mx-auto size-8" />
+
+        <pre className="text-black">{JSON.stringify(data, null, 2)}</pre>
+
         <div className="flex flex-col sm:flex-row gap-4 mx-auto w-fit">
-          <Button variant="" asChild>
+          <Button asChild>
             <ConditionalLink href="/shop" className="min-w-fit max-w-4/5">
               {locale === "en" ? "Continue shopping" : "Continuez vos achats"}
             </ConditionalLink>
           </Button>
 
-          <Button variant="" asChild>
+          <Button asChild>
             <ConditionalLink href="/account" className="min-w-fit max-w-4/5">
               {locale === "en" ? "Visit your account" : "Visitez votre compte"}
             </ConditionalLink>

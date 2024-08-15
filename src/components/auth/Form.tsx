@@ -3,16 +3,12 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ClassNameValue } from "tailwind-merge";
+import { cn } from "@/lib/utils";
 
 type Action = "/api/sign-in" | "/api/sign-up" | "/api/sign-out";
 
-const AuthForm = ({
-  children,
-  action,
-}: {
-  children?: React.ReactNode;
-  action: Action;
-}) => {
+const AuthForm = ({ children, action, className }: { children?: React.ReactNode; action: Action; className: ClassNameValue }) => {
   const router = useRouter();
   const [errors, setErrors] = useState<{ error: string } | null>(null);
   const [loading, setLoading] = useState(false);
@@ -20,7 +16,7 @@ const AuthForm = ({
     <form
       action={action}
       method="post"
-      className="mt-4"
+      className={cn("mt-4", className)}
       onSubmit={async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -39,8 +35,7 @@ const AuthForm = ({
         }
         setErrors(await response.json());
         setLoading(false);
-      }}
-    >
+      }}>
       {errors ? (
         <div className="bg-red-100 p-3 my-4">
           <h3 className="font-bold text-md">Error!</h3>
@@ -55,33 +50,23 @@ const AuthForm = ({
 
 export default AuthForm;
 
-const SubmitButton = ({
-  action,
-  loading,
-}: {
-  action: Action;
-  loading: boolean;
-}) => {
+const SubmitButton = ({ action, loading }: { action: Action; loading: boolean }) => {
   let buttonSuffix = "";
   switch (action) {
     case "/api/sign-in":
-      buttonSuffix = "in";
+      buttonSuffix = "Connexion";
       break;
     case "/api/sign-out":
-      buttonSuffix = "out";
+      buttonSuffix = "Déconnexion";
       break;
     case "/api/sign-up":
-      buttonSuffix = "up";
+      buttonSuffix = "Enregistrer";
       break;
   }
   return (
-    <Button
-      type="submit"
-      className={action === "/api/sign-out" ? "" : "w-full"}
-      disabled={loading}
-      variant={action === "/api/sign-out" ? "destructive" : "default"}
-    >
-      Sign{loading ? "ing" : ""} {buttonSuffix}
+    <Button type="submit" className={action === "/api/sign-out" ? "" : "w-full"} disabled={loading} variant={action === "/api/sign-out" ? "default" : "default"}>
+      {buttonSuffix}
+      {loading ? "..." : ""}
     </Button>
   );
 };

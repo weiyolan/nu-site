@@ -16,6 +16,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 // import { DebugCart } from "use-shopping-cart";
 import CartProvider from "@/components/shoppingCart/CartProvider";
+import { getUserAuth } from "@/lib/auth/utils";
 const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-corben" });
 const mulish = Mulish({ subsets: ["latin"], variable: "--font-mulish" });
 // import { env } from "@/lib/env.mjs";
@@ -36,6 +37,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: localeType };
 }>) {
+
   return (
     <html lang={locale}>
       <body className={`${corben.variable} ${mulish.variable} font-mulish relative`}>

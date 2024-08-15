@@ -1,0 +1,1 @@
+ALTER TABLE "orders" ALTER COLUMN "billing_type" DROP NOT NULL;

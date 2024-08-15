@@ -3,7 +3,7 @@ import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "legalDoc",
-  title: "Legal Documents",
+  title: "Documents",
   icon: Scale,
   type: "document",
   options: { collapsible: true, collapsed: false },

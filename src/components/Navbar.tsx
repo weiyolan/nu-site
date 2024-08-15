@@ -25,6 +25,7 @@ import Typography from "./Typography";
 import ShoppingCart from "./shoppingCart/ShoppingCart";
 import LanguageToggle from "./navLanguageToggle";
 import UserButton from "./navUserButton";
+import { AuthSession } from "@/lib/auth/utils";
 
 // import { Button } from "@/registry/new-york/ui/button"
 // import { Input } from "@/registry/new-york/ui/input"
@@ -42,6 +43,7 @@ import UserButton from "./navUserButton";
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
+  session: AuthSession | null;
   navbarInfo: {
     logoToggle: boolean;
     links: (
@@ -59,8 +61,10 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   enabled: boolean;
   messages: { icon: { name: string }; text: localeStringType }[];
 }
-export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enabled, messages }: NavbarProps) {
+export default function Navbar({ navbarInfo: { logoToggle, links }, session, locale, enabled, messages }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+
+  // console.log(enabled, messages);
 
   useEffect(() => {
     let scrollLimit = 10;
@@ -289,9 +293,9 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, locale, enab
 
         <div className="top-0 ml-auto absolute right-0 md:right-[17px] flex ">
           {/* top-[20.5px] */}
-          <UserButton scrolled={scrolled} locale={locale} />
+          <UserButton scrolled={scrolled} locale={locale} session={session} />
           <LanguageToggle scrolled={scrolled} locale={locale} />
-          <ShoppingCart scrolled={scrolled} locale={locale} />
+          <ShoppingCart scrolled={scrolled} locale={locale} session={session} />
         </div>
       </div>
     </nav>

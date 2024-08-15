@@ -32,6 +32,10 @@ export const pathnames = {
     en: "/account",
     fr: "/compte",
   },
+  "/account/orders": {
+    en: "/account/orders",
+    fr: "/compte/commandes",
+  },
   "/account/manage": {
     en: "/account/manage",
     fr: "/compte/manage",

@@ -20,7 +20,7 @@ interface BuyStripeProductActionProps {
 export async function POST(req: Request) {
   const body: BuyStripeProductActionProps = await req.json();
   const { isSubscribed, stripeCustomerId, userId, stripePriceId, email, locale, cartDetails } = body;
-  // console.log("THE BODY OF THE API ROUTE");
+  // console.log("THE BODY OF THE API ROUTE With userID:", userId);
   // console.log(body);
   const billingUrl = absoluteUrl("/return");
 
@@ -72,6 +72,9 @@ export async function POST(req: Request) {
     metadata: {
       userId,
     },
+    customer: stripeCustomerId,
+    customer_creation: "if_required",
+    invoice_creation: { enabled: true },
     // return_url: billingUrl.concat(`/return?session_id={CHECKOUT_SESSION_ID}`),
     return_url: billingUrl.concat(`?session_id={CHECKOUT_SESSION_ID}`),
   });
@@ -104,12 +107,17 @@ export async function GET(req: Request) {
   const session_id = await req.nextUrl.searchParams.get("session_id");
 
   const session = await stripe.checkout.sessions.retrieve(session_id);
+  // console.log("$$$$$$$$$ SESSION DATA $$$$$$$$$$");
   // console.log(session);
 
   return new Response(
     JSON.stringify({
       status: session.status,
       customer_email: session?.customer_details?.email,
+      customer_name: session?.customer_details?.name,
+      payment_intent: session?.payment_intent,
+      invoice: session?.invoice,
+      customer: session?.customer,
     }),
     {
       status: 200,

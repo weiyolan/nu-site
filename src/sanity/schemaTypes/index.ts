@@ -56,6 +56,8 @@ import footerMessage from "./footerMessage";
 import footerMessages from "./footerMessages";
 import helpTitle from "./pageHelpTitle";
 import productExtraInfo from "./pageProductExtraInfo";
+import shopSettings from "./shopSettings";
+import accountSettings from "./accountSettings";
 
 export const schemaTypes = [
   blockContent,
@@ -120,4 +122,6 @@ export const schemaTypes = [
   navigationButtonSimple,
   navigationButtonComplex,
   helpTitle,
+  shopSettings,
+  accountSettings,
 ];

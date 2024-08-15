@@ -5,6 +5,7 @@ import {
   BookOpen,
   Box,
   Carrot,
+  Cog,
   CookingPot,
   Flame,
   Footprints,
@@ -21,11 +22,13 @@ import {
   PanelBottom,
   Quote,
   Rows3,
+  ShoppingCart,
   Star,
   Stars,
   Store,
   SwatchBook,
   ThumbsUp,
+  User2,
 } from "lucide-react";
 // import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
@@ -71,6 +74,7 @@ export const myStructure = (S, context) => {
               S.listItem().title("Écologie").icon(Leaf).child(S.document().schemaType("ecology")),
               S.divider(),
               S.listItem().title("Produits Recommandés").icon(ThumbsUp).child(S.document().schemaType("productRecommended")),
+              S.listItem().title("Paramètres").icon(Cog).child(S.document().schemaType("shopSettings").title("Paramètres").documentId("shopSettings")),
               // documentId("shopReviews")
             ])
         ),
@@ -110,9 +114,6 @@ export const myStructure = (S, context) => {
               // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
             ])
         ),
-      // S.documentTypeListItem("product").id("productPages"),
-      orderableDocumentListDeskItem({ type: "product", title: "Produits", icon: Box, S: S, context: context }),
-
       S.divider(),
       S.listItem()
         .title("Bar de Navigation")
@@ -138,6 +139,10 @@ export const myStructure = (S, context) => {
               S.listItem().title("Listes de Navigation").icon(UlistIcon).child(S.document().schemaType("footerLists").title("Listes").documentId("footerLists")),
             ])
         ),
+
+      // S.documentTypeListItem("product").id("productPages"),
+      orderableDocumentListDeskItem({ type: "product", title: "Produits", icon: Box, S: S, context: context }),
+
       S.divider(),
 
       // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
@@ -167,5 +172,20 @@ export const myStructure = (S, context) => {
             // "mainPageYYY",
           ].includes(listItem.getId())
       ),
+      S.divider(),
+      S.listItem()
+        .title("Paramètres")
+        .icon(Cog)
+        .child(
+          S.list()
+            .title("Pages")
+            .items([
+              S.listItem().icon(Store).title("Shop").child(S.document().title("E-commerce").schemaType("shopSettings").documentId("shopSettings")),
+              S.listItem().title("Compte").icon(User2).child(S.document().title("Compte").schemaType("accountSettings").documentId("accountSettings")),
+
+              // S.divider(),
+              // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
+            ])
+        ),
     ]);
 };
