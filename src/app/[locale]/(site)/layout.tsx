@@ -1,5 +1,4 @@
 import "../../globals.css";
-import type { Metadata } from "next";
 // import { Corben, Mulish } from "next/font/google";
 // import { ThemeProvider } from "@/components/ThemeProvider";
 // import { Toaster } from "@/components/ui/toaster";
@@ -15,15 +14,6 @@ import { AuthSession, getUserAuth } from "@/lib/auth/utils";
 // import ShoppingCard from "@/components/ShoppingCard";
 // import { TooltipProvider } from "@/components/ui/tooltip";
 // const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Nu Soins | Pour corps et nature",
-  description: "Shampoings solides à base de levure de bière",
-};
-
-// export async function generateStaticParams() {
-//   return [{ locale: "fr" }, { locale: "en" }];
-// }
 
 export default async function Site({
   children,

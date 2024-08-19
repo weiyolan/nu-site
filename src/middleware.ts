@@ -1,12 +1,11 @@
 import createMiddleware from "next-intl/middleware";
-import { defaultLanguage, locales, localePrefix, supportedLanguages } from "./i18n/supportedLanguages";
-import { pathnames } from "./i18n/supportedLanguages";
+import { defaultLanguage, locales, localePrefix, supportedLanguages, pathnames } from "./i18n/supportedLanguages";
 
 export default createMiddleware({
   defaultLocale: defaultLanguage.id,
   // A list of all locales that are supported
   locales,
-
+  alternateLinks: true,
   // Used when no locale matches
   localePrefix,
   // localized pathnames

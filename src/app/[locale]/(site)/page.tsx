@@ -11,7 +11,31 @@ import Products from "@/components/Products";
 import HomeBlogs from "@/components/HomeBlogs";
 import HomeEssayerNu from "@/components/HomeEssayerNu";
 import { client } from "@/sanity/lib/client";
-import { altImageType, buttonType, colorSanityType, getHero, getProductPresentation, localeBlockContentType, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, getHero, getProductPresentation, localeBlockContentType, localeStringType, localeType } from "@/sanity/lib/interface";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string; locale: localeType };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({ params: { locale, id }, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const product = await fetch(`https://.../${id}`).then((res) => res.json());
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: "Nu Soins | Pour corps et nature",
+    description: "Shampoings solides à base de levure de bière",
+    alternates: {
+      canonical: "https://nu-soins.com",
+      languages: {
+        en: "./en",
+        fr: "./",
+      },
+    },
+  };
+}
 
 async function getReviews(id: string): Promise<{
   citationsOn: boolean;

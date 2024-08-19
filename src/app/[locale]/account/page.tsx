@@ -35,9 +35,8 @@ export default async function Home({ params: { locale } }: { params: { locale: l
 
       <div className="gap-12 flex "></div>
 
-      <Typography variant="h2">Session</Typography>
-      <pre className="bg-secondary p-4 rounded-lg my-2">{JSON.stringify(session, null, 2)}</pre>
-      {/* <AuthForm action="/api/sign-out" /> */}
+      {/* <Typography variant="h2">Session</Typography> */}
+      {/* <pre className="bg-secondary p-4 rounded-lg my-2">{JSON.stringify(session, null, 2)}</pre> */}
     </main>
   );
 }

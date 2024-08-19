@@ -22,8 +22,7 @@ const mulish = Mulish({ subsets: ["latin"], variable: "--font-mulish" });
 // import { env } from "@/lib/env.mjs";
 
 export const metadata: Metadata = {
-  title: "Nu Soins | Pour corps et nature",
-  description: "Shampoings solides à base de levure de bière",
+  metadataBase: new URL("https://nu-soins.com"),
 };
 
 export async function generateStaticParams() {

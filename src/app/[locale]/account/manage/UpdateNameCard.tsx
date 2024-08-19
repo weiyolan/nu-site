@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { localeType } from "@/sanity/lib/interface";
 
-export default function UpdateNameCard({ name }: { name: string }) {
+export default function UpdateNameCard({ name, locale }: { name: string; locale: localeType }) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const handleSubmit = async (event: React.SyntheticEvent) => {
@@ -25,8 +26,7 @@ export default function UpdateNameCard({ name }: { name: string }) {
         body: JSON.stringify({ name }),
         headers: { "Content-Type": "application/json" },
       });
-      if (res.status === 200)
-        toast.success("Successfully updated name!");
+      if (res.status === 200) toast.success("Successfully updated name!");
       router.refresh();
     });
   };
@@ -35,10 +35,8 @@ export default function UpdateNameCard({ name }: { name: string }) {
     <AccountCard
       params={{
         header: "Your Name",
-        description:
-          "Please enter your full name, or a display name you are comfortable with.",
-      }}
-    >
+        description: "Please enter your full name, or a display name you are comfortable with.",
+      }}>
       <form onSubmit={handleSubmit}>
         <AccountCardBody>
           <Input defaultValue={name ?? ""} name="name" disabled={isPending} />
