@@ -100,7 +100,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         slide: "slide 30s linear infinite",
-        slideSlow: "slide 75s linear infinite",
+        slideSlow: "slide 60s linear infinite",
         // slideSimple: "slideSimple 10s linear infinite",
       },
     },

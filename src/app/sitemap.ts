@@ -8,7 +8,7 @@ function languify(url: string) {
   return obj;
 }
 
-export default async function sitemap({ projects }: { projects: number }): Promise<MetadataRoute.Sitemap> {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // let projects = await getProjects();
   const slugs = await client.fetch(`*[_type=='product']{'slug':slug.current}`);
   //[
@@ -20,8 +20,7 @@ export default async function sitemap({ projects }: { projects: number }): Promi
   //   { slug: 'chaos' }
   // ]
 
-  console.log(languify("https://nu-soins.com/*"));
-  return [
+  let output = [
     {
       url: "https://nu-soins.com",
       lastModified: new Date(),
@@ -36,6 +35,7 @@ export default async function sitemap({ projects }: { projects: number }): Promi
       alternates: {
         languages: languify("https://nu-soins.com/*/apropos"),
       },
+      priority: 0.6,
     },
     {
       url: "https://nu-soins.com/shop",
@@ -43,6 +43,7 @@ export default async function sitemap({ projects }: { projects: number }): Promi
       alternates: {
         languages: languify("https://nu-soins.com/*/shop"),
       },
+      priority: 0.8,
     },
     {
       url: "https://nu-soins.com/aide",
@@ -50,13 +51,17 @@ export default async function sitemap({ projects }: { projects: number }): Promi
       alternates: {
         languages: languify("https://nu-soins.com/*/aide"),
       },
+      priority: 0.5,
     },
     ...slugs.map((slug) => ({
-      url: `https://nu-soins.com/shop/${slug}`,
+      url: `https://nu-soins.com/shop/${slug.slug}`,
       lastModified: new Date(),
       alternates: {
-        languages: languify(`https://nu-soins.com/*/shop/${slug}`),
+        languages: languify(`https://nu-soins.com/*/shop/${slug.slug}`),
       },
+      priority: 0.9,
     })),
   ];
+
+  return output;
 }

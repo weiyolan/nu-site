@@ -20,9 +20,9 @@ type Props = {
 };
 
 export async function generateMetadata({ params: { locale, id }, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const product = await fetch(`https://.../${id}`).then((res) => res.json());
+  // const product = await fetch(`https://.../${id}`).then((res) => res.json());
   // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
+  // const previousImages = (await parent).openGraph?.images || [];
 
   return {
     title: "Nu Soins | Pour corps et nature",
