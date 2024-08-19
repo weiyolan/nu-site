@@ -83,7 +83,7 @@ interface InvoiceData {
   hostedInvoiceUrl: string;
   invoicePdf: string;
 
-  // lines: { object: string[] };
+  lineItems: string;
   // shippingName: string
   // shippingPhone: string
   shippingAddressLine1: string;
@@ -95,15 +95,14 @@ interface InvoiceData {
 export async function getInvoiceData(id: string): Promise<InvoiceData> {
   const invoice = await stripe.invoices.retrieve(id);
 
-  // console.log("$$$$$$$$$$ Charges $$$$$$$$$$");
-  // console.log(data);
+  // console.log("$$$$$$$$$$ Invoice $$$$$$$$$$");
 
   let data = {
     number: invoice?.number as string,
     hostedInvoiceUrl: invoice?.hosted_invoice_url as string,
     invoicePdf: invoice?.invoice_pdf as string,
     // paymentType: invoice?.payment_settings?.payment_method_types as string,
-    // lines: { object: string[] };
+    lineItems: JSON.stringify(invoice?.lines.data.map((line) => ({ amount: line.amount_excluding_tax, description: line.description, quantity: line.quantity }))) as string,
     shippingAddressLine1: invoice?.shipping_details?.address?.line1 as string,
     shippingAddressCity: invoice?.shipping_details?.address?.city as string,
     shippingAddressCountry: invoice?.shipping_details?.address?.country as string,

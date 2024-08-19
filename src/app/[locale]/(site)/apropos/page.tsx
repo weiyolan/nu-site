@@ -11,7 +11,11 @@ import ValueBar from "@/components/ValueBar";
 import Image from "next/image";
 import { getBeerInfo, getBrefInfo, getHero, getImagePop, getIngredientInfo, getIngredients, getSquareInfo, getValueInfo, localeType } from "@/sanity/lib/interface";
 // import { client } from "@/sanity/lib/client";
-
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Nu Soins | Pour corps et nature",
+  description: "Shampoings solides à base de levure de bière",
+};
 export default async function Page({ params: { locale } }: { params: { locale: localeType } }) {
   const imagePop = await getImagePop();
   const squareInfo = await getSquareInfo();

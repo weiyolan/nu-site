@@ -12,6 +12,8 @@ import ConditionalLink from "@/components/ConditionalLink";
 import NuLogo from "@/components/NuLogo";
 import { Button } from "@/components/ui/button";
 // import Link from "next/link";
+import type { Metadata } from "next";
+
 
 export default function Return({ params: { locale } }: { params: { locale: localeType } }) {
   const [status, setStatus] = useState(null);

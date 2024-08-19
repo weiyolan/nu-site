@@ -17,6 +17,7 @@ import BreadcrumbWithCustomSeparator from "@/components/BreadCrumbs";
 import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
 import ProductsRecommended from "@/components/ProductsRecommended";
 
+import type { Metadata } from "next";
 // async function getData() {
 //   // const res = await fetch('https://api.example.com/...')
 //   // // The return value is *not* serialized
@@ -28,7 +29,10 @@ import ProductsRecommended from "@/components/ProductsRecommended";
 //   // return res.json()
 //   return { product: { title: "Chaos", category: "Shampoing Solide", slug: "shampoing-solide" } };
 // }
-
+export const metadata: Metadata = {
+  title: "Nu Soins | Pour corps et nature",
+  description: "Shampoings solides à base de levure de bière",
+};
 async function getRecommendedProducts(): Promise<{
   color: colorSanityType;
   integrated: boolean;

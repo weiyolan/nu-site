@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { varchar, integer, timestamp, pgTable } from "drizzle-orm/pg-core";
+import { varchar, integer, timestamp, pgTable, json } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -40,6 +40,7 @@ export const orders = pgTable("orders", {
   billingName: varchar("billing_name", { length: 256 }).notNull(),
   billingLast4: varchar("billing_last_4", { length: 256 }).notNull(),
   billingType: varchar("billing_type", { length: 256 }).notNull(),
+  lineItems: json("line_items").notNull(),
   createdAt: timestamp("created_at")
     .notNull()
     .default(sql`now()`),
@@ -59,6 +60,7 @@ export const insertOrderParams = baseSchema
     amountDiscount: z.coerce.number(),
     amountShipping: z.coerce.number(),
     amountTax: z.coerce.number(),
+    lineItems: z.coerce.string(),
   })
   .omit({
     id: true,
@@ -73,6 +75,7 @@ export const updateOrderParams = baseSchema
     amountDiscount: z.coerce.number(),
     amountShipping: z.coerce.number(),
     amountTax: z.coerce.number(),
+    lineItems: z.coerce.string(),
   })
   .omit({
     userId: true,

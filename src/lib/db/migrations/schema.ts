@@ -1,4 +1,4 @@
-import { pgTable, pgEnum, varchar, integer, timestamp, unique, text, boolean, foreignKey, bigint, primaryKey } from "drizzle-orm/pg-core"
+import { pgTable, pgEnum, varchar, integer, timestamp, json, unique, text, boolean, foreignKey, bigint, primaryKey } from "drizzle-orm/pg-core"
   import { sql } from "drizzle-orm"
 
 export const aal_level = pgEnum("aal_level", ['aal1', 'aal2', 'aal3'])
@@ -45,6 +45,7 @@ export const orders = pgTable("orders", {
 	billing_last_4: varchar("billing_last_4", { length: 256 }).notNull(),
 	billing_type: varchar("billing_type", { length: 256 }).notNull(),
 	shipping_name: varchar("shipping_name", { length: 256 }).notNull(),
+	line_items: json("line_items").notNull(),
 });
 
 export const pages = pgTable("pages", {

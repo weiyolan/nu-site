@@ -16,7 +16,6 @@ import { toast } from "sonner";
 
 export function Order({ locale, order }: { locale: localeType; order: OrderType }) {
   const [open, setOpen] = useState(false);
-
   return (
     <Card className="w-full max-w-[500px] relative ">
       <CardHeader
@@ -30,7 +29,6 @@ export function Order({ locale, order }: { locale: localeType; order: OrderType 
             <Button
               size="icon"
               variant="outline"
-              // id="copyButtonRef"
               onClick={(e) => {
                 e.stopPropagation();
                 navigator.clipboard.writeText(order.number);
@@ -60,18 +58,14 @@ export function Order({ locale, order }: { locale: localeType; order: OrderType 
         <div className="grid gap-3">
           <div className="font-semibold">{locale === "en" ? "Order Details" : "Détails"}</div>
           <ul className="grid gap-3">
-            <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">
-                Glimmer Lamps x <span>2</span>
-              </span>
-              <span>$250.00</span>
-            </li>
-            <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">
-                Aqua Filters x <span>1</span>
-              </span>
-              <span>$49.00</span>
-            </li>
+            {JSON.parse(order?.lineItems as string).map((line, i) => (
+              <li key={line.description + i} className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  {line.description} x <span>{line.quantity}</span>
+                </span>
+                <span>€{line.amount / 100}</span>
+              </li>
+            ))}
           </ul>
           <Separator className="my-2" />
           <Totals
@@ -119,14 +113,16 @@ export function Order({ locale, order }: { locale: localeType; order: OrderType 
             <div className="flex items-center justify-between">
               <dt className="text-muted-foreground">{locale == "en" ? "Email" : "Courriel"}</dt>
               <dd>
-                <a href="mailto:">{order.customerEmail}</a>
+                {/* <a href="mailto:">{order.customerEmail}</a> */}
+                {order.customerEmail}
               </dd>
             </div>
             {order?.customerPhone && (
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">{locale == "en" ? "Phone" : "Tel"}</dt>
                 <dd>
-                  <a href="tel:">{order?.customerPhone}</a>
+                  {/* <a href="tel:">{order?.customerPhone}</a> */}
+                  {order?.customerPhone}
                 </dd>
               </div>
             )}

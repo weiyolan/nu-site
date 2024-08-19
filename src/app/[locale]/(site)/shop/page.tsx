@@ -10,7 +10,11 @@ import { client } from "@/sanity/lib/client";
 import Reviews from "@/components/Reviews";
 import { altImageType, buttonType, colorSanityType, getHero, localeStringType } from "@/sanity/lib/interface";
 import slugify from "slugify";
-
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Nu Soins | Pour corps et nature",
+  description: "Shampoings solides à base de levure de bière",
+};
 async function getEco(): Promise<{
   description: localeStringType;
   title: localeStringType;
