@@ -41,22 +41,22 @@ export async function getCustomerList() {
 }
 
 interface SessionData {
-  stripePaymentIntentId: string | undefined;
-  stripeInvoiceId: string | undefined;
-  stripeCheckoutSessionId: string | undefined;
-  stripeCustomerId: string | undefined;
-  amountTotal: number | undefined;
-  amountSubtotal: number | undefined;
-  amountDiscount: number | undefined;
-  amountShipping: number | undefined;
-  amountTax: number | undefined;
-  customerEmail: string | undefined;
-  // customerPhone: string | undefined;
-  // customerName: string | undefined;
+  stripePaymentIntentId: string;
+  stripeInvoiceId: string;
+  stripeCheckoutSessionId: string;
+  stripeCustomerId: string;
+  amountTotal: number;
+  amountSubtotal: number;
+  amountDiscount: number;
+  amountShipping: number;
+  amountTax: number;
+  customerEmail: string;
+  customerPhone: string;
+  customerName: string;
 }
 
 export function getFetchedSessionData(session: Stripe.Checkout.Session): SessionData {
-  return {
+  let data = {
     stripePaymentIntentId: session.payment_intent as string,
     stripeInvoiceId: session.invoice as string,
     stripeCheckoutSessionId: session.id as string,
@@ -69,32 +69,36 @@ export function getFetchedSessionData(session: Stripe.Checkout.Session): Session
     amountShipping: session.total_details?.amount_shipping as number,
     amountTax: session.total_details?.amount_tax as number,
     customerEmail: session.customer_email as string,
-    // customerName: session.customer_details?.name as string,
-    // customerPhone: session.customer_details?.phone as string,
+    customerName: session.customer_details?.name as string,
+    customerPhone: session.customer_details?.phone as string,
   };
+
+  console.log("$$$$ Fetched Session Data $$$$$", data);
+
+  return data;
 }
 
 interface InvoiceData {
-  number: string | undefined;
-  hostedInvoiceUrl: string | undefined;
-  invoicePdf: string | undefined;
+  number: string;
+  hostedInvoiceUrl: string;
+  invoicePdf: string;
 
   // lines: { object: string[] };
-  // paymentType: string | undefined;
-  shippingName: string | undefined;
-  // shippingPhone: string | undefined;
-  shippingAddressLine1: string | undefined;
-  shippingAddressCity: string | undefined;
-  shippingAddressCountry: string | undefined;
-  shippingAddressPostalCode: string | undefined;
-  charge: string | undefined;
+  // shippingName: string
+  // shippingPhone: string
+  shippingAddressLine1: string;
+  shippingAddressCity: string;
+  shippingAddressCountry: string;
+  shippingAddressPostalCode: string;
+  charge: string;
 }
 export async function getInvoiceData(id: string): Promise<InvoiceData> {
   const invoice = await stripe.invoices.retrieve(id);
 
   // console.log("$$$$$$$$$$ Charges $$$$$$$$$$");
   // console.log(data);
-  return {
+
+  let data = {
     number: invoice?.number as string,
     hostedInvoiceUrl: invoice?.hosted_invoice_url as string,
     invoicePdf: invoice?.invoice_pdf as string,
@@ -105,9 +109,13 @@ export async function getInvoiceData(id: string): Promise<InvoiceData> {
     shippingAddressCountry: invoice?.shipping_details?.address?.country as string,
     shippingAddressPostalCode: invoice?.shipping_details?.address?.postal_code as string,
     shippingName: invoice?.shipping_details?.name as string,
-    // shippingPhone: invoice?.shipping_details?.phone as string,
+    shippingPhone: invoice?.shipping_details?.phone as string,
     charge: invoice?.charge as string,
   };
+
+  console.log("$$$$ Invoice Data $$$$$", data);
+
+  return data;
 }
 
 export async function getInvoice(id: string): Promise<Stripe.Invoice> {
@@ -118,16 +126,17 @@ export async function getInvoice(id: string): Promise<Stripe.Invoice> {
 }
 
 interface ChargeData {
-  billingName: string | undefined;
-  billingAddressLine1: string | undefined;
-  billingAddressCity: string | undefined;
-  billingAddressCountry: string | undefined;
-  billingAddressPostalCode: string | undefined;
-  billingLast4: string | undefined;
-  billingType: string | undefined;
+  billingName: string;
+  billingAddressLine1: string;
+  billingAddressCity: string;
+  billingAddressCountry: string;
+  billingAddressPostalCode: string;
+  billingLast4: string;
+  billingType: string;
 }
 export async function getChargeData(id: string): Promise<ChargeData> {
   const charge = await stripe.charges.retrieve(id);
+
   let last4;
   switch (charge?.payment_method_details?.type) {
     case "bancontact":
@@ -142,7 +151,7 @@ export async function getChargeData(id: string): Promise<ChargeData> {
       last4 = charge.payment_method_details?.card?.last4;
   }
 
-  return {
+  let data = {
     billingAddressLine1: charge?.billing_details?.address?.line1 as string,
     billingAddressCity: charge?.billing_details?.address?.city as string,
     billingAddressCountry: charge?.billing_details?.address?.country as string,
@@ -151,7 +160,10 @@ export async function getChargeData(id: string): Promise<ChargeData> {
     billingLast4: last4 as string,
     billingType: charge.payment_method_details?.type as string,
   };
+  console.log("$$$$ Charge Data $$$$$", data);
+  return data;
 }
+
 export async function getInvoices(customer_id: string): Promise<Stripe.Invoice[]> {
   // { id: string; invoice_pdf: string; customer: string; number: string; paid: boolean; payment_intent_id: string; status: string; receipt_number: string }
   const { data } = await stripe.invoices.list({ customer: "cus_Q4R143QItVkAag" });

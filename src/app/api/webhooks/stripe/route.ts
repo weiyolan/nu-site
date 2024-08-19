@@ -46,6 +46,8 @@ export async function POST(request: Request) {
     if (session.payment_status == "paid") {
       // send email to userId for succesfull paiement.
       await fulfillOrder(session);
+    } else {
+      // send email to inform payment is awaited
     }
   }
 
@@ -64,17 +66,16 @@ export async function POST(request: Request) {
 
 async function createOrder(session: Stripe.Checkout.Session) {
   const { charge, ...invoiceData } = await getInvoiceData(session.invoice as string);
+  const chargeData = await getChargeData(charge as string);
   const sessionData = getFetchedSessionData(session);
-  const chargeData = getChargeData(charge as string);
   const updatedData = {
     ...sessionData,
     ...invoiceData,
     ...chargeData,
     ...{ status: "unpaid" },
-    // },
   };
 
-  console.log("From the stripe webhook, create order. Here the updated data:");
+  console.log("$$$$ Updated Data $$$$");
   console.log({ ...updatedData });
 
   if (session?.metadata?.userId != null) {

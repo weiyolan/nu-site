@@ -1,0 +1,1 @@
+ALTER TABLE "orders" ADD COLUMN "shipping_name" varchar(256) NOT NULL;

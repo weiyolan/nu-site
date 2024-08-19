@@ -58,7 +58,7 @@ export default async function Page({ params: { locale } }: { params: { locale: "
   const hero = await getHero("shopHero");
   return (
     <>
-      <Hero locale={locale} hero={hero} />
+      <Hero locale={locale} hero={hero} className="max-h-[500px]" />
       <Section id={slugify(shopSections[0].title.fr, { lower: true })} className="text-center">
         <Products locale={locale} shopSection={shopSections[0]} type="shopTitle" />
       </Section>

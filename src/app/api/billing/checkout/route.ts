@@ -62,12 +62,16 @@ export async function POST(req: Request) {
     // success_url: billingUrl.concat("?success=true"),
     // cancel_url: billingUrl,
     // payment_method_types: ["card"],
+    // phone_number_collection: {
+    //   enabled: true,
+    // },
     mode: "payment",
     billing_address_collection: "auto",
     shipping_address_collection: { allowed_countries: ["FR", "BE", "ES"] },
     shipping_options: [{ shipping_rate: "shr_1P7xBWLUFiXiOuXApaCl1fVJ" }], //test
     // shipping_options: [{ shipping_rate: "shr_1PKD41LUFiXiOuXAHk37Phci" }], //live
     customer_email: email,
+    payment_method_options: { link: { setup_future_usage: "none" } },
     line_items,
     metadata: {
       userId,

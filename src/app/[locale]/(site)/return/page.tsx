@@ -11,7 +11,7 @@ import Section from "@/components/Section";
 import ConditionalLink from "@/components/ConditionalLink";
 import NuLogo from "@/components/NuLogo";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function Return({ params: { locale } }: { params: { locale: localeType } }) {
   const [status, setStatus] = useState(null);
@@ -43,7 +43,7 @@ export default function Return({ params: { locale } }: { params: { locale: local
   useEffect(() => {
     if (status === "complete") {
       clearCart();
-      toast.success(`We appreciate your business! A confirmation email will be sent to ${customerEmail}.`);
+      // toast.success(`We appreciate your business! A confirmation email will be sent to ${customerEmail}.`);
     }
   }, [status]);
 
@@ -74,7 +74,7 @@ export default function Return({ params: { locale } }: { params: { locale: local
           </Button>
 
           <Button asChild>
-            <ConditionalLink href="/account" className="min-w-fit max-w-4/5">
+            <ConditionalLink href="/account/orders" className="min-w-fit max-w-4/5">
               {locale === "en" ? "Visit your account" : "Visitez votre compte"}
             </ConditionalLink>
           </Button>
