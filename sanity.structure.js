@@ -22,6 +22,7 @@ import {
   PanelBottom,
   Quote,
   Rows3,
+  SearchCheck,
   ShoppingCart,
   Star,
   Stars,
@@ -52,11 +53,9 @@ export const myStructure = (S, context) => {
               S.listItem().title("Produits Favoris").icon(Star).child(S.document().schemaType("homeFavorites")),
               S.listItem().title("Text & Image").icon(Images).id("imagePop2").child(S.document().schemaType("imagePop").documentId("article2")),
               S.listItem().title("Blogs").icon(BookOpen).child(S.document().schemaType("homeBlogs")),
-              // S.listItem().title("Bermuda Values").icon(BlockElementIcon).child(S.document().schemaType("hpValues").documentId("hpValues")),
-              // S.listItem().title("CTA").icon(BlockElementIcon).child(S.document().schemaType("hpCTA").documentId("hpCTA")),
-              // S.listItem().title("About").icon(BlockElementIcon).child(S.document().schemaType("hpAbout").documentId("hpAbout")),
-              // S.listItem().title("Bermuda Network").icon(BlockElementIcon).child(
-              // S.document().schemaType("hpNetwork").documentId("hpNetwork")
+              S.divider(),
+              S.listItem().title("SEO").icon(SearchCheck).child(S.document().schemaType("seo").documentId("seoHome")),
+              // S.listItem().title("SEO").
               // ),
             ])
         ),
@@ -75,6 +74,7 @@ export const myStructure = (S, context) => {
               S.divider(),
               S.listItem().title("Produits Recommandés").icon(ThumbsUp).child(S.document().schemaType("productRecommended")),
               S.listItem().title("Paramètres").icon(Cog).child(S.document().schemaType("shopSettings").title("Paramètres").documentId("shopSettings")),
+              S.listItem().title("SEO").icon(SearchCheck).child(S.document().schemaType("seo").documentId("seoShop")),
               // documentId("shopReviews")
             ])
         ),
@@ -93,7 +93,7 @@ export const myStructure = (S, context) => {
               S.listItem().title("Infos Ingrédients").icon(Carrot).child(S.document().schemaType("aboutIngredientSection").documentId("ingredients")),
               S.listItem().title("Bref").icon(Handshake).child(S.document().schemaType("aboutBref").documentId("aboutBref")),
               S.divider(),
-              orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
+              S.listItem().title("SEO").icon(SearchCheck).child(S.document().schemaType("seo").documentId("seoAbout")),
 
               // S.listItem().title("Trusted By").icon(BlockElementIcon).child(S.document().schemaType("cpTrustedBy").documentId("cpTrustedBy")),
               // S.listItem().title("Form").icon(BlockElementIcon).child(S.document().schemaType("cpForm").documentId("cpForm")),
@@ -109,7 +109,8 @@ export const myStructure = (S, context) => {
             .items([
               S.listItem().title("Intro").icon(Image).child(S.document().schemaType("helpTitle").documentId("helpTitle")),
               S.listItem().icon(Rows3).title("FAQ").child(S.document().title("FAQ").schemaType("accordion").documentId("faqQuestions")),
-
+              S.divider(),
+              S.listItem().title("SEO").icon(SearchCheck).child(S.document().schemaType("seo").documentId("seoHelp")),
               // S.divider(),
               // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
             ])
@@ -139,11 +140,11 @@ export const myStructure = (S, context) => {
               S.listItem().title("Listes de Navigation").icon(UlistIcon).child(S.document().schemaType("footerLists").title("Listes").documentId("footerLists")),
             ])
         ),
+      S.divider(),
 
       // S.documentTypeListItem("product").id("productPages"),
       orderableDocumentListDeskItem({ type: "product", title: "Produits", icon: Box, S: S, context: context }),
-
-      S.divider(),
+      orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
 
       // orderableDocumentListDeskItem({ type: "aboutIngredient", title: "Ingrédients", icon: CookingPot, S: S, context: context }),
 

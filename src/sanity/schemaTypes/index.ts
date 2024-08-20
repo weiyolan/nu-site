@@ -6,6 +6,7 @@ import localeBlockContent from "./localeBlockContent";
 import altImage from "./altImage";
 // import member from "./member";
 import link from "./link";
+import seo from "./seo";
 import footerList from "./footerList";
 import footerLists from "./footerLists";
 import footerNewsletter from "./footerNewsletter";
@@ -73,6 +74,7 @@ export const schemaTypes = [
   // member,
   link,
   linkDoc,
+  seo,
 
   legalDoc,
   localeFile,

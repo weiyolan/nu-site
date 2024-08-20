@@ -31,6 +31,10 @@ export default defineType({
       title: "Images",
     },
     {
+      name: "seo",
+      title: "SEO",
+    },
+    {
       name: "specs3",
       title: "Temporaires",
     },
@@ -206,6 +210,13 @@ export default defineType({
       of: [{ type: "altImage" }],
       group: ["images"],
       // group: 'images',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "seo",
+      group: ["seo"],
       validation: (Rule) => Rule.required(),
     }),
   ],

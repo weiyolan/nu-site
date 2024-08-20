@@ -33,33 +33,36 @@ const query = `
 // `;
 
 export function deleteUnusedAssets() {
-//  function getID (id) {
-//   console.log(id)
-//   return id
-//  }
+  //  function getID (id) {
+  //   console.log(id)
+  //   return id
+  //  }
+  return (
+    client
+      .fetch(query)
+      // .then((ids)=>{console.log(ids); return ids})
+      .then((ids) => {
+        if (!ids.length) {
+          console.log("No assets to delete");
+          return true;
+        }
 
-  return client
-    .fetch(query)
-    // .then((ids)=>{console.log(ids); return ids})
-    .then((ids) => {
-      if (!ids.length) {
-        console.log("No assets to delete");
-        return true;
-      }
-
-      console.log(`Deleting ${ids.length} assets`);
-      return ids
-        // .reduce((trx, id) => trx.delete(id._id), client.transaction())
-        .reduce((trx, id) => trx.delete(id), client.transaction())
-        .commit()
-        .then(() => console.log("Done!"));
-    })
-    .catch((err) => {
-      if (err.message.includes("Insufficient permissions")) {
-        console.error(err.message);
-        console.error("Did you forget to pass `--with-user-token`?");
-      } else {
-        console.error(err.stack);
-      }
-    });
+        console.log(`Deleting ${ids.length} assets`);
+        return (
+          ids
+            // .reduce((trx, id) => trx.delete(id._id), client.transaction())
+            .reduce((trx, id) => trx.delete(id), client.transaction())
+            .commit()
+            .then(() => console.log("Done!"))
+        );
+      })
+      .catch((err) => {
+        if (err.message.includes("Insufficient permissions")) {
+          console.error(err.message);
+          console.error("Did you forget to pass `--with-user-token`?");
+        } else {
+          console.error(err.stack);
+        }
+      })
+  );
 }
