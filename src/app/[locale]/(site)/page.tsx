@@ -24,8 +24,7 @@ export async function generateMetadata({ params: { locale, id }, searchParams }:
   // optionally access and extend (rather than replace) parent metadata
   // const previousImages = (await parent).openGraph?.images || [];
 
-  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoHome'][0]{title,description}
-  }}`);
+  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoHome'][0]{title,description}`);
 
   return {
     title: seo?.title?.[locale],

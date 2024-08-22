@@ -14,25 +14,29 @@ import { client } from "@/sanity/lib/client";
 // import slugify from "slugify";
 // import { Share } from "lucide-react";
 import BreadcrumbWithCustomSeparator from "@/components/BreadCrumbs";
-import { altImageType, buttonType, colorSanityType, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, localeStringType, localeType } from "@/sanity/lib/interface";
 import ProductsRecommended from "@/components/ProductsRecommended";
-
 import type { Metadata } from "next";
-// async function getData() {
-//   // const res = await fetch('https://api.example.com/...')
-//   // // The return value is *not* serialized
-//   // // You can return Date, Map, Set, etc.
-//   // if (!res.ok) {
-//   //   // This will activate the closest `error.js` Error Boundary
-//   //   throw new Error('Failed to fetch data')
-//   // }
-//   // return res.json()
-//   return { product: { title: "Chaos", category: "Shampoing Solide", slug: "shampoing-solide" } };
-// }
-export const metadata: Metadata = {
-  title: "Nu Soins | Pour corps et nature",
-  description: "Shampoings solides à base de levure de bière",
+
+type Props = {
+  params: { slug: string; locale: localeType };
 };
+
+export async function generateMetadata({ params: { locale, slug } }: Props): Promise<Metadata> {
+  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_type=='product'][slug.current=='${slug}'][0].seo{title,description}`);
+
+  return {
+    title: seo?.title?.[locale],
+    description: seo?.description?.[locale],
+    alternates: {
+      canonical: "https://nu-soins.com",
+      languages: {
+        en: "./en",
+        fr: "./",
+      },
+    },
+  };
+}
 async function getRecommendedProducts(): Promise<{
   color: colorSanityType;
   integrated: boolean;

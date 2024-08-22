@@ -30,8 +30,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params: { locale } }: Props): Promise<Metadata> {
-  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoAbout'][0]{title,description}
-  }}`);
+  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoAbout'][0]{title,description}`);
 
   return {
     title: seo?.title?.[locale],

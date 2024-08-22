@@ -8,13 +8,29 @@ import ValueBar from "@/components/ValueBar";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/lib/client";
 import Reviews from "@/components/Reviews";
-import { altImageType, buttonType, colorSanityType, getHero, localeStringType } from "@/sanity/lib/interface";
+import { altImageType, buttonType, colorSanityType, getHero, localeStringType, localeType } from "@/sanity/lib/interface";
 import slugify from "slugify";
 import type { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Nu Soins | Pour corps et nature",
-  description: "Shampoings solides à base de levure de bière",
+
+type Props = {
+  params: { locale: localeType };
 };
+
+export async function generateMetadata({ params: { locale } }: Props): Promise<Metadata> {
+  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoShop'][0]{title,description}`);
+
+  return {
+    title: seo?.title?.[locale],
+    description: seo?.description?.[locale],
+    alternates: {
+      canonical: "https://nu-soins.com",
+      languages: {
+        en: "./en",
+        fr: "./",
+      },
+    },
+  };
+}
 async function getEco(): Promise<{
   description: localeStringType;
   title: localeStringType;
