@@ -2,14 +2,31 @@ import PortableText from "@/components/PortableText";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { getFAQ, getHelpInfo, localeType } from "@/sanity/lib/interface";
+import { getFAQ, getHelpInfo, localeStringType, localeType } from "@/sanity/lib/interface";
 import Image from "next/image";
-import type { Metadata } from "next";
+import { client } from "@/sanity/lib/client";
+import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Nu Soins | Pour corps et nature",
-  description: "Shampoings solides à base de levure de bière",
+type Props = {
+  params: { locale: localeType };
 };
+
+export async function generateMetadata({ params: { locale } }: Props): Promise<Metadata> {
+  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoHelp'][0]{title,description}
+  }}`);
+
+  return {
+    title: seo?.title?.[locale],
+    description: seo?.description?.[locale],
+    alternates: {
+      canonical: "https://nu-soins.com",
+      languages: {
+        en: "./en",
+        fr: "./",
+      },
+    },
+  };
+}
 
 export default async function Page({ params: { locale } }: { params: { locale: localeType } }) {
   const helpInfo = await getHelpInfo();

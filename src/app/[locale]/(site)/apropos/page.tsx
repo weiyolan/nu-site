@@ -9,13 +9,42 @@ import NuLine from "@/components/NuLine";
 import Section from "@/components/Section";
 import ValueBar from "@/components/ValueBar";
 import Image from "next/image";
-import { getBeerInfo, getBrefInfo, getHero, getImagePop, getIngredientInfo, getIngredients, getSquareInfo, getValueInfo, localeType } from "@/sanity/lib/interface";
+import {
+  getBeerInfo,
+  getBrefInfo,
+  getHero,
+  getImagePop,
+  getIngredientInfo,
+  getIngredients,
+  getSquareInfo,
+  getValueInfo,
+  localeStringType,
+  localeType,
+} from "@/sanity/lib/interface";
 // import { client } from "@/sanity/lib/client";
 import type { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Nu Soins | Pour corps et nature",
-  description: "Shampoings solides à base de levure de bière",
+import { client } from "@/sanity/lib/client";
+
+type Props = {
+  params: { locale: localeType };
 };
+
+export async function generateMetadata({ params: { locale } }: Props): Promise<Metadata> {
+  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoAbout'][0]{title,description}
+  }}`);
+
+  return {
+    title: seo?.title?.[locale],
+    description: seo?.description?.[locale],
+    alternates: {
+      canonical: "https://nu-soins.com",
+      languages: {
+        en: "./en",
+        fr: "./",
+      },
+    },
+  };
+}
 export default async function Page({ params: { locale } }: { params: { locale: localeType } }) {
   const imagePop = await getImagePop();
   const squareInfo = await getSquareInfo();

@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
       priority: 0.5,
     },
-    ...slugs.map((slug) => ({
+    ...slugs.map((slug: { slug: string }) => ({
       url: `https://nu-soins.com/shop/${slug.slug}`,
       lastModified: new Date(),
       alternates: {

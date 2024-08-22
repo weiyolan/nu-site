@@ -6,32 +6,31 @@ import { defineMigration, patch, at, setIfMissing, set, replace } from "sanity/m
  */
 export default defineMigration({
   title: "Product Seo Patch",
-  documentTypes: ["product"],
+  documentTypes: ["seo"],
 
   async *migrate(documents, context) {
     for await (const document of documents()) {
-      console.log(document.title);
-      console.log(document.seo?.title);
+      console.log(document._id);
+      // console.log(document._id.split(".")[1]);
+
       // console.log('document.', document.)
       yield patch(document._id, [
         at(
           "seo.title",
           set({
             _type: "localeString",
-            fr: `${document.title.fr} | Le Shampoing Solide A Base de Levure De Bière`,
-            en: `${document.title.en} | The Shampoo Bar Made Of Beer Yiest`,
+            fr: `Nu Soins | Pour corps et nature`,
+            en: `Nu Soins | For body and nature`,
           })
         ),
         at(
           "seo.description",
           set({
             _type: "localeText",
-            fr: `Le shampoing solide à base de levure de bière made in France avec soin pour la nature et des ingrédients locaux.`,
-            en: `The shampoo bar based on beer yiest with local ingredients taking care of your body and nature.`,
+            fr: `Shampoings solides à base de levure de bière`,
+            en: `Vegan shampoo bars based on beer yiest`,
           })
         ),
-        // at('title', setIfMissing('Default title')),
-        // at('enabled', setIfMissing(true)),
       ]);
     }
   },

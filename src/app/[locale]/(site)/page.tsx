@@ -15,8 +15,8 @@ import { altImageType, buttonType, colorSanityType, getHero, getProductPresentat
 import type { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-  params: { id: string; locale: localeType };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: { locale: localeType };
+  // searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export async function generateMetadata({ params: { locale, id }, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
@@ -24,9 +24,12 @@ export async function generateMetadata({ params: { locale, id }, searchParams }:
   // optionally access and extend (rather than replace) parent metadata
   // const previousImages = (await parent).openGraph?.images || [];
 
+  const seo: { title: localeStringType; description: localeStringType } = await client.fetch(`*[_id=='seoHome'][0]{title,description}
+  }}`);
+
   return {
-    title: "Nu Soins | Pour corps et nature",
-    description: "Shampoings solides à base de levure de bière",
+    title: seo?.title?.[locale],
+    description: seo?.description?.[locale],
     alternates: {
       canonical: "https://nu-soins.com",
       languages: {
