@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { DebugCart, CartProvider as ShoppingCartProvider } from "use-shopping-cart";
 // import * as config from "../../config";
 import { env } from "@/lib/env.mjs";
-import { loadStripe } from "@stripe/stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 
 // const stripePromise = loadStripe(env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
