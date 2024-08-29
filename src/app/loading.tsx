@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="grid w-full h-full place-items-center animate-pulse text-muted-foreground p-4">
+    <div className="grid mx-auto mt-[48%] w-fit h-fit place-items-center animate-pulse text-muted-foreground p-4">
       <div role="status">
         <svg aria-hidden="true" className="w-6 h-6 text-muted-foreground fill-muted animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
