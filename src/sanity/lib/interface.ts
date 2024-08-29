@@ -1,7 +1,7 @@
 import { groq } from "next-sanity";
 import { supportedLanguages } from "../../i18n/supportedLanguages";
 import { client } from "./client";
-import { LucideIcon } from "lucide-react";
+// import { LucideIcon } from "lucide-react";
 
 export function getColor(color: colorSanityType): colorBgType {
   switch (color) {

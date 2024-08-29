@@ -27,7 +27,7 @@ export default async function Site({
   const navbarInfo = await getNavbarInfo();
   const footerInfo = await getFooterInfo();
   const footerLists = await getFooterLists();
-  // const session  = await getUserAuth();
+  const session = await getUserAuth();
   return (
     // <html lang={locale}>
     // <body className={`${corben.variable} ${mulish.variable} font-mulish relative`}>
