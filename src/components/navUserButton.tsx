@@ -9,14 +9,14 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
+  // navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
-import { Avatar, AvatarFallback } from "./ui/avatar";
-import { AuthSession, getUserAuth } from "@/lib/auth/utils";
-import { LanguagesIcon, User2Icon } from "lucide-react";
+// import { Avatar, AvatarFallback } from "./ui/avatar";
+import { AuthSession } from "@/lib/auth/utils";
+import { User2Icon } from "lucide-react";
 // import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 // import { SelectGroup, SelectLabel } from "@radix-ui/react-select";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+// import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 export interface UserButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   locale: localeType;
   scrolled: boolean;
@@ -30,9 +30,9 @@ import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
 import AuthForm from "./auth/Form";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+// import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
-type Checked = DropdownMenuCheckboxItemProps["checked"];
+// type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export default function UserButton({ children, className, locale, session, scrolled, ...props }: UserButtonProps) {
   // if (session.session === null) return null;
@@ -63,7 +63,7 @@ export default function UserButton({ children, className, locale, session, scrol
     //     <UserDetails locale={locale} session={session} />
     //   </PopoverContent>
     // </Popover>
-    <NavigationMenu className="mx-auto hidden md:flex ">
+    <NavigationMenu className="mx-auto flex ">
       <NavigationMenuList className="">
         <NavigationMenuItem className="">
           <Link href={"/account"} legacyBehavior passHref className="">

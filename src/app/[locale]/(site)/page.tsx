@@ -1,14 +1,14 @@
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import ImagePop from "@/components/ImagePop";
 import NuLine from "@/components/NuLine";
 import Reviews from "@/components/Reviews";
 import Section from "@/components/Section";
-import Typography from "@/components/Typography";
+// import Typography from "@/components/Typography";
 import ValueBar from "@/components/ValueBar";
 import ProductsPresentation from "@/components/HomeProductsPresentation";
 import Products from "@/components/Products";
-import HomeBlogs from "@/components/HomeBlogs";
+// import HomeBlogs from "@/components/HomeBlogs";
 import HomeEssayerNu from "@/components/HomeEssayerNu";
 import { client } from "@/sanity/lib/client";
 import { altImageType, buttonType, colorSanityType, getHero, getProductPresentation, localeBlockContentType, localeStringType, localeType } from "@/sanity/lib/interface";
@@ -19,7 +19,7 @@ type Props = {
   // searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params: { locale, id }, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params: { locale } }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   // const product = await fetch(`https://.../${id}`).then((res) => res.json());
   // optionally access and extend (rather than replace) parent metadata
   // const previousImages = (await parent).openGraph?.images || [];

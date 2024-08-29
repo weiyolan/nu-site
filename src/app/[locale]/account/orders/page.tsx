@@ -20,8 +20,10 @@ export default async function Home({ params: { locale } }: { params: { locale: l
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
-    // console.log(orders);
-    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      return res.json();
+    })
     .then((data) => data);
   //Charges of stripe based on customer ID
   // https://stackoverflow.com/questions/71751963/way-to-fetch-list-of-orders-based-on-customer-email-stripejs

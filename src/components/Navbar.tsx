@@ -293,9 +293,9 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, session, loc
 
         <div className="top-0 ml-auto absolute right-0 md:right-[17px] flex ">
           {/* top-[20.5px] */}
-          <UserButton scrolled={scrolled} locale={locale} session={session} />
+          <UserButton scrolled={scrolled} locale={locale} session={session as AuthSession} />
           <LanguageToggle scrolled={scrolled} locale={locale} />
-          <ShoppingCart scrolled={scrolled} locale={locale} session={session} />
+          <ShoppingCart scrolled={scrolled} locale={locale} session={session as AuthSession} />
         </div>
       </div>
     </nav>

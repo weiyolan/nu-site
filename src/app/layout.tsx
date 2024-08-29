@@ -16,7 +16,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 // import { DebugCart } from "use-shopping-cart";
 import CartProvider from "@/components/shoppingCart/CartProvider";
-import { getUserAuth } from "@/lib/auth/utils";
+// import { getUserAuth } from "@/lib/auth/utils";
 const corben = Corben({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-corben" });
 const mulish = Mulish({ subsets: ["latin"], variable: "--font-mulish" });
 // import { env } from "@/lib/env.mjs";
