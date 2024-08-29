@@ -41,18 +41,18 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${corben.variable} ${mulish.variable} font-mulish relative`}>
         <CartProvider>
-          <TrpcProvider cookies={cookies().toString()}>
-            <TooltipProvider>
-              {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
-              {children}
-              {/* </ThemeProvider> */}
-            </TooltipProvider>
-            {/* <Toaster /> */}
-            <SonnerToaster
-            // richColors
-            />
-            {/* <DebugCart /> */}
-          </TrpcProvider>
+          {/* <TrpcProvider cookies={cookies().toString()}> */}
+          <TooltipProvider>
+            {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
+            {children}
+            {/* </ThemeProvider> */}
+          </TooltipProvider>
+          {/* <Toaster /> */}
+          <SonnerToaster
+          // richColors
+          />
+          {/* <DebugCart /> */}
+          {/* </TrpcProvider> */}
         </CartProvider>
       </body>
     </html>

@@ -1,12 +1,8 @@
 import { checkAuth } from "@/lib/auth/utils";
-import { Toaster } from "@/components/ui/sonner";
 import "../../globals.css";
 // import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import TrpcProvider from "@/lib/trpc/Provider";
-import { cookies } from "next/headers";
 import { localeType } from "@/sanity/lib/interface";
-
 export default async function AppLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: localeType } }) {
   await checkAuth();
   return (

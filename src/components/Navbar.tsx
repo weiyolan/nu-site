@@ -61,7 +61,7 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
   enabled: boolean;
   messages: { icon: { name: string }; text: localeStringType }[];
 }
-export default function Navbar({ navbarInfo: { logoToggle, links }, session, locale, enabled, messages }: NavbarProps) {
+export default function Navbar({ navbarInfo: { logoToggle, links }, session, locale, enabled, messages, className }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
 
   // console.log(enabled, messages);
@@ -82,7 +82,7 @@ export default function Navbar({ navbarInfo: { logoToggle, links }, session, loc
   }, [scrolled]);
 
   return (
-    <nav className={`w-screen lg:pr-[12px] fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `}>
+    <nav className={cn(`w-screen lg:pr-[12px] fixed top-0 z-10 transition-all duration-300 ${scrolled ? "bg-nu-beige shadow-lg" : "bg-transparent"} `, className)}>
       {enabled && (
         <div className={cn(`w-full bg-nu-black text-nu-white text-sm transition-all duration-300 `, false && `${scrolled ? "opacity-0 h-0 " : "opacity-100 h-6"} `)}>
           <Section className={cn(`mt-0 md:mt-0 h-full `, false && `${scrolled ? " delay-300 invisible" : " visible"}`)}>
