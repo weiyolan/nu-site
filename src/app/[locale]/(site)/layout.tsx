@@ -36,7 +36,9 @@ export default async function Site({
     // {/* <TrpcProvider cookies={cookies().toString()}> */}
     <div>
       <NuLogoBackground />
-      <header>{/* <Navbar locale={locale} session={session} navbarInfo={navbarInfo} enabled={enabled} messages={messages} /> */}</header>
+      <header>
+        <Navbar locale={locale} session={session} navbarInfo={navbarInfo} enabled={enabled} messages={messages} />
+      </header>
 
       <main className="relative">{children}</main>
       <Footer footerInfo={footerInfo} footerLists={footerLists.footerLists} locale={locale} className="" />
