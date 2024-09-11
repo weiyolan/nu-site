@@ -33,7 +33,7 @@ export default async function RootLayout({
         {/* <CartProvider> */}
         {/* <TrpcProvider cookies={cookies().toString()}> */}
         <TooltipProvider>{children}</TooltipProvider>
-        {/* <SonnerToaster /> */}
+        <SonnerToaster />
         {/* </TrpcProvider> */}
         {/* </CartProvider> */}
       </body>
