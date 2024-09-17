@@ -15,7 +15,7 @@ export default async function Home({ params: { locale } }: { params: { locale: l
   // const charges = await getCharges();
   // const payments = await getPaymentIntents();
   // const invoices = await getInvoices("in_1PMUMdLUFiXiOuXAsJGrVp6c");
-
+console.log("absoluteUrl", absoluteUrl(`/api/orders?id=${session?.user.id}`));
   let orders = await fetch(absoluteUrl(`/api/orders?id=${session?.user.id}`), {
     method: "GET",
     headers: { "Content-Type": "application/json" },

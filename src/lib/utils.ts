@@ -12,7 +12,7 @@ export function absoluteUrl(path: string) {
 
   
   return process.env.NODE_ENV === "development" //isDev
-    ? `http://localhost:3001${path}`
+    ? `http://localhost:3000${path}`
     : `${process.env.NEXT_PUBLIC_APP_URL || "https://nu-soins.com"}${path}`;
   // return `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}${path}`;
 }

@@ -30,12 +30,12 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${corben.variable} ${mulish.variable} font-mulish relative`}>
-        {/* <CartProvider> */}
-        <TrpcProvider cookies={cookies().toString()}>
-          <TooltipProvider>{children}</TooltipProvider>
-          <SonnerToaster />
-        </TrpcProvider>
-        {/* </CartProvider> */}
+        <CartProvider>
+          <TrpcProvider cookies={cookies().toString()}>
+            <TooltipProvider>{children}</TooltipProvider>
+            <SonnerToaster />
+          </TrpcProvider>
+        </CartProvider>
       </body>
     </html>
   );
