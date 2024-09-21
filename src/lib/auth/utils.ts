@@ -1,5 +1,8 @@
+"use server";
 import { redirect } from "next/navigation";
 import { getPageSession } from "@/lib/auth/lucia";
+import { NextResponse, NextRequest } from "next/server";
+import { absoluteUrl } from "../utils";
 
 export type AuthSession = {
   session: {
@@ -28,10 +31,10 @@ export const getUserAuth = async (): Promise<AuthSession> => {
 
 export const checkAuth = async () => {
   const session = await getPageSession();
-<<<<<<< HEAD
-  console.log(session);
-=======
-  console.log(session);
->>>>>>> 22e06dc2ac9a0b1aee491b4e33365760bfd40d9d
-  if (!session) redirect("/sign-in");
+  // console.log(session);
+  // if (!session) redirect("/sign-in");
+  if (!session) {
+    redirect("/sign-in");
+    // return NextResponse.redirect(absoluteUrl("/sign-in"));
+  }
 };

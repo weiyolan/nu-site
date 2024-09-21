@@ -13,7 +13,7 @@ const Page = async ({ params: { locale } }: { params: { locale: localeType } }) 
   return (
     <>
       <div className="bg-nu-blue absolute w-full sm:w-1/2 h-full sm:relative">
-        <Image fill alt={image?.alt?.[locale]} src={image.image.url} className="object-cover" />
+        <Image fill alt={image?.alt?.[locale]} src={image.image.url} className="object-cover" sizes="50vw" />
       </div>
       <div className=" w-full sm:w-1/2 flex-0 flex h-full items-center justifiy-center">
         <Card className="max-w-lg mx-auto my-4 bg-popover p-10">

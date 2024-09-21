@@ -3,8 +3,8 @@ import "../../globals.css";
 import Sidebar from "@/components/Sidebar";
 import { localeType } from "@/sanity/lib/interface";
 export default async function AppLayout({ children, params: { locale } }: { children: React.ReactNode; params: { locale: localeType } }) {
-  checkAuth();
-  // await checkAuth();
+  // checkAuth();
+  await checkAuth();
   return (
     <main>
       <div className="flex h-screen">
