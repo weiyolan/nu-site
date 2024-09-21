@@ -66,14 +66,14 @@ export default function UserButton({ children, className, locale, session, scrol
     <NavigationMenu className="mx-auto flex ">
       <NavigationMenuList className="">
         <NavigationMenuItem className="">
-          <Link href={"/account"} legacyBehavior passHref className="">
-            <NavigationMenuLink>
-              <NavigationMenuTrigger
-                className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} p-3 text-center [&>svg:nth-child(2)]:hidden`}>
-                <User2Icon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
-              </NavigationMenuTrigger>
-            </NavigationMenuLink>
-          </Link>
+          {/* <Link href={"/account"} legacyBehavior passHref className=""> */}
+          <NavigationMenuLink>
+            <NavigationMenuTrigger
+              className={`transition-all duration-300 font-mulish uppercase bg-transparent ${scrolled ? "font-semibold" : "font-bold"} p-3 text-center [&>svg:nth-child(2)]:hidden`}>
+              <User2Icon className={`size-6 sm:size-5 transition-all ${scrolled ? "stroke-[1.5]" : "stroke-2"}`} />
+            </NavigationMenuTrigger>
+          </NavigationMenuLink>
+          {/* </Link> */}
           <NavigationMenuContent className="">
             <UserDetails locale={locale} session={session} />
           </NavigationMenuContent>
@@ -87,11 +87,11 @@ const UserDetails = ({ session, locale }: { session: AuthSession; locale: locale
   return (
     <Card className="flex flex-col">
       <CardHeader>
-        <CardTitle className="text-xl ">{`${locale == "en" ? "Welcome" : "Bienvenue"} ${session?.user?.name ? `${session?.user?.name}!` : ``}`}</CardTitle>
+        <CardTitle className="text-xl ">{`${locale == "en" ? "Welcome" : "Bienvenue"} ${session?.session?.user?.name ? `${session?.session?.user?.name}!` : ``}`}</CardTitle>
         <CardDescription className="whitespace-nowrap ">{locale == "en" ? "Ready for a beautiful day?" : `Prêt(e) pour une belle journée?`}</CardDescription>
       </CardHeader>
       <CardContent>
-        {session && (
+        {session.session && (
           <Button asChild>
             <Link href="/account">{locale == "en" ? "Go to your account" : "Aller vers compte"}</Link>
           </Button>
