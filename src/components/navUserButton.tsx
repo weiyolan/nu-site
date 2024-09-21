@@ -93,18 +93,14 @@ const UserDetails = ({ session, locale }: { session: AuthSession; locale: locale
       <CardContent>
         {session && (
           <Button asChild>
-            <Link href="/account">
-              <div className="">{locale == "en" ? "Go to your account" : "Vers votre compte"}</div>
-            </Link>
+            <Link href="/account">{locale == "en" ? "Go to your account" : "Aller vers compte"}</Link>
           </Button>
         )}
-        {session ? (
+        {session.session ? (
           <AuthForm className="" action={"/api/sign-out"} />
         ) : (
-          <Button asChild>
-            <Link href="/account">
-              <div className="">{locale == "en" ? "Sign in" : "Connéxion"}</div>
-            </Link>
+          <Button className="mt-4" asChild>
+            <Link href="/account">{locale == "en" ? "Sign in" : "Connéxion"}</Link>
           </Button>
         )}
       </CardContent>
