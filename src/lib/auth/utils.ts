@@ -28,6 +28,10 @@ export const getUserAuth = async (): Promise<AuthSession> => {
 
 export const checkAuth = async () => {
   const session = await getPageSession();
-  // console.log(session);
+<<<<<<< HEAD
+  console.log(session);
+=======
+  console.log(session);
+>>>>>>> 22e06dc2ac9a0b1aee491b4e33365760bfd40d9d
   if (!session) redirect("/sign-in");
 };
